@@ -14,11 +14,30 @@
 }
 
 .login-contents {
-    width: 50%;
+    width: 70%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     column-gap: 100px;
+}
+
+.demo {
+    width: 500px;
+    border-radius: 15px;
+    height: auto;
+}
+
+.demo h1 {
+    font-size: 4rem;
+    color: var(--dark-brown)
+}
+
+#demo-focus {
+    background: linear-gradient(
+            to right, #f32170, #ff6b08,
+             #cf23cf, #eedd44);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
 }
 
 .log-in-container {
@@ -40,6 +59,8 @@
     display: flex;
     background-color: var(--light-peach);
 }
+
+
 
 .log-in-logo {
     width: 80%;
@@ -68,6 +89,11 @@
     border: 1px solid gray;
     height: 30px;
     color: white;
+    cursor: pointer;
+}
+
+.log-in-btn:hover {
+    background-color: var(--light-gray);
 }
 
 .log-in-sign-up {

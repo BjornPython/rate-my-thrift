@@ -18,7 +18,9 @@ function LoginPage() {
             <div className="login-contents">
 
                 <div className="demo">
-                    <h1>demo</h1>
+                    <h1>FIND </h1>
+                    <h1 id='demo-focus'>INSPIRATION</h1>
+                    <h1>FOR YOUR THRIFT FINDS</h1>
                 </div>
 
                 <div className="log-in">
@@ -26,7 +28,7 @@ function LoginPage() {
                     {page === "Sign in" && <Register />}
 
                     <div className="log-in-sign-up">
-                        <p>Dont have an account?</p>
+                        {page === "Sign up" ? <p>Dont have an account?</p> : <p>Already have an account?</p>}
                         <p onClick={handleSignClick}>{page}</p>
                     </div>
                 </div>
