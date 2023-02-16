@@ -7,9 +7,9 @@ function Register() {
 
             <div className="log-in-inputs">
                 <input type="text" placeholder='name' />
-                <input type="text" placeholder='email...' />
-                <input type="text" placeholder='password...' />
-                <input type="text" placeholder='confirm password...' />
+                <input type="text" placeholder='email' />
+                <input type="text" placeholder='password' />
+                <input type="text" placeholder='confirm password' />
             </div>
 
             <button className='log-in-btn'>Sign up</button>

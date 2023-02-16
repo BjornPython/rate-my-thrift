@@ -15,6 +15,7 @@
 
 .login-contents {
     width: 70%;
+    height: 450px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
