@@ -1,0 +1,83 @@
+
+
+.login-page {
+    width: 100%;     
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.login-page h1 {
+    margin: 0;
+}
+
+.login-contents {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 100px;
+}
+
+.log-in-container {
+    height: 320px;
+    width: 350px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    background-color: var(--light-peach);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.log-in-sign-up {
+    border-radius: 15px;
+    border: 1px solid gray;
+    margin-top: 15px;   
+    display: flex;
+    background-color: var(--light-peach);
+}
+
+.log-in-logo {
+    width: 80%;
+    margin-left: 10px;
+}
+
+.log-in-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    row-gap: 10px;
+}
+
+.log-in-inputs input {
+    padding-left: 10px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.log-in-btn {
+    margin-top: 30px;
+    background-color: var(--medium-brown);
+    width: 75%;
+    border-radius: 10px;
+    border: 1px solid gray;
+    height: 30px;
+    color: white;
+}
+
+.log-in-sign-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.log-in-sign-up p:nth-child(2) {
+    color: #5b17eb;
+    cursor: pointer;
+}
