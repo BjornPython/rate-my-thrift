@@ -33,7 +33,7 @@ export const register = async (email, password) => {
         
         const user = await createUserWithEmailAndPassword(auth, email, password);
         console.log("USER: ", user);
-        
+        sendEmailVerification(auth.currentUser)
 
     } catch (err) {
         console.log(err.message);

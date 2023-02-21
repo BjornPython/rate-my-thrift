@@ -16,11 +16,12 @@ function App() {
     }
     else {
       console.log('Email is not verified');
-      sendEmailVerification(currentUser)
     }
   })
 
-
+  // useEffect(() => {
+  //   logout()
+  // }, [])
 
 
 
