@@ -14,23 +14,37 @@
 }
 
 .login-contents {
-    width: 70%;
+    width: 65%;
     height: 450px;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     column-gap: 100px;
 }
 
 .demo {
-    width: 500px;
-    border-radius: 15px;
+    width: 450px;
     height: auto;
+    border-left: 10px solid  var(--dark-brown);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .demo h1 {
+    margin-left: 20px;
     font-size: 4rem;
     color: var(--dark-brown)
+}
+
+.demo hr {
+    height: 10px;
+    background-color: var(--dark-brown);
+    width: 220px;
+    margin: 0;
+    margin-top: 20px;
+    border: none;
 }
 
 #demo-focus {

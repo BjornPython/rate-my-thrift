@@ -21,6 +21,7 @@ function LoginPage() {
                     <h1>FIND </h1>
                     <h1 id='demo-focus'>INSPIRATION</h1>
                     <h1>FOR YOUR FASHION</h1>
+                    <hr />
                 </div>
 
                 <div className="log-in">
