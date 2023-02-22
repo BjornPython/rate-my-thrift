@@ -1,7 +1,8 @@
 import logo from "../../svgs/logo.svg"
 import { register } from "../../auth/authWithEmailPass"
 import { useState } from "react"
-
+import google from "../../svgs/google.svg"
+import facebook from "../../svgs/facebook.svg"
 
 function Register() {
     const [registerData, setRegisterData] = useState({ email: "", password: "" })
@@ -18,7 +19,7 @@ function Register() {
     }
 
     return (
-        <div className="log-in-container" style={{ height: "400px" }}>
+        <div className="log-in-container" style={{ height: "470px" }}>
             <img src={logo} alt="" className='log-in-logo' />
 
             <div className="log-in-inputs">
@@ -29,7 +30,11 @@ function Register() {
             </div>
 
             <button className='log-in-btn' onClick={handleSignUp}>Sign up</button>
-
+            <div className="or"><hr /><h4>or</h4><hr /></div>
+            <div className="sign-in-with">
+                <img src={google} alt="" />
+                <img id="fb-icn" src={facebook} alt="" />
+            </div>
         </div>
     )
 }

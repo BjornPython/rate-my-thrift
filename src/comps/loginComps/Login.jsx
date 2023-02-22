@@ -2,6 +2,9 @@ import { useEffect } from "react"
 import logo from "../../svgs/logo.svg"
 import { useState } from "react"
 import { loginWithEmailPass } from "../../auth/authWithEmailPass"
+import google from "../../svgs/google.svg"
+import facebook from "../../svgs/facebook.svg"
+import { callGoogleSigninPopup } from '../../auth/authWithGoogle'
 
 function Login() {
 
@@ -16,7 +19,7 @@ function Login() {
     }
 
     return (
-        <div className="log-in-container">
+        <div className="log-in-container" style={{ height: "385px" }}>
             <img src={logo} alt="" className='log-in-logo' />
 
             <div className="log-in-inputs">
@@ -25,7 +28,12 @@ function Login() {
             </div>
 
             <button className='log-in-btn' onClick={() => { loginWithEmailPass(email, password) }} >Sign In</button>
-            <div id="firebaseui-auth-container"></div>
+            <div className="or"><hr /><h4>or</h4><hr /></div>
+            <div className="sign-in-with">
+                <img src={google} alt="" onClick={callGoogleSigninPopup} />
+                <img id="fb-icn" src={facebook} alt="" />
+            </div>
+
         </div>
     )
 }

@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {
-    getAuth, createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, onAuthStateChanged, 
-    signOut, sendEmailVerification
+    getAuth, signOut
     } from "firebase/auth"
 
 // Your web app's Firebase configuration

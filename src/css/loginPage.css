@@ -122,3 +122,52 @@
     color: #5b17eb;
     cursor: pointer;
 }
+
+.or {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+}
+
+.or h4 {
+    margin: 0 10px;
+    font-weight: 400;
+
+
+}
+
+.or hr {
+    margin-top: 15px;
+    height: 1px;
+    width: 100%;
+    border: none;
+    background-color: gray;
+}
+
+.sign-in-with {
+    background-color: white;
+    color: var(--dark-brown);
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    display: flex;
+    align-self: flex-start;
+    margin-left: 45px;
+    justify-content: flex-start;
+    column-gap: 15px;
+    font-weight: 400;   
+}
+
+.sign-in-with h4 {
+    margin: 0;
+    font-weight: 400;   
+}
+
+.sign-in-with img {
+    width: 25px;
+    cursor: pointer;
+}
+
+
