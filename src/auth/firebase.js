@@ -40,6 +40,12 @@ export const register = async (email, password) => {
     }
 }
 
+export const loginWithEmailPass = async (email, password) => {
+    try {
+    const user = signInWithEmailAndPassword(auth, email, password)
+    } catch (err) {console.log(err)}
+}   
+
 export const logout = async () => {
     await signOut(auth)
 }

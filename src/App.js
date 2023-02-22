@@ -7,7 +7,6 @@ import { auth, logout } from './auth/firebase';
 
 function App() {
 
-  const [user, setUser] = useState(null)
 
   onAuthStateChanged(auth, (currentUser) => {
     console.log("currentUser: ",currentUser);
