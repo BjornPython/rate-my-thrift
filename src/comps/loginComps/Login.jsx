@@ -19,7 +19,7 @@ function Login() {
     }
 
     return (
-        <div className="log-in-container" style={{ height: "385px" }}>
+        <div className="log-in-container" style={{ height: "395px" }}>
             <img src={logo} alt="" className='log-in-logo' />
 
             <div className="log-in-inputs">
@@ -30,8 +30,12 @@ function Login() {
             <button className='log-in-btn' onClick={() => { loginWithEmailPass(email, password) }} >Sign In</button>
             <div className="or"><hr /><h4>or</h4><hr /></div>
             <div className="sign-in-with">
-                <img src={google} alt="" onClick={callGoogleSigninPopup} />
-                <img id="fb-icn" src={facebook} alt="" />
+                <div className="icon">
+                    <img src={google} alt="" onClick={callGoogleSigninPopup} />
+                </div>
+                <div className="icon">
+                    <img id="fb-icn" src={facebook} alt="" />
+                </div>
             </div>
 
         </div>

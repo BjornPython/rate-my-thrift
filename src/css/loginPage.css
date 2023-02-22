@@ -147,11 +147,7 @@
 }
 
 .sign-in-with {
-    background-color: white;
     color: var(--dark-brown);
-    padding: 5px;
-    border: 1px solid gray;
-    border-radius: 15px;
     display: flex;
     align-self: flex-start;
     margin-left: 45px;
@@ -170,4 +166,14 @@
     cursor: pointer;
 }
 
+.icon {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
 
