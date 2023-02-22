@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import LoginPage from './comps/loginComps/LoginPage';
 import { onAuthStateChanged, sendEmailVerification } from 'firebase/auth';
-import { auth, logout } from './auth/firebase';
+import { auth, logout } from './firebase';
 
 function App() {
 
@@ -18,9 +18,9 @@ function App() {
     }
   })
 
-  // useEffect(() => {
-  //   logout()
-  // }, [])
+  useEffect(() => {
+    logout()
+  }, [])
 
 
 

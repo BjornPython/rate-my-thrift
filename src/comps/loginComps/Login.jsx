@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import logo from "../../svgs/logo.svg"
 import { useState } from "react"
-import { loginWithEmailPass } from "../../auth/firebase"
+import { loginWithEmailPass } from "../../auth/authWithEmailPass"
 
 function Login() {
 

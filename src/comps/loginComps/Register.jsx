@@ -1,5 +1,5 @@
 import logo from "../../svgs/logo.svg"
-import { register } from '../../auth/firebase'
+import { register } from "../../auth/authWithEmailPass"
 import { useState } from "react"
 
 

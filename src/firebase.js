@@ -21,30 +21,6 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp)
 
-const actionCodeSettings = {
-    // URL you want to redirect back to. The domain (www.example.com) for this
-    // URL must be in the authorized domains list in the Firebase Console.
-    url: 'https://www.example.com/finishSignUp?cartId=1234',
-    // This must be true.
-    handleCodeInApp: true
-}
-export const register = async (email, password) => {
-    try {
-        
-        const user = await createUserWithEmailAndPassword(auth, email, password);
-        console.log("USER: ", user);
-        sendEmailVerification(auth.currentUser)
-
-    } catch (err) {
-        console.log(err.message);
-    }
-}
-
-export const loginWithEmailPass = async (email, password) => {
-    try {
-    const user = signInWithEmailAndPassword(auth, email, password)
-    } catch (err) {console.log(err)}
-}   
 
 export const logout = async () => {
     await signOut(auth)
