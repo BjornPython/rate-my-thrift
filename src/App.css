@@ -4,13 +4,21 @@
   --medium-brown: #c98f61;
   --light-gray: #a5b2ab;
   --light-peach: #d3b8a5;
+  --vintage-white: #E5E5DB;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
 
 .App {
   background-color: var(--light-gray);
+  background-image: url("./images/background.png");
   width: 100%;
+  background-size: contain;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
+

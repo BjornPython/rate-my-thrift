@@ -12,6 +12,7 @@ function Homepage() {
         <div className='homepage'>
             <Navbar />
             <Posts />
+            <div className="background-img"></div>
         </div>
     )
 }
