@@ -1,9 +1,9 @@
-import { firestoreDb } from "../firebase";
+import { usersCollection } from "../firebase";
 import {  doc, setDoc } from "firebase/firestore";
 
 
 export const addUser = async (uid, email) => {
-    const userDoc = doc(firestoreDb, "users", uid) 
+    const userDoc = doc(usersCollection, uid) 
     console.log("SETTING DOC...");
     const newUser = await setDoc(userDoc, {
         email,
@@ -12,3 +12,5 @@ export const addUser = async (uid, email) => {
     })
     console.log("NEW USER: ", newUser);
 }   
+
+

@@ -1,0 +1,12 @@
+.posts {
+    margin-top: 60px;
+    width: 80%;
+    display: grid;
+    column-gap: 20px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 350px));
+    height: 400px;
+}
+
+.posts h1 {
+}

@@ -1,5 +1,5 @@
 import logo from "../../svgs/logo.svg"
-import { register } from "../../auth/authWithEmailPass"
+import { registerWithEmailPass } from "../../auth/authWithEmailPass"
 import { useState } from "react"
 import google from "../../svgs/google.svg"
 import facebook from "../../svgs/facebook.svg"
@@ -16,7 +16,7 @@ function Register() {
     }
 
     const handleSignUp = () => {
-        register(email, password)
+        registerWithEmailPass(email, password)
     }
 
     return (

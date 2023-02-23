@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../css/loginPage.css"
+import "../../css/login/loginPage.css"
 import Login from './Login'
 import Register from './Register'
 import { useState } from 'react'

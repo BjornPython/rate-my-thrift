@@ -2,7 +2,8 @@ import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import './App.css';
 import LoginPage from './comps/loginComps/LoginPage';
-import { onAuthStateChanged, sendEmailVerification } from 'firebase/auth';
+import Homepage from './comps/loggedInPage/Homepage';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logout } from './firebase';
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
 
   return (
     <div className="App">
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <Homepage />
     </div>
   );
 }
