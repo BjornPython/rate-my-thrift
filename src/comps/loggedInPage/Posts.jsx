@@ -1,11 +1,12 @@
-import React from 'react'
 import "../../css/loggedIn/posts.css"
+import Post from "./Post"
+
 function Posts() {
     return (
         <div className='posts'>
-            <h1>POST</h1>
-            <h1>POST</h1>
-            <h1>POST</h1>
+            <Post />
+            <Post />
+            <Post />
         </div>
     )
 }
