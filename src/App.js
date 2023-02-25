@@ -6,7 +6,8 @@ import Homepage from './comps/loggedInPage/Homepage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logout } from './firebase';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { getPosts, addPost, getImages } from './apis/firestireDataQueryFuncs';
+import { getPosts, addPost, getImages, uploadImage } from './apis/firestireDataQueryFuncs';
+import background from "./images/background.jpg"
 function App() {
 
   const [user, setUser] = useState(null)
@@ -20,7 +21,7 @@ function App() {
   
   useEffect(() => {
     // addPost("test caption", "testUrl", "test title", "test user Id")
-    getImages()
+    uploadImage(background)
 }, [])
 
 
