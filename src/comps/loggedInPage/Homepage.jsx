@@ -14,11 +14,15 @@ function Homepage({ user }) {
 
 
     return (
-        <div className='homepage'>
+        <>
             <Navbar />
-            <Posts />
-            <div className="background-img"></div>
-        </div>
+
+            <div className='homepage'>
+
+                <Posts />
+                <div className="background-img"></div>
+            </div>
+        </>
     )
 }
 
