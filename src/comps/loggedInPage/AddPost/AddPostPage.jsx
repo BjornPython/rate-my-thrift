@@ -11,12 +11,18 @@ function AddPostPage() {
         setImageURL(url)
     }, [image])
 
+    const handleImageUpload = (e) => {
+        e.preventDefault()
+        const res = uploadImage(image[0])
+        console.log(res);
+    }
+
     return (
         <div>
             {imageURL && <img src={imageURL} alt="" style={{ width: "200px", height: "200px" }} />}
             <div onClick={() => { setImageURL(null); setImage([]) }}>DELETE</div>
             <input type="file" name="image" id="" onChange={(e) => { setImage(e.target.files) }} />
-
+            <button onClick={handleImageUpload}>UPLOAD</button>
         </div>
     )
 }
