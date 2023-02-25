@@ -1,6 +1,7 @@
 import "../../css/loggedIn/navbar.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus, faHouse, faUser, faBars } from "@fortawesome/free-solid-svg-icons"
+import { logout } from "../../firebase"
 
 
 function Navbar() {
@@ -14,7 +15,7 @@ function Navbar() {
                     <div className="navbar-icon"><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                 </div>
 
-                <FontAwesomeIcon icon={faBars} className="navbar-icns bar-icn" />
+                <FontAwesomeIcon icon={faBars} className="navbar-icns bar-icn" onClick={logout} />
             </div>
         </div>
     )

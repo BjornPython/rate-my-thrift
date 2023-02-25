@@ -5,31 +5,43 @@ import LoginPage from './comps/loginComps/LoginPage';
 import Homepage from './comps/loggedInPage/Homepage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logout } from './firebase';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
 
+  const [user, setUser] = useState(null)
 
   onAuthStateChanged(auth, (currentUser) => {
-    console.log("currentUser: ",currentUser);
-    if (currentUser.emailVerified) {
-      console.log('Email is verified');
-    }
-    else {
-      console.log('Email is not verified');
-    }
+    setUser(()=> {
+      console.log("SETTING USER TO: ", currentUser);
+      return currentUser
+    })
+
   })
 
+  // useEffect(() => {
+  //   logout()
+  // }, [])
+
   useEffect(() => {
-    logout()
-  }, [])
+    if(user) {
+      console.log("USER UPDATED TO... ", user);
+    }
+  }, [user])
+
 
 
 
 
   return (
     <div className="App">
-      {/* <LoginPage /> */}
-      <Homepage />
+      <Router>
+            <Routes>
+            <Route path='/' element={<LoginPage user={user}  />} />
+            <Route path='/home' element={<Homepage user={user} />} />
+            </Routes>
+      </Router >
+
     </div>
   );
 }

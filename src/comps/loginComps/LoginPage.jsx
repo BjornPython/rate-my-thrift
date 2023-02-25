@@ -2,16 +2,25 @@ import React from 'react'
 import "../../css/login/loginPage.css"
 import Login from './Login'
 import Register from './Register'
-import { useState } from 'react'
-
-function LoginPage() {
-
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+function LoginPage({ user }) {
+    const navigate = useNavigate()
     const [page, setPage] = useState("Sign up")
 
     const handleSignClick = () => {
         if (page === "Sign up") { setPage("Sign in") }
         else { setPage("Sign up") }
     }
+
+    useEffect(() => {
+        console.log("USER: ", user);
+        if (user) {
+            console.log("NAVIGATING");
+            navigate("/home")
+        }
+    }, [user])
+
 
     return (
         <div className='login-page'>

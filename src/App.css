@@ -12,14 +12,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
 
 .App {
-  background-color: var(--light-gray);
-  background-image: url("./images/background.png");
+  /* background-color: var(--light-gray); */
+  background:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),  url("./images/background.jpg");
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); */
   width: 100%;
   background-size: contain;
-  height: auto;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 

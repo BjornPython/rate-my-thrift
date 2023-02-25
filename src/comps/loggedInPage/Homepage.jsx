@@ -3,9 +3,14 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Navbar from "./Navbar"
 import Posts from "./Posts"
-
-function Homepage() {
-
+import { useNavigate } from "react-router-dom"
+function Homepage({ user }) {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!user) {
+            navigate("/")
+        }
+    }, [user])
 
 
     return (

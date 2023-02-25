@@ -4,7 +4,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 
 function Post({ title, caption, imgLink }) {
-
+    console.log("RERENDERING");
     const [isLiked, setIsLiked] = useState(false)
 
     const handleLike = () => {

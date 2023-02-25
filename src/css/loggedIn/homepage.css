@@ -1,9 +1,10 @@
 .homepage {
     flex-wrap: wrap;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-bottom: 200px;
+    overflow-y: scroll;
 }
