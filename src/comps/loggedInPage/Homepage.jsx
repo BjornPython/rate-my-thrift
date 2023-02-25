@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Navbar from "./Navbar"
 import Posts from "./Posts"
+import AddPostPage from "./AddPost/AddPostPage"
 import { useNavigate } from "react-router-dom"
 function Homepage({ user }) {
     const navigate = useNavigate()
@@ -12,15 +13,19 @@ function Homepage({ user }) {
         }
     }, [user])
 
+    const [currentPage, setCurrentPage] = useState("home")
 
+    const changePage = (page) => {
+        console.log("NEW PAGE: ", page);
+        setCurrentPage(page)
+    }
     return (
         <>
-            <Navbar />
+            <Navbar currentPage={currentPage} changePage={changePage} />
 
             <div className='homepage'>
-
-                <Posts />
-                <div className="background-img"></div>
+                {currentPage === "home" && <Posts />}
+                {currentPage === "add" && <AddPostPage />}
             </div>
         </>
     )

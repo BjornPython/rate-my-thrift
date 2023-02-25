@@ -21,7 +21,7 @@ function App() {
   
   useEffect(() => {
     // addPost("test caption", "testUrl", "test title", "test user Id")
-    uploadImage(background)
+    // uploadImage(background)
 }, [])
 
 
