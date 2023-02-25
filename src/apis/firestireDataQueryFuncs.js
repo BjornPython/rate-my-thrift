@@ -1,6 +1,6 @@
-import { postsCollection } from "../firebase";
+import { postsCollection, userUploadStorage } from "../firebase";
 import { doc, getDocs, setDoc, serverTimestamp } from "firebase/firestore";
-
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 const updated_at_timestamp = serverTimestamp()
 
 export const getPosts = () => {
@@ -24,4 +24,14 @@ export const addPost = async (caption, imageUrls, title, userId) => {
 
     })
     } catch(err) {console.log(err)}
+}
+
+export const getImages = async () => {
+    try{
+            const imageRef = ref(userUploadStorage, "userId/userPosts/demo.jpg")
+            const imageUrl = await getDownloadURL(imageRef)
+            console.log("IMAGE URL: ", imageUrl);
+    } catch(err) {console.log(err)}
+
+
 }
