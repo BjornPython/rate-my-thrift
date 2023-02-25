@@ -56,7 +56,7 @@ export const getImages = async () => {
 
 // }
 
-export const uploadImage = async (image) => {
+export const uploadImage = async (image,userId="userId", post=true) => {
     // console.log("IMAGE: ", image);
 
     // let type = image.split(".").pop()
@@ -64,13 +64,14 @@ export const uploadImage = async (image) => {
     // if (type !== "jpg" && type !== "png") {console.log("WRONG FILE TYPE"); return }
     // console.log(`image/${type == "jpg" ? "jpeg" : "png"}`);
     try{
-        const folderRef = ref(userUploadStorage, `userId/userPosts/uploadimagetest`)
+        const folderRef = ref(userUploadStorage, `${userId}/${post ? "userPosts" : "userProfilePic"}/${image.name}`)
         // const metadata = {
         //     contentType: `image/${type == "jpg" ? "jpeg" : "png"}`,
         //   };
           
         const result = await uploadBytes(folderRef, image)
         console.log("UPLOAD RESULT: ", result);
+        console.log("RES URL: ", await getDownloadURL(result.ref) );
     }
     catch(err) {console.log(err);}
 
