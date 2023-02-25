@@ -23,7 +23,7 @@ function Login() {
             <img src={logo} alt="" className='log-in-logo' />
 
             <div className="log-in-inputs">
-                <input type="text" placeholder='username/email' name="email" value={email} onChange={handleLoginChange} />
+                <input type="text" placeholder='email' name="email" value={email} onChange={handleLoginChange} />
                 <input type="text" placeholder='password...' name="password" value={password} onChange={handleLoginChange} />
             </div>
 
@@ -33,9 +33,7 @@ function Login() {
                 <div className="icon">
                     <img src={google} alt="" onClick={callGoogleSigninPopup} />
                 </div>
-                <div className="icon">
-                    <img id="fb-icn" src={facebook} alt="" />
-                </div>
+
             </div>
 
         </div>

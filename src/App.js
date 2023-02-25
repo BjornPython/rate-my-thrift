@@ -6,28 +6,24 @@ import Homepage from './comps/loggedInPage/Homepage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logout } from './firebase';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { getPosts, addPost } from './apis/firestireDataQueryFuncs';
 function App() {
 
   const [user, setUser] = useState(null)
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(()=> {
-      console.log("SETTING USER TO: ", currentUser);
       return currentUser
     })
 
   })
-
-  // useEffect(() => {
-  //   logout()
-  // }, [])
-
+  
   useEffect(() => {
-    if(user) {
-      console.log("USER UPDATED TO... ", user);
-    }
-  }, [user])
+    // addPost("test caption", "testUrl", "test title", "test user Id")
+}, [])
+
+
+
 
 
 

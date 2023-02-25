@@ -1,6 +1,7 @@
 import "../../css/loggedIn/posts.css"
 import Post from "./Post"
-
+import { getPosts } from "../../apis/firestireDataQueryFuncs"
+import { useEffect } from "react"
 function Posts() {
 
     const posts = [
@@ -29,6 +30,7 @@ function Posts() {
             imgLink: "https://firebasestorage.googleapis.com/v0/b/rate-my-thrift.appspot.com/o/userUploads%2FuserId%2FuserPosts%2Fdemo4.jpg?alt=media&token=a77ad916-a7a3-458b-bf54-9bef0ffa4b70"
         }
     ]
+
 
     return (
         <div className='posts'>

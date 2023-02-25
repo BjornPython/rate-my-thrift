@@ -60,7 +60,7 @@
     width: 350px;
     border-radius: 15px;
     border: 1px solid gray;
-    background-color: var(--light-peach);
+    background-color: var(--vintage-white);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -72,7 +72,8 @@
     border: 1px solid gray;
     margin-top: 15px;   
     display: flex;
-    background-color: var(--light-peach);
+    background-color: var(--vintage-white);
+    color: var(--dark-brown);
 }
 
 
@@ -134,6 +135,7 @@
 .or h4 {
     margin: 0 10px;
     font-weight: 400;
+    color: var(--dark-brown);
 
 
 }
@@ -149,10 +151,11 @@
 .sign-in-with {
     color: var(--dark-brown);
     display: flex;
-    align-self: flex-start;
-    margin-left: 45px;
     justify-content: flex-start;
-    column-gap: 15px;
+    align-items: center;
+    width: 75%;
+    height: 40px;
+    column-gap: 25px;
     font-weight: 400;   
 }
 

@@ -36,9 +36,7 @@ function Register() {
                 <div className="icon">
                     <img src={google} alt="" onClick={callGoogleSigninPopup} />
                 </div>
-                <div className="icon">
-                    <img id="fb-icn" src={facebook} alt="" />
-                </div>
+
             </div>
         </div>
     )

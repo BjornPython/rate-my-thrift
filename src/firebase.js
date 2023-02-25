@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import {
     getAuth, signOut
     } from "firebase/auth"
-import { getFirestore, collection } from "firebase/firestore";
+import { getFirestore , collection } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,6 +24,7 @@ export const auth = getAuth(firebaseApp)
 export const firestoreDb = getFirestore(firebaseApp);
 
 export const usersCollection = collection(firestoreDb, "users")
+export const postsCollection = collection(firestoreDb, "posts")
 
 export const logout = async () => {
     await signOut(auth)
