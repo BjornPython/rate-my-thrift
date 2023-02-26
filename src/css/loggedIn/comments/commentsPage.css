@@ -17,6 +17,13 @@
 
 .post-info {
     width: 250px;
+    position: relative;
+}
+
+.comment-caption {
+    height: 160px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 0;
 }
 
 .show-comments-page {
@@ -41,5 +48,34 @@
 
 .comments-user {
     display: flex;
+    column-gap: 15px;
     margin-top: 20px;
+}
+
+.comment-user-icn {
+    font-size: 45px;
+    color: gray;
+}
+
+.name-bio p{
+    margin: 0;
+    color: black;
+}
+
+.name-bio p:nth-child(2) {
+    font-size: 14px;
+    color: gray;
+}
+
+.comment-date {
+    margin: 0;
+    font-size: 12px;
+    color: gray;
+}
+
+.comments-heart-icn {
+    font-size: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

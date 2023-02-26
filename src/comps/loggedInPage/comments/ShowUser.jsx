@@ -6,6 +6,10 @@ function ShowUser({ commentUserId }) {
     return (
         <div className="comments-user">
             <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
+            <div className="name-bio">
+                <p>Nathan Flores</p>
+                <p>This is a bio</p>
+            </div>
         </div>
     )
 }
