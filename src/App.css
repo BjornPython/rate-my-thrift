@@ -25,3 +25,7 @@
   overflow: hidden;
 }
 
+
+input:focus {
+  outline: none;
+}

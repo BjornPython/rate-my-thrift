@@ -34,11 +34,14 @@ function AddPostPage() {
                         <h3>drag and drop image here.</h3>
                     </span>}
                 <input type="file" name="image" id="image" onChange={(e) => { setImage(e.target.files) }} className="input-file" />
+                <input type="text" name="" id="" className='upload-title' placeholder='Add a title' />
+                <input type="text" name="" id="" className='upload-caption' placeholder='Add a caption...' />
             </div>
+
 
             <div className="upload-btns">
                 <label for="image" className='img-label'>Choose File</label>
-                <button onClick={handleImageUpload}>UPLOAD</button>
+                <button onClick={handleImageUpload} className="upload-btn">POST</button>
             </div>
 
         </div>
