@@ -10,6 +10,8 @@ function Homepage({ user }) {
     const navigate = useNavigate()
     const [currentPage, setCurrentPage] = useState("home")
     const [uid, setUid] = useState(null)
+
+
     useEffect(() => {
         if (!user) {
             navigate("/")
@@ -23,6 +25,7 @@ function Homepage({ user }) {
     const changePage = (page) => {
         setCurrentPage(page)
     }
+
 
 
 

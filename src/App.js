@@ -8,6 +8,7 @@ import { auth, logout } from './firebase';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { getPosts, addPost, getImages, uploadImage } from './apis/firestoreDataQueryFuncs';
 import background from "./images/background.jpg"
+
 function App() {
 
   const [user, setUser] = useState(null)
@@ -20,8 +21,6 @@ function App() {
   })
   
   useEffect(() => {
-    // addPost("test caption", "testUrl", "test title", "test user Id")
-    // uploadImage(background)
 }, [])
 
 

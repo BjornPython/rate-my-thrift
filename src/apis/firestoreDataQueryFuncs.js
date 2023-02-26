@@ -4,13 +4,16 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const updated_at_timestamp = serverTimestamp()
 
-export const getPosts = () => {
-    getDocs(postsCollection)
-    .then((snapshot) => {
-        const docs =  snapshot.docs
-        docs.forEach(doc => {console.log("DATA: ", doc.data());})
-    })
-    .catch(err => {console.log(err.message)})
+export const getPosts = async () => {
+
+    try {
+        const docs = await getDocs(postsCollection)
+        let posts = []
+        docs.forEach(doc => { posts.push({...doc.data(), id: doc.id}); })
+        console.log("POST IN FUNC: ", posts);
+        return posts
+    } catch(err) {console.log(err);}
+
 }
 
 export const addPost = async (userId, caption, imageUrls, title) => {
