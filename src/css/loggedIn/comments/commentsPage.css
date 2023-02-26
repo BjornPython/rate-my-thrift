@@ -78,4 +78,13 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    color: var(--dark-brown);
+    cursor: pointer;
+}
+
+.comments-sign {
+    width: 90%;
+    font-weight: 400;
+    border-bottom: 1px solid gray;
+    color: gray;
 }

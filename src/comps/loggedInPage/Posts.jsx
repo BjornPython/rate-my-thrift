@@ -4,7 +4,7 @@ import { getPosts } from "../../apis/firestoreDataQueryFuncs"
 import { useEffect, useState } from "react"
 
 
-function Posts() {
+function Posts({ handlePostClick }) {
 
     const [posts, setPosts] = useState([])
 
@@ -47,7 +47,10 @@ function Posts() {
 
     return (
         <div className='posts'>
-            {posts && posts.map((post) => { return <Post key={post.id} title={post.title} caption={post.caption} imgLink={post.imageUrls} /> })}
+            {posts && posts.map((post) => {
+                return <Post key={post.id} title={post.title} caption={post.caption} imgLink={post.imageUrls}
+                    handlePostClick={handlePostClick} post={post} />
+            })}
         </div>
     )
 }

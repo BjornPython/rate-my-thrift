@@ -12,7 +12,11 @@ function Homepage({ user }) {
     const [currentPage, setCurrentPage] = useState("home")
     const [uid, setUid] = useState(null)
     const [isVerified, setIsVerified] = useState(null)
-    const [showCommentPage, setShowCommentPage] = useState(true)
+    const [showCommentPage, setShowCommentPage] = useState(false)
+
+    const [commentPost, setCommentPost] = useState({
+        imageUrls: "", title: "", caption: "", dateTime: ""
+    })
 
     useEffect(() => {
         if (!user) {
@@ -31,6 +35,11 @@ function Homepage({ user }) {
         setCurrentPage(page)
     }
 
+    const handlePostClick = (post) => {
+        setShowCommentPage(!showCommentPage)
+        setCommentPost(post)
+
+    }
 
 
 
@@ -41,11 +50,12 @@ function Homepage({ user }) {
             <Navbar currentPage={currentPage} changePage={changePage} />
 
             <div className='homepage'>
-                {currentPage === "home" && <Posts />}
-                {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified} />}
+                {currentPage === "home" && <Posts handlePostClick={handlePostClick} />}
+                {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}
+                />}
             </div>
 
-            <CommentsPage showCommentPage={showCommentPage} />
+            <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} />
 
             {/* <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button> */}
 

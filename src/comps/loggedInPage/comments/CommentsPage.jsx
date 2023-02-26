@@ -3,7 +3,7 @@ import ShowUser from "./ShowUser"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart } from "@fortawesome/free-solid-svg-icons"
 
-function CommentsPage({ showCommentPage }) {
+function CommentsPage({ showCommentPage, commentPost }) {
 
     const post = {
         imageUrls: "https://firebasestorage.googleapis.com/v0/b/rate-my-thrift.appspot.com/o/userUploads%2F83LtPLmHrMdUto3hamWfl8nC33x1%2FuserPosts%2Fdemo4.jpg?alt=media&token=8678661e-cf6d-4714-83dc-0643541a7513",
@@ -12,7 +12,9 @@ function CommentsPage({ showCommentPage }) {
         date: "Feb 22, 2021 5:32 pm"
     }
 
-    const { imageUrls, title, caption, date } = post
+    // if (!commentPost) { return }
+
+    const { imageUrls, title, caption, dateTime } = commentPost
     return (
         <div className={`comments-page ${showCommentPage && "show-comments-page"}`}>
 
@@ -21,13 +23,13 @@ function CommentsPage({ showCommentPage }) {
                     <ShowUser />
                     <h1 className="comment-title">{title}</h1>
                     <p className="comment-caption">{caption}</p>
-                    <p className="comment-date">{date}</p>
+                    <p className="comment-date">{"no date "}</p>
                     <FontAwesomeIcon icon={faHeart} className="comments-heart-icn" />
                 </div>
                 <img src={imageUrls} className="post-img comments-img" />
 
             </div>
-
+            <h3 className="comments-sign">Comments</h3>
 
 
         </div>
