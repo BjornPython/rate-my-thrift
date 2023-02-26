@@ -1,0 +1,18 @@
+.comments-page {
+    background-color: var(--vintage-white);
+    border: 1px solid var(--dark-brown);
+    border-radius: 15px;
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    top: 200px;
+    opacity: 0;
+    transform: scale(0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.show-comments-page {
+    opacity: 1;
+    transform: scale(1);
+}
+

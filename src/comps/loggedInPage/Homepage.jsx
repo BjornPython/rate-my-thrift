@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Navbar from "./Navbar"
 import Posts from "./Posts"
 import AddPostPage from "./AddPost/AddPostPage"
+import CommentsPage from "./comments/CommentsPage"
 import { useNavigate } from "react-router-dom"
 function Homepage({ user }) {
 
@@ -11,6 +12,7 @@ function Homepage({ user }) {
     const [currentPage, setCurrentPage] = useState("home")
     const [uid, setUid] = useState(null)
     const [isVerified, setIsVerified] = useState(null)
+    const [showCommentPage, setShowCommentPage] = useState(true)
 
     useEffect(() => {
         if (!user) {
@@ -32,6 +34,8 @@ function Homepage({ user }) {
 
 
 
+
+
     return (
         <>
             <Navbar currentPage={currentPage} changePage={changePage} />
@@ -40,6 +44,11 @@ function Homepage({ user }) {
                 {currentPage === "home" && <Posts />}
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified} />}
             </div>
+
+            <CommentsPage showCommentPage={showCommentPage} />
+
+            <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button>
+
         </>
     )
 }

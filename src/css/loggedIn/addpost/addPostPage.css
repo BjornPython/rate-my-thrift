@@ -118,7 +118,10 @@
     justify-content: flex-start;
     align-items: center;
     color: var(--dark-brown);
+    transition: all 0.4s ease-in-out;
 }
+
+
 
 .upload-popup h1 {
     margin-top: 50px;

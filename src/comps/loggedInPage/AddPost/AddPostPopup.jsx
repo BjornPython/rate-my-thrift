@@ -1,15 +1,11 @@
-import React from 'react'
+import { useState } from 'react'
 
 function AddPostPopup({ popupValues }) {
 
-
     return (
-        <div className='upload-popup'>
-            {/* <h1>SUCCESFULLY <br></br> UPLOADED POST.</h1> */}
+        <div className="upload-popup">
             {popupValues.title}
-            <div className="popup-btns">
-                {/* <button onClick={() => { changeShowUpload(true) }}>Upload again</button>
-                <button onClick={() => { changePage("home") }} >Back to homepage</button> */}
+            <div className={`popup-btns`}>
                 {popupValues.buttons}
             </div>
 
