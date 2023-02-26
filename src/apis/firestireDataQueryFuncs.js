@@ -48,8 +48,7 @@ export const uploadImage = async (image,userId="userId", post=true) => {
         console.log("RES URL: ", imageURL );
         if (imageURL) {return imageURL}
     }
-    catch(err) {console.log(err);}
-    throw err
+    catch(err) {console.log(err); throw(err)}
 }
 
 export const uploadPost = async (userId, caption, title, image, post=true ) => {

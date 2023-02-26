@@ -3,26 +3,33 @@ import { uploadImage } from '../../../apis/firestireDataQueryFuncs'
 import "../../../css/loggedIn/addpost/addPostPage.css"
 import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import AddPostTexts from './AddPostTexts'
 function AddPostPage() {
 
-    const [image, setImage] = useState([])
+    const [uploadedImage, setUploadedImage] = useState([])
     const [imageURL, setImageURL] = useState(null)
 
+
+
     useEffect(() => {
-        if (image.length < 1) { return }
-        const url = URL.createObjectURL(image[0])
+        if (uploadedImage.length < 1) { return }
+        const url = URL.createObjectURL(uploadedImage[0])
         setImageURL(url)
-    }, [image])
+    }, [uploadedImage])
 
     const handleImageUpload = (e) => {
         e.preventDefault()
-        const res = uploadImage(image[0])
+        const res = uploadImage(uploadedImage[0])
         console.log(res);
+    }
+
+    const changeUploadedImage = (image) => {
+        setUploadedImage(image)
     }
 
     return (
         <div className='addpost-page'>
-            <div onClick={() => { setImageURL(null); setImage([]) }}>DELETE</div>
+            <div onClick={() => { setImageURL(null); setUploadedImage([]) }}>DELETE</div>
 
             <div className="card">
                 {imageURL
@@ -33,14 +40,12 @@ function AddPostPage() {
                         <FontAwesomeIcon className='upload-icn' icon={faArrowUpFromBracket} />
                         <h3>drag and drop image here.</h3>
                     </span>}
-                <input type="file" name="image" id="image" onChange={(e) => { setImage(e.target.files) }} className="input-file" />
-                <input type="text" name="" id="" className='upload-title' placeholder='Add a title' />
-                <input type="text" name="" id="" className='upload-caption' placeholder='Add a caption...' />
+                <AddPostTexts changeUploadedImage={changeUploadedImage} />
             </div>
 
 
             <div className="upload-btns">
-                <label for="image" className='img-label'>Choose File</label>
+                <label htmlFor="image" className='img-label'>Choose File</label>
                 <button onClick={handleImageUpload} className="upload-btn">POST</button>
             </div>
 
