@@ -1,15 +1,23 @@
 import { useState, useEffect } from 'react'
-import { uploadImage } from '../../../apis/firestireDataQueryFuncs'
+import { uploadPost } from '../../../apis/firestoreDataQueryFuncs'
 import "../../../css/loggedIn/addpost/addPostPage.css"
 import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AddPostTexts from './AddPostTexts'
-function AddPostPage() {
+function AddPostPage({ uid }) {
 
     const [uploadedImage, setUploadedImage] = useState([])
     const [imageURL, setImageURL] = useState(null)
 
+    const [postVals, setPostVals] = useState({ title: "", caption: "" })
+    const { title, caption } = postVals
 
+
+    const handleInputChange = (e) => {
+        setPostVals(prevState => {
+            return { ...prevState, [e.target.name]: e.target.value }
+        })
+    }
 
     useEffect(() => {
         if (uploadedImage.length < 1) { return }
@@ -17,15 +25,19 @@ function AddPostPage() {
         setImageURL(url)
     }, [uploadedImage])
 
+
     const handleImageUpload = (e) => {
         e.preventDefault()
-        const res = uploadImage(uploadedImage[0])
+        const res = uploadPost(uid, title, caption, uploadedImage[0])
         console.log(res);
     }
 
     const changeUploadedImage = (image) => {
         setUploadedImage(image)
     }
+
+
+
 
     return (
         <div className='addpost-page'>
@@ -40,7 +52,8 @@ function AddPostPage() {
                         <FontAwesomeIcon className='upload-icn' icon={faArrowUpFromBracket} />
                         <h3>drag and drop image here.</h3>
                     </span>}
-                <AddPostTexts changeUploadedImage={changeUploadedImage} />
+                <AddPostTexts uid={uid} title={title} caption={caption} handleInputChange={handleInputChange}
+                    changeUploadedImage={changeUploadedImage} />
             </div>
 
 

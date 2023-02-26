@@ -1,6 +1,6 @@
 import "../../css/loggedIn/posts.css"
 import Post from "./Post"
-import { getPosts } from "../../apis/firestireDataQueryFuncs"
+import { getPosts } from "../../apis/firestoreDataQueryFuncs"
 import { useEffect } from "react"
 function Posts() {
 

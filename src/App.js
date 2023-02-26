@@ -6,7 +6,7 @@ import Homepage from './comps/loggedInPage/Homepage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logout } from './firebase';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { getPosts, addPost, getImages, uploadImage } from './apis/firestireDataQueryFuncs';
+import { getPosts, addPost, getImages, uploadImage } from './apis/firestoreDataQueryFuncs';
 import background from "./images/background.jpg"
 function App() {
 

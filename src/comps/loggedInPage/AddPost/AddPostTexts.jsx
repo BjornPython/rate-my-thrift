@@ -1,15 +1,7 @@
 import { useState } from 'react'
-function AddPostTexts({ changeUploadedImage }) {
-
-    const [postVals, setPostVals] = useState({ title: "", caption: "" })
-    const { title, caption } = postVals
+function AddPostTexts({ title, caption, handleInputChange, changeUploadedImage }) {
 
 
-    const handleInputChange = (e) => {
-        setPostVals(prevState => {
-            return { ...prevState, [e.target.name]: e.target.value }
-        })
-    }
 
     return (
         <>

@@ -51,7 +51,7 @@ export const uploadImage = async (image,userId="userId", post=true) => {
     catch(err) {console.log(err); throw(err)}
 }
 
-export const uploadPost = async (userId, caption, title, image, post=true ) => {
+export const uploadPost = async (userId, title, caption, image, post=true ) => {
     try {
         console.log("UPLOADING IMAGE...");
         const imageURL = await uploadImage(image, userId)
