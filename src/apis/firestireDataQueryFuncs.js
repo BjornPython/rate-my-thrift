@@ -13,66 +13,54 @@ export const getPosts = () => {
     .catch(err => {console.log(err.message)})
 }
 
-export const addPost = async (caption, imageUrls, title, userId) => {
+export const addPost = async (userId, caption, imageUrls, title) => {
     const newDoc = doc(postsCollection)
-    try{
-            const newPost = await setDoc(newDoc, {
+    try {
+        const newPost = await setDoc(newDoc, {
             caption,
             title,
             userId,
             imageUrls,
             dateTime: updated_at_timestamp
+        })
+        if (newPost) {return  "success"}
 
-    })
-    } catch(err) {console.log(err)}
+    } catch(err) {console.log(err); throw(err)}
 }
 
-export const getImages = async () => {
+export const getImages = async (userId, imageName) => {
     try{
-            const imageRef = ref(userUploadStorage, "userId/userPosts/demo.jpg")
-            const imageUrl = await getDownloadURL(imageRef)
-            console.log("IMAGE URL: ", imageUrl);
+            const imageRef = ref(userUploadStorage, `${userId}/userPosts/${imageName}`)
+            const imageURL = await getDownloadURL(imageRef)
+            console.log("IMAGE URL: ", imageURL);
+            if (imageURL) {return imageURL}
+            
     } catch(err) {console.log(err)}
-
 }
 
-// export const uploadImage = async (image) => {
-//     console.log("IMAGE: ", image);
-
-//     let type = image.split(".").pop()
-//     console.log("TYPE: ", type);
-//     if (type !== "jpg" && type !== "png") {console.log("WRONG FILE TYPE"); return }
-//     console.log(`image/${type == "jpg" ? "jpeg" : "png"}`);
-//     try{
-//         const folderRef = ref(userUploadStorage, `userId/userPosts/uploadimagetest.${type}`)
-//         // const metadata = {
-//         //     contentType: `image/${type == "jpg" ? "jpeg" : "png"}`,
-//         //   };
-          
-//         const result = await uploadBytes(folderRef, image)
-//         console.log("UPLOAD RESULT: ", result);
-//     }
-//     catch(err) {console.log(err);}
-
-// }
 
 export const uploadImage = async (image,userId="userId", post=true) => {
-    // console.log("IMAGE: ", image);
-
-    // let type = image.split(".").pop()
-    // console.log("TYPE: ", type);
-    // if (type !== "jpg" && type !== "png") {console.log("WRONG FILE TYPE"); return }
-    // console.log(`image/${type == "jpg" ? "jpeg" : "png"}`);
     try{
         const folderRef = ref(userUploadStorage, `${userId}/${post ? "userPosts" : "userProfilePic"}/${image.name}`)
-        // const metadata = {
-        //     contentType: `image/${type == "jpg" ? "jpeg" : "png"}`,
-        //   };
-          
         const result = await uploadBytes(folderRef, image)
         console.log("UPLOAD RESULT: ", result);
-        console.log("RES URL: ", await getDownloadURL(result.ref) );
+        const imageURL = await getDownloadURL(result.ref)
+        console.log("RES URL: ", imageURL );
+        if (imageURL) {return imageURL}
     }
     catch(err) {console.log(err);}
+    throw err
+}
+
+export const uploadPost = async (userId, caption, title, image, post=true ) => {
+    try {
+        console.log("UPLOADING IMAGE...");
+        const imageURL = await uploadImage(image, userId)
+        if (imageURL) {
+               console.log("IMAGE URL RECEIVED, CREATING POST DOC...");
+            const newPost = await addPost(userId, caption, imageURL, title) 
+            if (newPost) { console.log("POST ADDED."); return "post added."}
+        } 
+    }catch (err) {console.log(err);}
 
 }
