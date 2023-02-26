@@ -1,4 +1,5 @@
 import "../../../css/loggedIn/comments/commentsPage.css"
+import ShowUser from "./ShowUser"
 
 function CommentsPage({ showCommentPage }) {
 
@@ -14,13 +15,16 @@ function CommentsPage({ showCommentPage }) {
 
             <div className="post-contents">
                 <div className="post-info">
-
+                    <ShowUser />
+                    <h1 className="comment-title">{title}</h1>
+                    <p>{caption}</p>
                 </div>
+
+                <img src={post.imageUrls} className="post-img comments-img" />
             </div>
 
 
 
-            <img src={post.imageUrls} className="post-img" />
         </div>
     )
 }

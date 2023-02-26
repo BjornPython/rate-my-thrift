@@ -47,7 +47,7 @@ function Homepage({ user }) {
 
             <CommentsPage showCommentPage={showCommentPage} />
 
-            <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button>
+            {/* <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button> */}
 
         </>
     )
