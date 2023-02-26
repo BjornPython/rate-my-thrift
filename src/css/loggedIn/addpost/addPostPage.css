@@ -125,7 +125,8 @@
 }
 
 .popup-btns {
-    width: 80%;
+    width: auto;
+    column-gap: 40px;
     display: flex;
     justify-content: space-around;
 }
@@ -133,6 +134,7 @@
 .popup-btns button:nth-child(1) {
     cursor: pointer;
     border-radius: 5px;
+    width: auto;
     height: 40px;
     padding: 0 10px;
     background-color: var(--vintage-white);

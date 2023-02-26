@@ -45,8 +45,6 @@ function UploadPost({ uid, changeShowUpload }) {
 
     return (
         <>
-            <div onClick={() => { setImageURL(null); setUploadedImage([]) }}>DELETE</div>
-
             <div className="card">
                 {imageURL
                     ?

@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import UploadPost from './UploadPost'
 import AddPostPopup from './AddPostPopup'
 
 
 
-function AddPostPage({ uid, changePage }) {
+function AddPostPage({ uid, changePage, isVerified }) {
 
     const valueOne = {
         title: (<h1>SUCCESFULLY <br></br> UPLOADED POST.</h1>),
@@ -26,8 +26,12 @@ function AddPostPage({ uid, changePage }) {
         )
     }
 
-    const [showUpload, setShowUpload] = useState(false)
-    const [popupValues, setPopupValues] = useState(valueOne)
+    const [showUpload, setShowUpload] = useState(true)
+    const [popupValues, setPopupValues] = useState(isVerified ? valueOne : valueTwo)
+
+    useEffect(() => {
+        setPopupValues(isVerified ? valueOne : valueTwo)
+    }, [isVerified])
 
 
     const changeShowUpload = (val) => {
@@ -36,7 +40,7 @@ function AddPostPage({ uid, changePage }) {
 
     return (
         <div className='addpost-page'>
-            {showUpload
+            {showUpload && isVerified
                 ?
                 <UploadPost uid={uid} popupValues={popupValues} />
                 :

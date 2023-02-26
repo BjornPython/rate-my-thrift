@@ -10,7 +10,7 @@ function Homepage({ user }) {
     const navigate = useNavigate()
     const [currentPage, setCurrentPage] = useState("home")
     const [uid, setUid] = useState(null)
-
+    const [isVerified, setIsVerified] = useState(null)
 
     useEffect(() => {
         if (!user) {
@@ -18,6 +18,9 @@ function Homepage({ user }) {
         } else {
             if (user.uid) {
                 setUid(user.uid)
+            }
+            if (user.emailVerified) {
+                setIsVerified(user.emailVerified)
             }
         }
     }, [user])
@@ -35,7 +38,7 @@ function Homepage({ user }) {
 
             <div className='homepage'>
                 {currentPage === "home" && <Posts />}
-                {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} />}
+                {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified} />}
             </div>
         </>
     )
