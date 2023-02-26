@@ -35,7 +35,7 @@ function Homepage({ user }) {
 
             <div className='homepage'>
                 {currentPage === "home" && <Posts />}
-                {currentPage === "add" && <AddPostPage uid={uid} />}
+                {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} />}
             </div>
         </>
     )

@@ -36,7 +36,7 @@ export const getImages = async (userId, imageName) => {
             const imageRef = ref(userUploadStorage, `${userId}/userPosts/${imageName}`)
             const imageURL = await getDownloadURL(imageRef)
             console.log("IMAGE URL: ", imageURL);
-            if (imageURL) {return imageURL}
+            return imageURL
             
     } catch(err) {console.log(err)}
 }
@@ -49,7 +49,7 @@ export const uploadImage = async (image,userId="userId", post=true) => {
         console.log("UPLOAD RESULT: ", result);
         const imageURL = await getDownloadURL(result.ref)
         console.log("RES URL: ", imageURL );
-        if (imageURL) {return imageURL}
+        return imageURL
     }
     catch(err) {console.log(err); throw(err)}
 }
@@ -61,7 +61,7 @@ export const uploadPost = async (userId, title, caption, image, post=true ) => {
         if (imageURL) {
                console.log("IMAGE URL RECEIVED, CREATING POST DOC...");
             const newPost = await addPost(userId, caption, imageURL, title) 
-            if (newPost) { console.log("POST ADDED."); return "post added."}
+            return "post added."
         } 
     }catch (err) {console.log(err);}
 

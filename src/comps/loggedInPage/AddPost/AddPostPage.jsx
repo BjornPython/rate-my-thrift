@@ -1,15 +1,46 @@
-
+import { useState } from 'react'
 import UploadPost from './UploadPost'
-
-function AddPostPage({ uid }) {
-
+import AddPostPopup from './AddPostPopup'
 
 
+
+function AddPostPage({ uid, changePage }) {
+
+    const valueOne = {
+        title: (<h1>SUCCESFULLY <br></br> UPLOADED POST.</h1>),
+        buttons: (
+            <div className="popup-btns">
+                <button onClick={() => { changeShowUpload(true) }}>Upload again</button>
+                <button onClick={() => { changePage("home") }} >Back to homepage</button>
+            </div>
+        )
+    }
+
+    const valueTwo = {
+        title: (<h1>PLEASE VERIFY ACCOUNT <br></br> TO UPLOAD POST.</h1>),
+        buttons: (
+            <div className="popup-btns">
+                <button >Send Email Verification</button>
+                <button onClick={() => { changePage("home") }} >Back to homepage</button>
+            </div>
+        )
+    }
+
+    const [showUpload, setShowUpload] = useState(false)
+    const [popupValues, setPopupValues] = useState(valueOne)
+
+
+    const changeShowUpload = (val) => {
+        setShowUpload(val)
+    }
 
     return (
         <div className='addpost-page'>
-            <UploadPost uid={uid} />
-
+            {showUpload
+                ?
+                <UploadPost uid={uid} popupValues={popupValues} />
+                :
+                <AddPostPopup changeShowUpload={changeShowUpload} changePage={changePage} popupValues={popupValues} />}
 
         </div>
     )

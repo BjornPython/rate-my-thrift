@@ -107,6 +107,49 @@
     text-overflow: ellipsis;
 }
 
+.upload-popup {
+    background-color: var(--vintage-white);
+    border-radius: 15px;
+    text-align: center;
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--dark-brown);
+}
+
+.upload-popup h1 {
+    margin-top: 50px;
+}
+
+.popup-btns {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.popup-btns button:nth-child(1) {
+    cursor: pointer;
+    border-radius: 5px;
+    height: 40px;
+    padding: 0 10px;
+    background-color: var(--vintage-white);
+    border: 1px solid var(--dark-brown);
+    /* border: none; */
+}
+
+.popup-btns button:nth-child(2) {
+    cursor: pointer;
+    color: var(--vintage-white);
+    background-color: var(--pinkish-red);
+    border-radius: 5px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid var(--dark-brown);
+}
+
 
 
 /* background: linear-gradient(

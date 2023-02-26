@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AddPostTexts from './AddPostTexts'
 
 
-function UploadPost({ uid }) {
+function UploadPost({ uid, changeShowUpload }) {
 
 
     const [uploadedImage, setUploadedImage] = useState([])
@@ -29,9 +29,12 @@ function UploadPost({ uid }) {
     }, [uploadedImage])
 
 
-    const handleImageUpload = (e) => {
+    const handleImageUpload = async (e) => {
         e.preventDefault()
-        const res = uploadPost(uid, title, caption, uploadedImage[0])
+        const res = await uploadPost(uid, title, caption, uploadedImage[0])
+        if (res === "post added.") {
+            changeShowUpload(false)
+        }
         console.log(res);
     }
 

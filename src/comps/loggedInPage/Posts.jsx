@@ -11,15 +11,11 @@ function Posts() {
     useEffect(() => {
         const callGetPosts = async () => {
             const newPosts = await getPosts()
-            console.log("POST RES: ", newPosts);
             setPosts(newPosts)
         }
         callGetPosts()
     }, [])
 
-    useEffect(() => {
-        console.log("POSTS: ", posts);
-    }, [posts])
 
     // const posts = [
     //     {
