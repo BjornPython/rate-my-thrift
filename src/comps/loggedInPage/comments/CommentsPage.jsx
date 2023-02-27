@@ -1,23 +1,25 @@
 import "../../../css/loggedIn/comments/commentsPage.css"
 import ShowUser from "./ShowUser"
+import CommentsInput from "./CommentsInput"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart } from "@fortawesome/free-solid-svg-icons"
 import { useRef, useEffect } from "react"
 function CommentsPage({ showCommentPage, commentPost, removeCommentsPage }) {
 
 
-    const commentsRef = useRef()
+    const wrapperCommentsRef = useRef()
 
-    useEffect(() => {
-        console.log(commentsRef);
-    }, [commentsRef])
+
 
     // onClick={() => { removeCommentsPage(wrapperCommentRef, commentsRef) }}
     const { imageUrls, title, caption, dateTime } = commentPost
     return (
-        <div className={`comments-wrapper ${showCommentPage && "show-comments-page"}`}
-            onClick={(e) => { removeCommentsPage(commentsRef, e) }}>
-            <div ref={commentsRef} className={`comments-page `}>
+        <div
+            ref={wrapperCommentsRef}
+            className={`comments-wrapper ${showCommentPage && "show-comments-page"}`}
+            onClick={(e) => { removeCommentsPage(wrapperCommentsRef, e) }}
+        >
+            <div className={`comments-page `}>
 
                 <div className="post-contents">
                     <div className="post-info">
@@ -33,6 +35,7 @@ function CommentsPage({ showCommentPage, commentPost, removeCommentsPage }) {
                 <h3 className="comments-sign">Comments</h3>
 
 
+                <CommentsInput />
             </div>
         </div>
 

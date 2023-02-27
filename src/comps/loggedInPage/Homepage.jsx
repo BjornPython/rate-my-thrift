@@ -40,10 +40,10 @@ function Homepage({ user }) {
         setCommentPost(post)
     }
 
-    const removeCommentsPage = (commentsRef, e) => {
-        console.log("TARGET: ", e);
-        console.log("REF: ", commentsRef.current);
-        if (e.target != commentsRef.current) {
+    const removeCommentsPage = (wrapperCommentsRef, e) => {
+        console.log("TARGET: ", e.target);
+        console.log("REF: ", wrapperCommentsRef.current);
+        if (e.target == wrapperCommentsRef.current) {
             console.log("NOT EQUAL");
             setShowCommentPage(false)
             setCommentPost({ imageUrls: "", title: "", caption: "", dateTime: "" })
