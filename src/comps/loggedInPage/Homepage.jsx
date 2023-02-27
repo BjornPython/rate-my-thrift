@@ -38,10 +38,19 @@ function Homepage({ user }) {
     const handlePostClick = (post) => {
         setShowCommentPage(!showCommentPage)
         setCommentPost(post)
-
     }
 
+    const removeCommentsPage = (commentsRef, e) => {
+        console.log("TARGET: ", e);
+        console.log("REF: ", commentsRef.current);
+        if (e.target != commentsRef.current) {
+            console.log("NOT EQUAL");
+            setShowCommentPage(false)
+            setCommentPost({ imageUrls: "", title: "", caption: "", dateTime: "" })
+        }
 
+
+    }
 
 
 
@@ -55,7 +64,7 @@ function Homepage({ user }) {
                 />}
             </div>
 
-            <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} />
+            <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage} />
 
             {/* <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button> */}
 

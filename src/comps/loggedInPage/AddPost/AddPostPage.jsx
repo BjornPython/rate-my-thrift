@@ -26,7 +26,7 @@ function AddPostPage({ uid, changePage, isVerified }) {
         )
     }
 
-    const [showUpload, setShowUpload] = useState(false)
+    const [showUpload, setShowUpload] = useState(true)
     const [popupValues, setPopupValues] = useState(isVerified ? valueOne : valueTwo)
 
     useEffect(() => {
