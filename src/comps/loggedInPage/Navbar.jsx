@@ -12,7 +12,7 @@ function Navbar({ changePage }) {
                 <div className="navbar-pages">
                     <div className="navbar-icon" onClick={() => { changePage("home") }}><FontAwesomeIcon icon={faHouse} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={() => { changePage("add") }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
-                    <div className="navbar-icon" onClick={() => { changePage("") }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
+                    <div className="navbar-icon" onClick={() => { changePage("profile") }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                 </div>
 
                 <FontAwesomeIcon icon={faBars} className="navbar-icns bar-icn" onClick={logout} />

@@ -43,7 +43,7 @@ export const getImages = async (userId, imageName) => {
 
 
 export const uploadImage = async (image, userId="userId", post=true) => {
-    const path = post ? `${userId}/userPosts/${image.name}` : `${userId}/userProfilePic`
+    const path = post ? `${userId}/userPosts/${image.name}` : `${userId}/userDp.${image.name.split(".")[1]}`
     try{
         const folderRef = ref(userUploadStorage, path)
         const result = await uploadBytes(folderRef, image)

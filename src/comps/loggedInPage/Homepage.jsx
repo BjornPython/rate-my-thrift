@@ -5,6 +5,7 @@ import Navbar from "./Navbar"
 import Posts from "./Posts"
 import AddPostPage from "./AddPost/AddPostPage"
 import CommentsPage from "./comments/CommentsPage"
+import ProfilePage from "./profile/ProfilePage"
 import { useNavigate } from "react-router-dom"
 import { getDp } from "../../apis/firestoreDataQueryFuncs"
 function Homepage({ user }) {
@@ -63,10 +64,11 @@ function Homepage({ user }) {
                 {currentPage === "home" && <Posts handlePostClick={handlePostClick} />}
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}
                 />}
+                {currentPage === "profile" && <ProfilePage uid={uid} />}
             </div>
 
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage} />
-            <button onClick={calLGetDp}>CLICK</button>
+            {/* <button onClick={calLGetDp}>CLICK</button> */}
             {/* <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button> */}
 
         </>
