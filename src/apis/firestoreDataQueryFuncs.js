@@ -1,5 +1,5 @@
 import { postsCollection, userUploadStorage, commentsCollection, usersCollection, postLikesCollection } from "./firebase";
-import { doc, getDocs, setDoc, addDoc,serverTimestamp} from "firebase/firestore";
+import { doc,getDoc, getDocs, setDoc, addDoc, updateDoc, serverTimestamp} from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const updated_at_timestamp = serverTimestamp()
@@ -97,12 +97,22 @@ export const addDp = async (image, userId) => {
 export const likePost = async (userId, postId, isLiked) => {
     const postLikesDoc = doc(postLikesCollection, postId)
 
-    const newPostLikes = await setDoc(postLikesDoc, {
-        likes: {
-            [userId]: {isLiked, dateTime: updated_at_timestamp}
-        }
-    }, {merge: true}
-    )
+    const documentExists = await getDoc(postLikesDoc);
+    console.log("DOC: ", documentExists.data());  
+
+    if (documentExists.data()) {
+        const newPostLikes = await updateDoc(postLikesDoc, {
+            [`likes.${userId}`]: {isLiked, dateTime: updated_at_timestamp}
+        }, {merge: true}
+        ) 
+
+    } else {
+        const newPostLikes = await setDoc(postLikesDoc, {
+            [`likes.${userId}`]: {isLiked, dateTime: updated_at_timestamp}
+        }, {merge: true}
+        ) 
+    }
+
 }
 
 
