@@ -108,7 +108,9 @@ export const likePost = async (userId, postId, isLiked) => {
 
     } else {
         const newPostLikes = await setDoc(postLikesDoc, {
-            [`likes.${userId}`]: {isLiked, dateTime: updated_at_timestamp}
+            likes:{
+            userId: {isLiked, dateTime: updated_at_timestamp}
+        }
         }, {merge: true}
         ) 
     }
