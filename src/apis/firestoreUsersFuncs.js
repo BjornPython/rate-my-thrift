@@ -1,4 +1,4 @@
-import { usersCollection } from "../firebase";
+import { usersCollection } from "./firebase";
 import {  doc, setDoc } from "firebase/firestore";
 
 

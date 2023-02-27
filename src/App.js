@@ -4,7 +4,7 @@ import './App.css';
 import LoginPage from './comps/loginComps/LoginPage';
 import Homepage from './comps/loggedInPage/Homepage';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth, logout } from './firebase';
+import { auth, logout } from './apis/firebase';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { getPosts, addPost, getImages, uploadImage } from './apis/firestoreDataQueryFuncs';
 import background from "./images/background.jpg"

@@ -1,11 +1,10 @@
-import { postsCollection, userUploadStorage } from "../firebase";
+import { postsCollection, userUploadStorage, commentsCollection, usersCollection } from "./firebase";
 import { doc, getDocs, setDoc, serverTimestamp } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const updated_at_timestamp = serverTimestamp()
 
 export const getPosts = async () => {
-
     try {
         const docs = await getDocs(postsCollection)
         let posts = []
@@ -42,9 +41,10 @@ export const getImages = async (userId, imageName) => {
 }
 
 
-export const uploadImage = async (image,userId="userId", post=true) => {
+export const uploadImage = async (image, userId="userId", post=true) => {
+    const path = post ? `${userId}/userPosts/${image.name}` : `${userId}/userProfilePic`
     try{
-        const folderRef = ref(userUploadStorage, `${userId}/${post ? "userPosts" : "userProfilePic"}/${image.name}`)
+        const folderRef = ref(userUploadStorage, path)
         const result = await uploadBytes(folderRef, image)
         console.log("UPLOAD RESULT: ", result);
         const imageURL = await getDownloadURL(result.ref)
@@ -54,7 +54,7 @@ export const uploadImage = async (image,userId="userId", post=true) => {
     catch(err) {console.log(err); throw(err)}
 }
 
-export const uploadPost = async (userId, title, caption, image, post=true ) => {
+export const uploadPost = async (userId, title, caption, image) => {
     try {
         console.log("UPLOADING IMAGE...");
         const imageURL = await uploadImage(image, userId)
@@ -63,6 +63,24 @@ export const uploadPost = async (userId, title, caption, image, post=true ) => {
             const newPost = await addPost(userId, caption, imageURL, title) 
             return "post added."
         } 
-    }catch (err) {console.log(err);}
-
+    } catch (err) {console.log(err);}
 }
+
+export const addDp = async (image, userId) => {
+    const dpURL = await uploadImage(image, userId, false);
+    console.log("DP URL RES: ", dpURL);
+    const userDoc = doc(usersCollection, userId)
+    const updatedUserDoc = await setDoc(userDoc, {dpURL}, {merge: true})
+    console.log("UPDATED DOC RES: ", updatedUserDoc);
+    return updatedUserDoc
+}
+
+// export const addComment = async (content, userId) => {
+//     const commentDoc = doc(commentsCollection)
+//     try {
+//         const newComment = await setDoc(commentDoc, {
+
+//         })
+
+//     }
+// }

@@ -1,7 +1,7 @@
 import "../../css/loggedIn/navbar.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus, faHouse, faUser, faBars } from "@fortawesome/free-solid-svg-icons"
-import { logout } from "../../firebase"
+import { logout } from "../../apis/firebase"
 
 
 function Navbar({ changePage }) {
