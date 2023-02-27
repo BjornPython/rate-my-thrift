@@ -86,7 +86,8 @@ export const addDp = async (image, userId) => {
     const dpURL = await uploadImage(image, userId, false);
     console.log("DP URL RES: ", dpURL);
     const userDoc = doc(usersCollection, userId)
-    const updatedUserDoc = await setDoc(userDoc, {dpURL}, {merge: true})
+    console.log("UPDATING USER DOC MERGE IS TRUE...");
+    const updatedUserDoc = await setDoc(userDoc, {dpURL}, { merge: true });
     console.log("UPDATED DOC RES: ", updatedUserDoc);
     return updatedUserDoc
 }
