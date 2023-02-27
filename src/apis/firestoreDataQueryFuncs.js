@@ -1,5 +1,5 @@
-import { postsCollection, userUploadStorage, commentsCollection, usersCollection } from "./firebase";
-import { doc, getDocs, setDoc, serverTimestamp} from "firebase/firestore";
+import { postsCollection, userUploadStorage, commentsCollection, usersCollection, postLikesCollection } from "./firebase";
+import { doc, getDocs, setDoc, addDoc,serverTimestamp} from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const updated_at_timestamp = serverTimestamp()
@@ -25,7 +25,8 @@ export const addPost = async (userId, caption, imageUrls, title) => {
             imageUrls,
             dateTime: updated_at_timestamp
         })
-        if (newPost) {return  "success"}
+        console.log("NEW POST .. : ", newPost);
+        return newPost
 
     } catch(err) {console.log(err); throw(err)}
 }
@@ -62,6 +63,7 @@ export const uploadPost = async (userId, title, caption, image) => {
         if (imageURL) {
                console.log("IMAGE URL RECEIVED, CREATING POST DOC...");
             const newPost = await addPost(userId, caption, imageURL, title) 
+            console.log("NEW POST: ", newPost);
             return "post added."
         } 
     } catch (err) {console.log(err);}
@@ -91,6 +93,19 @@ export const addDp = async (image, userId) => {
     console.log("UPDATED DOC RES: ", updatedUserDoc);
     return updatedUserDoc
 }
+
+export const likePost = async (userId, postId, isLiked) => {
+    const postLikesDoc = doc(postLikesCollection, postId)
+
+    const newPostLikes = await setDoc(postLikesDoc, {
+        likes: {
+            [userId]: {isLiked, dateTime: updated_at_timestamp}
+        }
+    }, {merge: true}
+    )
+}
+
+
 
 // export const addComment = async (content, userId) => {
 //     const commentDoc = doc(commentsCollection)

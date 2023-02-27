@@ -61,7 +61,7 @@ function Homepage({ user }) {
             <Navbar currentPage={currentPage} changePage={changePage} />
 
             <div className='homepage'>
-                {currentPage === "home" && <Posts handlePostClick={handlePostClick} />}
+                {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} />}
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}
                 />}
                 {currentPage === "profile" && <ProfilePage uid={uid} />}
