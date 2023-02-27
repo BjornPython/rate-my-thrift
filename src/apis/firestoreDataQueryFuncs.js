@@ -1,5 +1,5 @@
 import { postsCollection, userUploadStorage, commentsCollection, usersCollection } from "./firebase";
-import { doc, getDocs, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDocs, setDoc, serverTimestamp} from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const updated_at_timestamp = serverTimestamp()
@@ -41,6 +41,7 @@ export const getImages = async (userId, imageName) => {
 }
 
 
+
 export const uploadImage = async (image, userId="userId", post=true) => {
     const path = post ? `${userId}/userPosts/${image.name}` : `${userId}/userProfilePic`
     try{
@@ -64,6 +65,21 @@ export const uploadPost = async (userId, title, caption, image) => {
             return "post added."
         } 
     } catch (err) {console.log(err);}
+}
+
+export const getDp = async (imageName, userId) => {
+    try{
+        let imageRef = ref(userUploadStorage, `${userId}/${imageName}.jpg`)
+        let imageURL = await getDownloadURL(imageRef)
+        if (!imageURL) {
+            imageRef = ref(userUploadStorage, `${userId}/${imageName}.png`)
+            imageURL = await getDownloadURL(imageRef)
+        }
+        
+        console.log("IMAGE URL: ", imageURL);
+        return imageURL
+        
+} catch(err) {console.log(err)}
 }
 
 export const addDp = async (image, userId) => {

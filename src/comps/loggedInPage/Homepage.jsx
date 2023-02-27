@@ -6,6 +6,7 @@ import Posts from "./Posts"
 import AddPostPage from "./AddPost/AddPostPage"
 import CommentsPage from "./comments/CommentsPage"
 import { useNavigate } from "react-router-dom"
+import { getDp } from "../../apis/firestoreDataQueryFuncs"
 function Homepage({ user }) {
 
     const navigate = useNavigate()
@@ -47,6 +48,11 @@ function Homepage({ user }) {
         }
     }
 
+    const calLGetDp = async () => {
+        const image = await getDp("userDp", uid)
+        console.log("IMAGE: ", image);
+    }
+
 
 
     return (
@@ -60,7 +66,7 @@ function Homepage({ user }) {
             </div>
 
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage} />
-
+            <button onClick={calLGetDp}>CLICK</button>
             {/* <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button> */}
 
         </>
