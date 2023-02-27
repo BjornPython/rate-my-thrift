@@ -41,15 +41,10 @@ function Homepage({ user }) {
     }
 
     const removeCommentsPage = (wrapperCommentsRef, e) => {
-        console.log("TARGET: ", e.target);
-        console.log("REF: ", wrapperCommentsRef.current);
         if (e.target == wrapperCommentsRef.current) {
-            console.log("NOT EQUAL");
             setShowCommentPage(false)
             setCommentPost({ imageUrls: "", title: "", caption: "", dateTime: "" })
         }
-
-
     }
 
 

@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 
-function Post({ title, caption, imgLink, handlePostClick, post }) {
+function Post({ handlePostClick, post }) {
+
+    const { title, caption, imageUrls } = post
+
     const [isLiked, setIsLiked] = useState(false)
 
     const handleLike = () => {
@@ -12,7 +15,8 @@ function Post({ title, caption, imgLink, handlePostClick, post }) {
 
     return (
         <div className="post">
-            <img src={imgLink} alt="pic" className="post-img" onDoubleClick={handleLike} />
+            <img src={imageUrls} alt="pic" className="post-img" onDoubleClick={handleLike}
+                onClick={() => { handlePostClick(post) }} />
             <h1 className="post-title">{title}</h1>
             <div className="post-txt">
                 <p onClick={() => { handlePostClick(post) }}>{caption}</p>

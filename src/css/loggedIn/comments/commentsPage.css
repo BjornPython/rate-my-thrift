@@ -16,16 +16,50 @@
     border-radius: 15px;
     width: 700px;
     height: 600px;
-    /* position: absolute; */
-    /* top: 100px; */
-    /* opacity: 0;
-    transform: scale(0.3);
-    transition: all 0.3s ease-in-out; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
+    /* overflow-y: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  */
 }
+
+.comments-contents {
+    width: 99%;
+    margin-top: 20px;
+    height: 510px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+/* width */
+.comments-contents::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .comments-contents::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  .comments-contents::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  .comments-contents::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-brown); 
+  }
+
+
+
 .show-comments-page {
     opacity: 1;
     transform: scale(1);
@@ -44,7 +78,6 @@
 
 
 .post-contents {
-    margin-top: 20px;
     width: 90%;
     display: flex;
     justify-content: space-between;
@@ -52,6 +85,7 @@
 
 .comments-img {
     border: 1px solid var(--dark-brown);
+    margin-top: 0;
 }
 
 .comment-title {
@@ -61,7 +95,6 @@
 .comments-user {
     display: flex;
     column-gap: 15px;
-    margin-top: 20px;
 }
 
 .comment-user-icn {
@@ -99,4 +132,60 @@
     font-weight: 400;
     border-bottom: 1px solid gray;
     color: gray;
+}
+
+
+.comments-input {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: var(--vintage-white);
+    border-radius: 0 0 15px 15px;
+    height: 60px;
+    width: 100%;
+    border-top: 1px solid var(--dark-brown);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}   
+
+.comments-input p {
+    margin-right: 40px;
+    margin-bottom: 22px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.comment {
+    margin: 0 40px;
+    padding-left: 10px;
+    width: 100%;
+    height: 25px;
+    font-size: 16px;
+    border: 1px solid var(--dark-brown);
+    background-color: transparent;
+}
+
+
+
+.comment-div {
+    display: flex;
+    column-gap: 15px;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.name-comment {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.name-comment p {
+    margin: 0;
+}
+
+.name-comment p:nth-child(1) {
+    margin: 0;
+    font-size: 14px;
 }

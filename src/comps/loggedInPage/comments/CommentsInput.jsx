@@ -1,8 +1,12 @@
+import { useState } from "react"
 
 function CommentsInput() {
+
+
     return (
-        <div>
-            <input type="text" />
+        <div className="comments-input">
+            <input type="text" className="comment" />
+            <p>post</p>
         </div>
     )
 }
