@@ -46,7 +46,7 @@ function Homepage({ user }) {
     const removeCommentsPage = (wrapperCommentsRef, e) => {
         if (e.target == wrapperCommentsRef.current) {
             setShowCommentPage(false)
-            setCommentPost({ imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+            setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
         }
     }
 

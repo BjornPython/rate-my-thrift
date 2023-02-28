@@ -12,11 +12,11 @@ function CommentsContents({ postId }) {
     const [comments, setComments] = useState({})
 
     useEffect(() => {
+        setComments({})
         if (postId === "" || !postId) { return }
         const queryPostComments = async () => {
             const res = await getPostComments(postId)
-            console.log(res);
-            setComments(res.comments)
+            if (res) { setComments(res.comments) }
         }
         queryPostComments()
     }, [postId])
