@@ -1,5 +1,10 @@
 import { postsCollection, userUploadStorage, commentsCollection, usersCollection, postLikesCollection } from "./firebase";
-import { doc,getDoc, getDocs, setDoc, addDoc, updateDoc, serverTimestamp, increment, deleteField} from "firebase/firestore";
+import 
+    { 
+        doc,getDoc, getDocs, setDoc, addDoc, 
+        updateDoc, serverTimestamp, increment, 
+        deleteField
+    } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const updated_at_timestamp = serverTimestamp()

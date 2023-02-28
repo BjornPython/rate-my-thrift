@@ -8,12 +8,11 @@ import { useRef, useEffect, useState } from "react"
 import { getPostLikes } from "../../../apis/firestoreDataQueryFuncs"
 import { likePost } from "../../../apis/firestoreDataQueryFuncs"
 
-
 function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, changePostLike }) {
     const wrapperCommentsRef = useRef()
     const { id, imageUrls, title, caption, dateTime, isLiked } = commentPost
     const [totalLikes, setTotalLikes] = useState(0)
-
+    const [date, setDate] = useState("")
     const [liked, setLiked] = useState(false)
 
     useEffect(() => {
@@ -25,6 +24,9 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
 
         }
         userLikes()
+        if (dateTime === "") { return }
+        console.log("DATETIME: ", dateTime.toDate().toDateString());
+        setDate(dateTime.toDate().toDateString())
     }, [id])
 
     useEffect(() => {
@@ -42,7 +44,6 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
 
     useEffect(() => {
         if (liked === isLiked) { return }
-        console.log("LIKE VAL: ", liked);
         changePostLike(id, liked)
         callLikePost(liked)
         if (liked) { setTotalLikes(prev => { return prev += 1 }) }
@@ -62,7 +63,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
                             <ShowUser />
                             <h1 className="comment-title">{title}</h1>
                             <p className="comment-caption">{caption}</p>
-                            <p className="comment-date">{"no date "}</p>
+                            <p className="comment-date">{date}</p>
                             <p className="post-likes">{totalLikes}</p>
                             <FontAwesomeIcon icon={faHeart} className="comments-heart-icn"
                                 style={liked ? { color: "#ef3a5d" } : {}}
