@@ -8,15 +8,16 @@ import DisplayComment from './DisplayComment'
 
 
 function CommentsContents({ postId }) {
-
+    const [totalComments, setTotalComments] = useState(0)
     const [comments, setComments] = useState({})
 
     useEffect(() => {
         setComments({})
+        setTotalComments(0)
         if (postId === "" || !postId) { return }
         const queryPostComments = async () => {
             const res = await getPostComments(postId)
-            if (res) { setComments(res.comments) }
+            if (res) { setComments(res.comments); setTotalComments(res.totalComments) }
         }
         queryPostComments()
     }, [postId])
@@ -24,6 +25,7 @@ function CommentsContents({ postId }) {
 
     return (
         <>
+            <div className="comments-sign"><h3>Comments</h3> <p>{totalComments}</p> </div>
             {Object.entries(comments).map(value => {
                 console.log("VAL");
                 const commentId = value[0]

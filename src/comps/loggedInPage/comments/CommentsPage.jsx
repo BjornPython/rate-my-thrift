@@ -73,7 +73,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
                         <img src={imageUrls} className="post-img comments-img" />
 
                     </div>
-                    <h3 className="comments-sign">Comments</h3>
+
 
                     <CommentsContents postId={id} />
                     <CommentsInput uid={uid} postId={id} />

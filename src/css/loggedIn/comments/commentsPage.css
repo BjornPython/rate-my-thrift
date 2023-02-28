@@ -128,12 +128,25 @@
 }
 
 .comments-sign {
+    margin: 20px 0;
     width: 90%;
-    font-weight: 400;
+    height: 50px;
     border-bottom: 1px solid gray;
     color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
 }
 
+.comments-sign h3 {
+    font-weight: 400;
+}
+
+.comments-sign p {
+    margin-top: 17px;
+    font-size: 14px;
+}
 
 .comments-input {
     position: absolute;
