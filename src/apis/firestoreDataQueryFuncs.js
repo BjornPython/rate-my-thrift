@@ -134,12 +134,15 @@ export const addComment = async (userId, postId, content) => {
     const documentExists = await getDoc(commentDoc);
     const dateTime = new Date()
     if (documentExists.data()) {
-        if (documentExists[userId]) {
+        console.log("DOC DATA: ", documentExists.data());
+        if (documentExists.data().comments[userId]) {
+            console.log("doc exists");
             const newComment = await updateDoc(commentDoc, {
                 [`comments.${userId}`]: arrayUnion({content, dateTime})
             })
         }
         else {
+            console.log("doc doesnt exist");
                 const newComment = await setDoc(commentDoc, {
                 [`comments.${userId}`]: [{content, dateTime}]
             }, {merge: true})
