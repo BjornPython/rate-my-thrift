@@ -1,8 +1,10 @@
 import { postsCollection, userUploadStorage, commentsCollection, usersCollection, postLikesCollection } from "./firebase";
-import { doc,getDoc, getDocs, setDoc, addDoc, updateDoc, serverTimestamp} from "firebase/firestore";
+import { doc,getDoc, getDocs, setDoc, addDoc, updateDoc, serverTimestamp, increment, deleteField} from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const updated_at_timestamp = serverTimestamp()
+const incrementVal = increment(1);
+const decrementVal = increment(-1);
 
 export const getPosts = async () => {
     try {
@@ -96,25 +98,29 @@ export const addDp = async (image, userId) => {
 
 export const likePost = async (userId, postId, isLiked) => {
     const postLikesDoc = doc(postLikesCollection, postId)
-
     const documentExists = await getDoc(postLikesDoc);
-    console.log("DOC: ", documentExists.data());  
-
     if (documentExists.data()) {
+        console.log("updating doc with id: ", userId);
         const newPostLikes = await updateDoc(postLikesDoc, {
-            [`likes.${userId}`]: {isLiked, dateTime: updated_at_timestamp}
+            postLikes: isLiked ? incrementVal : decrementVal,
+            [`likes.${userId}`]: isLiked ? {isLiked, dateTime: updated_at_timestamp} : deleteField()
         }, {merge: true}
         ) 
-
     } else {
         const newPostLikes = await setDoc(postLikesDoc, {
+            postLikes: 1,
             likes:{
-            userId: {isLiked, dateTime: updated_at_timestamp}
+            [userId]: {isLiked, dateTime: updated_at_timestamp}
         }
         }, {merge: true}
         ) 
     }
+}
 
+export const getPostLikes = async (postId) => {
+    const postLikesDoc = doc(postLikesCollection, postId)
+    const document = await getDoc(postLikesDoc);
+    console.log("POST LIKES: ", document.data());
 }
 
 
