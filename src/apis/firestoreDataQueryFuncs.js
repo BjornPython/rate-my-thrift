@@ -6,6 +6,8 @@ import
         deleteField, arrayUnion, arrayRemove
     } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { uuidv4 } from "@firebase/util";
+
 
 const updated_at_timestamp = serverTimestamp()
 const incrementVal = increment(1);
@@ -133,31 +135,20 @@ export const addComment = async (userId, postId, content) => {
     const commentDoc = doc(commentsCollection, postId)
     const documentExists = await getDoc(commentDoc);
     const dateTime = new Date()
-    if (documentExists.data()) {
-        console.log("DOC DATA: ", documentExists.data());
-        if (documentExists.data().comments[userId]) {
-            console.log("doc exists");
-            const newComment = await updateDoc(commentDoc, {
-                [`comments.${userId}`]: arrayUnion({content, dateTime})
-            })
-        }
-        else {
-            console.log("doc doesnt exist");
-                const newComment = await setDoc(commentDoc, {
-                [`comments.${userId}`]: [{content, dateTime}]
+    const commentId = uuidv4()
+    // if (documentExists.exists()) {
+            const newComment = await setDoc(commentDoc, {
+                "comments": {[commentId]: {content, dateTime, userId}}
             }, {merge: true})
-        }
-    } else {
-        const newComment = await setDoc(commentDoc, {
-            totalComments: 1,
-            comments: {
-            [userId]:  [{content, dateTime}]
-            }
-        })
-    }
 
-
-
+    // } else {
+    //     const newComment = await setDoc(commentDoc, {
+    //         totalComments: 1,
+    //         comments: {
+    //         [userId]:  [{content, dateTime, userId}]
+    //         }
+    //     })
+    // }
 }
 
 export const getPostComments = async (postId) => {
