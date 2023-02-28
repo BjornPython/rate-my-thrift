@@ -9,7 +9,6 @@ import { getPostLikes } from "../../apis/firestoreDataQueryFuncs"
 
 function Post({ handlePostClick, post, uid }) {
     const { title, caption, imageUrls } = post
-    const [userLikes, setUserLikes] = useState({})
     const [isLiked, setIsLiked] = useState(false)
 
     const callLikePost = async () => {
@@ -35,10 +34,10 @@ function Post({ handlePostClick, post, uid }) {
     return (
         <div className="post">
             <img src={imageUrls} alt="pic" className="post-img" onDoubleClick={handleLike}
-                onClick={() => { handlePostClick(post) }} />
+                onClick={() => { handlePostClick(post, isLiked) }} />
             <h1 className="post-title">{title}</h1>
             <div className="post-txt">
-                <p onClick={() => { handlePostClick(post) }}>{caption}</p>
+                <p onClick={() => { handlePostClick(post, isLiked) }}>{caption}</p>
                 <FontAwesomeIcon icon={faHeart} className="heart-icn"
                     style={isLiked ? { color: "#ef3a5d" } : {}}
                     onClick={handleLike} />

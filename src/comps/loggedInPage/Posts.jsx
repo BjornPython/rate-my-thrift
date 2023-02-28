@@ -16,6 +16,9 @@ function Posts({ handlePostClick, uid }) {
         callGetPosts()
     }, [])
 
+    useEffect(() => {
+        console.log(posts);
+    }, [posts])
 
 
     return (

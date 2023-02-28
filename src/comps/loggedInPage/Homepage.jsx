@@ -17,7 +17,7 @@ function Homepage({ user }) {
     const [showCommentPage, setShowCommentPage] = useState(false)
 
     const [commentPost, setCommentPost] = useState({
-        imageUrls: "", title: "", caption: "", dateTime: ""
+        id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false
     })
 
     useEffect(() => {
@@ -37,15 +37,15 @@ function Homepage({ user }) {
         setCurrentPage(page)
     }
 
-    const handlePostClick = (post) => {
+    const handlePostClick = (post, isLiked = false) => {
         setShowCommentPage(!showCommentPage)
-        setCommentPost(post)
+        setCommentPost({ ...post, isLiked })
     }
 
     const removeCommentsPage = (wrapperCommentsRef, e) => {
         if (e.target == wrapperCommentsRef.current) {
             setShowCommentPage(false)
-            setCommentPost({ imageUrls: "", title: "", caption: "", dateTime: "" })
+            setCommentPost({ imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
         }
     }
 
