@@ -5,14 +5,15 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import { likePost } from "../../apis/firestoreDataQueryFuncs"
 import { getPostLikes } from "../../apis/firestoreDataQueryFuncs"
-function Post({ handlePostClick, post, uid }) {
 
+
+function Post({ handlePostClick, post, uid }) {
     const { title, caption, imageUrls } = post
     const [userLikes, setUserLikes] = useState({})
     const [isLiked, setIsLiked] = useState(false)
 
     const callLikePost = async () => {
-        await likePost(uid, post.id, true)
+        await likePost(uid, post.id, !isLiked)
     }
 
     const handleLike = () => {
@@ -21,7 +22,13 @@ function Post({ handlePostClick, post, uid }) {
     }
 
     useEffect(() => {
-        getPostLikes(post.id)
+        const checkIsLiked = async () => {
+            try {
+                const postLikes = await getPostLikes(post.id);
+                if (postLikes.likes[uid]) { setIsLiked(true) }
+            } catch (err) { }
+        }
+        checkIsLiked()
     }, [])
 
 

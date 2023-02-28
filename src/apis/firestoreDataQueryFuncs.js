@@ -121,6 +121,7 @@ export const getPostLikes = async (postId) => {
     const postLikesDoc = doc(postLikesCollection, postId)
     const document = await getDoc(postLikesDoc);
     console.log("POST LIKES: ", document.data());
+    return document.data()
 }
 
 
