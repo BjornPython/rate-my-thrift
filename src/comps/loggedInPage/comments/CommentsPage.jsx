@@ -25,7 +25,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
 
         }
         userLikes()
-    })
+    }, [id])
 
     useEffect(() => {
         setLiked(isLiked)
