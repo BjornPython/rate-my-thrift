@@ -9,9 +9,9 @@ const decrementVal = increment(-1);
 export const getPosts = async () => {
     try {
         const docs = await getDocs(postsCollection)
-        let posts = []
-        docs.forEach(doc => { posts.push({...doc.data(), id: doc.id}); })
-        console.log("POST IN FUNC: ", posts);
+        let posts = {}
+        docs.forEach(doc => { posts[doc.id] = ({...doc.data(), id: doc.id}); })
+        console.log("POSTS: ", posts);
         return posts
     } catch(err) {console.log(err);}
 

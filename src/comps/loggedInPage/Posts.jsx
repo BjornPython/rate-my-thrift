@@ -4,9 +4,9 @@ import { getPosts } from "../../apis/firestoreDataQueryFuncs"
 import { useEffect, useState } from "react"
 
 
-function Posts({ handlePostClick, uid }) {
+function Posts({ handlePostClick, uid, updateLike }) {
 
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState({})
 
     useEffect(() => {
         const callGetPosts = async () => {
@@ -23,9 +23,11 @@ function Posts({ handlePostClick, uid }) {
 
     return (
         <div className='posts'>
-            {posts && posts.map((post) => {
-                return <Post key={post.id}
-                    handlePostClick={handlePostClick} post={post} uid={uid} />
+            {posts && Object.entries(posts).map((vals) => {
+                const key = vals[0]
+                const post = vals[1]
+                return <Post key={key}
+                    handlePostClick={handlePostClick} post={post} uid={uid} updateLike={updateLike} />
             })}
         </div>
     )

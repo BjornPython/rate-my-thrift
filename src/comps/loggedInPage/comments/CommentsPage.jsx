@@ -8,7 +8,7 @@ import { useRef, useEffect, useState } from "react"
 import { likePost } from "../../../apis/firestoreDataQueryFuncs"
 import { getPostLikes } from "../../../apis/firestoreDataQueryFuncs"
 
-function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage }) {
+function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, changePostLike }) {
     const wrapperCommentsRef = useRef()
     const { id, imageUrls, title, caption, dateTime, isLiked } = commentPost
     const [totalLikes, setTotalLikes] = useState(0)
@@ -52,6 +52,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage })
                             <p className="post-likes">{totalLikes}</p>
                             <FontAwesomeIcon icon={faHeart} className="comments-heart-icn"
                                 style={isLiked ? { color: "#ef3a5d" } : {}}
+                                onClick={() => { changePostLike(id, !isLiked) }}
                             />
                         </div>
                         <img src={imageUrls} className="post-img comments-img" />

@@ -7,7 +7,7 @@ import { likePost } from "../../apis/firestoreDataQueryFuncs"
 import { getPostLikes } from "../../apis/firestoreDataQueryFuncs"
 
 
-function Post({ handlePostClick, post, uid }) {
+function Post({ handlePostClick, post, uid, updateLike }) {
     const { title, caption, imageUrls } = post
     const [isLiked, setIsLiked] = useState(false)
 
@@ -30,6 +30,14 @@ function Post({ handlePostClick, post, uid }) {
         checkIsLiked()
     }, [])
 
+    useEffect(() => {
+        console.log("IN POST: ", updateLike);
+        if (!updateLike) { return }
+        const { key, val } = updateLike
+        if (key === post.id) {
+            setIsLiked(val)
+        }
+    }, [updateLike])
 
     return (
         <div className="post">

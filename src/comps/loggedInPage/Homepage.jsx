@@ -19,6 +19,7 @@ function Homepage({ user }) {
     const [commentPost, setCommentPost] = useState({
         id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false
     })
+    const [updateLike, setUpdateLike] = useState(null)
 
     useEffect(() => {
         if (!user) {
@@ -54,6 +55,9 @@ function Homepage({ user }) {
         console.log("IMAGE: ", image);
     }
 
+    const changePostLike = (postId, isLiked) => {
+        setUpdateLike({ key: postId, val: isLiked })
+    }
 
 
     return (
@@ -61,13 +65,14 @@ function Homepage({ user }) {
             <Navbar currentPage={currentPage} changePage={changePage} />
 
             <div className='homepage'>
-                {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} />}
+                {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} />}
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}
                 />}
                 {currentPage === "profile" && <ProfilePage uid={uid} />}
             </div>
 
-            <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage} />
+            <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
+                changePostLike={changePostLike} />
             {/* <button onClick={calLGetDp}>CLICK</button> */}
             {/* <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button> */}
 
