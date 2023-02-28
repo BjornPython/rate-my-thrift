@@ -7,4 +7,11 @@
     align-items: center;
     padding-bottom: 200px;
     overflow-y: scroll;
+    transition: all 0.2s ease-in-out;
+}
+
+.homepage-blur {
+    filter: blur(2px);
+
+
 }
