@@ -1,5 +1,6 @@
 import { usersCollection } from "./firebase";
-import {  doc, setDoc } from "firebase/firestore";
+import {  doc, setDoc, getDoc } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 
 export const addUser = async (uid, email) => {
@@ -12,6 +13,16 @@ export const addUser = async (uid, email) => {
     })
     console.log("NEW USER: ", newUser);
 }   
+
+export const getUserInfo = async (uid) => {
+    const userDoc = doc(usersCollection, uid)  
+    try{
+            const document = await getDoc(userDoc);
+            console.log("USER DATA: ", document);
+            return document.data()
+    } catch(err) {console.log(err);}
+
+}
 
 
     

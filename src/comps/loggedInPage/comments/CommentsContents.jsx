@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react'
-import { faCircle } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { getPostComments } from '../../../apis/firestoreDataQueryFuncs'
 
-const displayComment = (dp, name, content, date) => {
-    <div className="comment-div">
-        <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
-        <div className="name-comment">
-            <p>{name}</p>
-            <p>{content}</p>
-        </div>
-    </div>
-}
+import { getPostComments } from '../../../apis/firestoreDataQueryFuncs'
+import DisplayComment from './DisplayComment'
+
+
+
 
 
 function CommentsContents({ postId }) {
@@ -19,7 +12,7 @@ function CommentsContents({ postId }) {
     const [comments, setComments] = useState({})
 
     useEffect(() => {
-        if (postId === "") { return }
+        if (postId === "" || !postId) { return }
         const queryPostComments = async () => {
             const res = await getPostComments(postId)
             console.log(res);
@@ -31,6 +24,12 @@ function CommentsContents({ postId }) {
 
     return (
         <>
+            {Object.entries(comments).map(value => {
+                console.log("VAL");
+                const commentId = value[0]
+                const comment = value[1]
+                return <DisplayComment key={commentId} comment={comment} />
+            })}
             {/* {Object.entries(comments).map((value) => {
                 const commentUid = value[0]
                 const commentArray = value[1]
