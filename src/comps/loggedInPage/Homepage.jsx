@@ -57,6 +57,7 @@ function Homepage({ user }) {
 
     const changePostLike = (postId, isLiked) => {
         setUpdateLike({ key: postId, val: isLiked })
+        setCommentPost(prev => { return { ...prev, isLiked } })
     }
 
 
@@ -72,7 +73,7 @@ function Homepage({ user }) {
             </div>
 
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
-                changePostLike={changePostLike} />
+                changePostLike={changePostLike} uid={uid} />
             {/* <button onClick={calLGetDp}>CLICK</button> */}
             {/* <button onClick={() => { setShowCommentPage(!showCommentPage) }}>Click</button> */}
 

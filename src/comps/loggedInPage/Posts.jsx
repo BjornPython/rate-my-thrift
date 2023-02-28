@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 
 function Posts({ handlePostClick, uid, updateLike }) {
 
-    const [posts, setPosts] = useState({})
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         const callGetPosts = async () => {
@@ -23,10 +23,8 @@ function Posts({ handlePostClick, uid, updateLike }) {
 
     return (
         <div className='posts'>
-            {posts && Object.entries(posts).map((vals) => {
-                const key = vals[0]
-                const post = vals[1]
-                return <Post key={key}
+            {posts && posts.map((post) => {
+                return <Post key={post.id}
                     handlePostClick={handlePostClick} post={post} uid={uid} updateLike={updateLike} />
             })}
         </div>
