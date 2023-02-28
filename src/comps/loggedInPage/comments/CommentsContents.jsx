@@ -2,11 +2,24 @@ import React from 'react'
 import { faCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
+const displayComment = (dp, name, content, date) => {
+    <div className="comment-div">
+        <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
+        <div className="name-comment">
+            <p>{name}</p>
+            <p>{content}</p>
+        </div>
+    </div>
+}
 
-function CommentsContents() {
+
+function CommentsContents({ postId }) {
+
+
+
     return (
         <>
-            <div className="comment-div">
+            {/* <div className="comment-div">
                 <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
                 <div className="name-comment">
                     <p>Nathan Flores</p>
@@ -29,7 +42,7 @@ function CommentsContents() {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Duis feugiat tincidunt turpis a convallis.</p>
                 </div>
-            </div>
+            </div> */}
         </>
 
 

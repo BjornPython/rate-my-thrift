@@ -194,6 +194,6 @@
     position: absolute;
     margin: 0 10px 0 0;
     bottom: 0;
-    right: 20px;
+    left: 0;
     color: gray;
 }

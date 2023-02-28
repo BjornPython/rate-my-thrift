@@ -31,7 +31,6 @@ function Post({ handlePostClick, post, uid, updateLike }) {
     }, [])
 
     useEffect(() => {
-        console.log("IN POST: ", updateLike);
         if (!updateLike) { return }
         const { key, val } = updateLike
         if (key === post.id) {

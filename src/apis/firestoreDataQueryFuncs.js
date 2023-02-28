@@ -3,7 +3,7 @@ import
     { 
         doc,getDoc, getDocs, setDoc, addDoc, 
         updateDoc, serverTimestamp, increment, 
-        deleteField
+        deleteField, arrayUnion, arrayRemove
     } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
@@ -16,7 +16,6 @@ export const getPosts = async () => {
         const docs = await getDocs(postsCollection)
         let posts = []
         docs.forEach(doc => { posts.push({...doc.data(), id: doc.id}); })
-        console.log("DOCS: ", docs);
         return posts
     } catch(err) {console.log(err);}
 
@@ -125,18 +124,41 @@ export const likePost = async (userId, postId, isLiked) => {
 export const getPostLikes = async (postId) => {
     const postLikesDoc = doc(postLikesCollection, postId)
     const document = await getDoc(postLikesDoc);
-    console.log("POST LIKES: ", document.data());
     return document.data()
 }
 
 
+export const addComment = async (userId, postId, content) => {
+    console.log("IDl ", userId);
+    const commentDoc = doc(commentsCollection, postId)
+    const documentExists = await getDoc(commentDoc);
+    const dateTime = new Date()
+    if (documentExists.data()) {
+        if (documentExists[userId]) {
+            const newComment = await updateDoc(commentDoc, {
+                [`comments.${userId}`]: arrayUnion({content, dateTime})
+            })
+        }
+        else {
+                const newComment = await setDoc(commentDoc, {
+                [`comments.${userId}`]: [{content, dateTime}]
+            }, {merge: true})
+        }
+    } else {
+        const newComment = await setDoc(commentDoc, {
+            totalComments: 1,
+            comments: {
+            [userId]:  [{content, dateTime}]
+            }
+        })
+    }
 
-// export const addComment = async (content, userId) => {
-//     const commentDoc = doc(commentsCollection)
-//     try {
-//         const newComment = await setDoc(commentDoc, {
 
-//         })
 
-//     }
-// }
+}
+
+export const getPostComments = async (postId) => {
+    const postCommentDoc = doc(commentsCollection, postId)
+    const document = await getDoc(postCommentDoc)
+    return document.data()
+}

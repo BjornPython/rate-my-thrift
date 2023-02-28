@@ -14,7 +14,6 @@ function LoginPage({ user }) {
     }
 
     useEffect(() => {
-        console.log("USER: ", user);
         if (user) {
             console.log("NAVIGATING");
             navigate("/home")

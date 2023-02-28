@@ -28,7 +28,7 @@ export const storage = getStorage(firebaseApp);
 
 export const usersCollection = collection(firestoreDb, "users")
 export const postsCollection = collection(firestoreDb, "posts")
-export const commentsCollection = collection(firestoreDb, "comments")
+export const commentsCollection = collection(firestoreDb, "postComments")
 export const postLikesCollection = collection(firestoreDb, "postLikes")
 export const userUploadStorage = ref(storage, "userUploads")
 

@@ -64,7 +64,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
                             <h1 className="comment-title">{title}</h1>
                             <p className="comment-caption">{caption}</p>
                             <p className="comment-date">{date}</p>
-                            <p className="post-likes">{totalLikes}</p>
+                            <p className="post-likes">{totalLikes} {totalLikes == 1 ? "like" : "likes"}</p>
                             <FontAwesomeIcon icon={faHeart} className="comments-heart-icn"
                                 style={liked ? { color: "#ef3a5d" } : {}}
                                 onClick={() => { handleLike() }}
@@ -75,8 +75,8 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
                     </div>
                     <h3 className="comments-sign">Comments</h3>
 
-                    <CommentsContents />
-                    <CommentsInput />
+                    <CommentsContents postId={id} />
+                    <CommentsInput uid={uid} postId={id} />
                 </div>
 
             </div>

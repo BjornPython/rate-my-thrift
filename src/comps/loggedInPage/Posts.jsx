@@ -16,9 +16,6 @@ function Posts({ handlePostClick, uid, updateLike }) {
         callGetPosts()
     }, [])
 
-    useEffect(() => {
-        console.log(posts);
-    }, [posts])
 
 
     return (
