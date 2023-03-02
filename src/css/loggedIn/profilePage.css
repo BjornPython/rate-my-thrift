@@ -4,6 +4,7 @@
 
 .main-profile{
     width: 400px;
+    height: 110px;
     display: flex;
     justify-content: flex-start;
     column-gap: 50px;
@@ -46,8 +47,8 @@
 }
 
 .active-settings {
-    margin-top: 5px;
-    display: flex;
+    position: absolute;
+    display: none;
     align-items: center;
 }
 
@@ -65,4 +66,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+}
+
+.show-active-settings {
+    display: flex;
 }

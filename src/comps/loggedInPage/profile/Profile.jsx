@@ -32,9 +32,11 @@ function Profile({ uid }) {
                     <p id="profile-name">Nathan Flores</p>
                     <p id="profile-bio">just a bio!</p>
                 </div>
-                <FontAwesomeIcon icon={faGear} className="profile-settings" />
+                <FontAwesomeIcon icon={faGear} className="profile-settings"
+                    onClick={() => { changeIsEditing(!isEditing) }} />
+
             </div>
-            <div className="active-settings">
+            <div className={`active-settings ${isEditing && "show-active-settings"}`}>
                 <input type="file" id="profile-input" name="profile-input" className='profile-input' />
                 <label htmlFor="profile-input">choose</label>
                 <button >  save</button>
