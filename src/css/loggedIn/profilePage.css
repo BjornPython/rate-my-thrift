@@ -1,10 +1,23 @@
 .profile-page {
     color: var(--vintage-white);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 50px;
+}
+
+.profile-page hr {
+    border: none;
+    background-color: var(--vintage-white);
+    height: 2px;
+    width: 55%;
 }
 
 .main-profile{
     width: 400px;
-    height: 110px;
+    height: 140px;
     display: flex;
     justify-content: flex-start;
     column-gap: 50px;
@@ -68,10 +81,17 @@
     display: none;
 }
 
+.pic-label {
+    margin-left: 6px;
+}
+
 .active-settings {
     position: absolute;
+    bottom: 0;
+    width: 100%;
     display: none;
     align-items: center;
+    justify-content: space-between;
 }
 
 .active-settings label {

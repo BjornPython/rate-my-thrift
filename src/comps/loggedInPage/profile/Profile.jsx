@@ -63,13 +63,13 @@ function Profile({ uid, callEditInfo }) {
 
                 <FontAwesomeIcon icon={faGear} className="profile-settings"
                     onClick={() => { changeIsEditing(!isEditing) }} />
+                <div className={`active-settings ${isEditing && "show-active-settings"}`}>
+                    <input type="file" id="profile-input" name="profile-input" className='profile-input' onChange={(e) => { setUploadedDp(e.target.files) }} />
+                    <label htmlFor="profile-input" className="pic-label">upload profile</label>
+                    <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>  save</button>
+                </div>
+            </div>
 
-            </div>
-            <div className={`active-settings ${isEditing && "show-active-settings"}`}>
-                <input type="file" id="profile-input" name="profile-input" className='profile-input' onChange={(e) => { setUploadedDp(e.target.files) }} />
-                <label htmlFor="profile-input">choose</label>
-                <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>  save</button>
-            </div>
         </>
 
     )

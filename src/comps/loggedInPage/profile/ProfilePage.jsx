@@ -34,7 +34,7 @@ function ProfilePage({ uid, changeIsLoading }) {
     return (
         <div className='profile-page'>
             <Profile uid={uid} userInfo={userInfo} callEditInfo={callEditInfo} changeIsLoading={changeIsLoading} />
-
+            <hr />
         </div>
     )
 }
