@@ -1,7 +1,6 @@
 import { usersCollection } from "./firebase";
 import {  doc, setDoc, getDoc } from "firebase/firestore";
-import { async } from "@firebase/util";
-
+import { uploadImage } from "./firestoreDataQueryFuncs";
 
 export const addUser = async (uid, email) => {
     const userDoc = doc(usersCollection, uid)  
@@ -13,6 +12,17 @@ export const addUser = async (uid, email) => {
     })
     console.log("NEW USER: ", newUser);
 }   
+
+export const addDp = async (image, userId) => {
+    const dpURL = await uploadImage(image, userId, false);
+    console.log("DP URL RES: ", dpURL);
+    const userDoc = doc(usersCollection, userId)
+    console.log("UPDATING USER DOC MERGE IS TRUE...");
+    const updatedUserDoc = await setDoc(userDoc, {dpURL}, { merge: true });
+    console.log("UPDATED DOC RES: ", updatedUserDoc);
+    return updatedUserDoc
+}
+
 
 export const getUserInfo = async (uid) => {
     const userDoc = doc(usersCollection, uid)  
@@ -26,3 +36,12 @@ export const getUserInfo = async (uid) => {
 
 
     
+
+export const editUserInfo = async (userId, newInfo) => {
+    const userDoc = doc(usersCollection, userId) 
+console.log("NEW INFO: ", newInfo);
+    try {
+        await setDoc(userDoc, newInfo, {merge: true})
+
+    } catch(err) {console.log(err);}
+}

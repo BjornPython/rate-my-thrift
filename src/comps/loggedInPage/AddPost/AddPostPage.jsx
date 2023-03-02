@@ -42,7 +42,7 @@ function AddPostPage({ uid, changePage, isVerified }) {
         <div className='addpost-page'>
             {showUpload && isVerified
                 ?
-                <UploadPost uid={uid} popupValues={popupValues} />
+                <UploadPost uid={uid} popupValues={popupValues} changeShowUpload={changeShowUpload} />
                 :
                 <AddPostPopup changeShowUpload={changeShowUpload} changePage={changePage} popupValues={popupValues} />}
 

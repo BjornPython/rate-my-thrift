@@ -25,10 +25,8 @@ export const getPosts = async () => {
 }
 
 export const addPost = async (userId, caption, imageUrls, title) => {
-    const newDoc = doc(postsCollection)
-    console.log("PARAMS: ", userId, caption, imageUrls, title);
-    console.log("NEW DOC: ", newDoc);
     try {
+        // Add post doc un posts
         const newPost = await addDoc(collection(firestoreDb, "posts"), {
             caption,
             title,
@@ -36,8 +34,7 @@ export const addPost = async (userId, caption, imageUrls, title) => {
             imageUrls,
             dateTime: updated_at_timestamp
         })
-        console.log("NEW POST .. : ", newPost);
-        console.log("NEW POST ID: ", newPost.id);
+
         // update user posts
         const userDoc = doc(usersCollection, userId)
         const newUserPosts = await updateDoc(userDoc, {
@@ -53,7 +50,6 @@ export const getImages = async (userId, imageName) => {
             const imageURL = await getDownloadURL(imageRef)
             console.log("IMAGE URL: ", imageURL);
             return imageURL
-            
     } catch(err) {console.log(err)}
 }
 
@@ -64,9 +60,7 @@ export const uploadImage = async (image, userId="userId", post=true) => {
     try{
         const folderRef = ref(userUploadStorage, path)
         const result = await uploadBytes(folderRef, image)
-        console.log("UPLOAD RESULT: ", result);
         const imageURL = await getDownloadURL(result.ref)
-        console.log("RES URL: ", imageURL );
         return imageURL
     }
     catch(err) {console.log(err); throw(err)}
@@ -93,22 +87,11 @@ export const getDp = async (imageName, userId) => {
             imageRef = ref(userUploadStorage, `${userId}/${imageName}.png`)
             imageURL = await getDownloadURL(imageRef)
         }
-        
-        console.log("IMAGE URL: ", imageURL);
         return imageURL
         
 } catch(err) {console.log(err)}
 }
 
-export const addDp = async (image, userId) => {
-    const dpURL = await uploadImage(image, userId, false);
-    console.log("DP URL RES: ", dpURL);
-    const userDoc = doc(usersCollection, userId)
-    console.log("UPDATING USER DOC MERGE IS TRUE...");
-    const updatedUserDoc = await setDoc(userDoc, {dpURL}, { merge: true });
-    console.log("UPDATED DOC RES: ", updatedUserDoc);
-    return updatedUserDoc
-}
 
 export const likePost = async (userId, postId, isLiked) => {
     const postLikesDoc = doc(postLikesCollection, postId)
@@ -144,19 +127,10 @@ export const addComment = async (userId, postId, content) => {
     const documentExists = await getDoc(commentDoc);
     const dateTime = new Date()
     const commentId = uuidv4()
-    // if (documentExists.exists()) {
-            const newComment = await setDoc(commentDoc, {
-                "comments": {[commentId]: {content, dateTime, userId}}
-            }, {merge: true})
+    const newComment = await setDoc(commentDoc, {
+        "comments": {[commentId]: {content, dateTime, userId}}
+    }, {merge: true})
 
-    // } else {
-    //     const newComment = await setDoc(commentDoc, {
-    //         totalComments: 1,
-    //         comments: {
-    //         [userId]:  [{content, dateTime, userId}]
-    //         }
-    //     })
-    // }
 }
 
 export const getPostComments = async (postId) => {

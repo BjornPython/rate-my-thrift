@@ -1,11 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircle, faGear } from "@fortawesome/free-solid-svg-icons"
 import { useState, useEffect } from 'react'
-import { addDp } from '../../../apis/firestoreDataQueryFuncs'
+import { addDp } from "../../../apis/firestoreUsersFuncs"
 
-function Profile({ uid }) {
+
+function Profile({ uid, callEditInfo }) {
     const [uploadedDp, setUploadedDp] = useState([])
     const [isEditing, setIsEditing] = useState(false)
+    const [nameBioVal, setNameBioVal] = useState({ name: "", bio: "" })
+    const { name, bio } = nameBioVal
 
     const handleDpUpload = (e) => {
         setUploadedDp(e.target.files)
@@ -20,9 +23,19 @@ function Profile({ uid }) {
         const res = await addDp(uploadedDp[0], uid)
     }
 
+
+
     const changeIsEditing = (val) => {
         setIsEditing(val)
     }
+
+    const handleNameBioChange = (e) => {
+        setNameBioVal(prevState => {
+            return { ...prevState, [e.target.name]: e.target.value }
+        })
+    }
+
+
 
     return (
         <>
@@ -32,8 +45,8 @@ function Profile({ uid }) {
                 {isEditing ?
                     (
                         <div className="profile-n-b">
-                            <input id="name-input" placeholder="Nathan Flores" />
-                            <input id="bio-input" placeholder="just a bio!" />
+                            <input id="name-input" placeholder="Nathan Flores" name="name" value={name} onChange={handleNameBioChange} />
+                            <input id="bio-input" placeholder="just a bio!" name="bio" value={bio} onChange={handleNameBioChange} />
                         </div>
                     )
 
@@ -51,9 +64,9 @@ function Profile({ uid }) {
 
             </div>
             <div className={`active-settings ${isEditing && "show-active-settings"}`}>
-                <input type="file" id="profile-input" name="profile-input" className='profile-input' />
+                <input type="file" id="profile-input" name="profile-input" className='profile-input' onChange={(e) => { setUploadedDp(e.target.files) }} />
                 <label htmlFor="profile-input">choose</label>
-                <button >  save</button>
+                <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>  save</button>
             </div>
         </>
 

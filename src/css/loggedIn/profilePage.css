@@ -29,7 +29,7 @@
 
 .profile-n-b input {
     background-color: transparent;
-    color: white;
+    color: var(--vintage-white);
     border: none;
     font-size: 20px;
 }
