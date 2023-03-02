@@ -10,7 +10,7 @@ function DisplayComment({ comment }) {
             setCommentUserInfo(userInfo)
         }
         callGetUserInfo()
-    }, [])
+    }, [comment])
 
 
     return (

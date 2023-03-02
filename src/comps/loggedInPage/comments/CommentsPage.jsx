@@ -14,7 +14,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
     const [totalLikes, setTotalLikes] = useState(0)
     const [date, setDate] = useState("")
     const [liked, setLiked] = useState(false)
-
+    const [newAddedComment, setNewAddedComment] = useState({})
     useEffect(() => {
         const userLikes = async () => {
             if (!id) { return }
@@ -34,6 +34,13 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
     }, [isLiked])
 
 
+    useEffect(() => {
+        if (liked === isLiked) { return }
+        changePostLike(id, liked)
+        callLikePost(liked)
+        if (liked) { setTotalLikes(prev => { return prev += 1 }) }
+        else { setTotalLikes(prev => { return prev -= 1 }) }
+    }, [liked])
     const callLikePost = async (val) => {
         await likePost(uid, id, val)
     }
@@ -42,13 +49,9 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
         setLiked(!liked)
     }
 
-    useEffect(() => {
-        if (liked === isLiked) { return }
-        changePostLike(id, liked)
-        callLikePost(liked)
-        if (liked) { setTotalLikes(prev => { return prev += 1 }) }
-        else { setTotalLikes(prev => { return prev -= 1 }) }
-    }, [liked])
+    const changeNewComment = (newComment) => {
+        setNewAddedComment(newComment)
+    }
 
     return (
         <div
@@ -75,8 +78,8 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
                     </div>
 
 
-                    <CommentsContents postId={id} />
-                    <CommentsInput uid={uid} postId={id} />
+                    <CommentsContents postId={id} newAddedComment={newAddedComment} />
+                    <CommentsInput uid={uid} postId={id} changeNewComment={changeNewComment} />
                 </div>
 
             </div>

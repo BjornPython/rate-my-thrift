@@ -7,7 +7,7 @@ import DisplayComment from './DisplayComment'
 
 
 
-function CommentsContents({ postId }) {
+function CommentsContents({ postId, newAddedComment }) {
     const [totalComments, setTotalComments] = useState(0)
     const [comments, setComments] = useState({})
 
@@ -23,44 +23,22 @@ function CommentsContents({ postId }) {
     }, [postId])
 
 
+    useEffect(() => {
+        console.log("NEW: ", newAddedComment);
+    }, [newAddedComment])
+
     return (
         <>
             <div className="comments-sign"><h3>Comments</h3> <p>{totalComments}</p> </div>
+            <DisplayComment key={"newAddedComment"} comment={newAddedComment} />
+
             {Object.entries(comments).map(value => {
                 console.log("VAL");
                 const commentId = value[0]
                 const comment = value[1]
                 return <DisplayComment key={commentId} comment={comment} />
             })}
-            {/* {Object.entries(comments).map((value) => {
-                const commentUid = value[0]
-                const commentArray = value[1]
-            })} */}
 
-            {/* <div className="comment-div">
-                <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
-                <div className="name-comment">
-                    <p>Nathan Flores</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis feugiat tincidunt turpis a convallis.</p>
-                </div>
-            </div>
-            <div className="comment-div">
-                <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
-                <div className="name-comment">
-                    <p>Nathan Flores</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis feugiat tincidunt turpis a convallis.</p>
-                </div>
-            </div>
-            <div className="comment-div">
-                <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
-                <div className="name-comment">
-                    <p>Nathan Flores</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Duis feugiat tincidunt turpis a convallis.</p>
-                </div>
-            </div> */}
         </>
 
 
