@@ -28,10 +28,24 @@ function Profile({ uid }) {
         <>
             <div className="main-profile">
                 <FontAwesomeIcon icon={faCircle} className="profile-icn" />
-                <div className="profile-n-b">
-                    <p id="profile-name">Nathan Flores</p>
-                    <p id="profile-bio">just a bio!</p>
-                </div>
+
+                {isEditing ?
+                    (
+                        <div className="profile-n-b">
+                            <input id="name-input" placeholder="Nathan Flores" />
+                            <input id="bio-input" placeholder="just a bio!" />
+                        </div>
+                    )
+
+                    :
+                    (
+                        <div className="profile-n-b">
+                            <p id="profile-name">Nathan Flores</p>
+                            <p id="profile-bio">just a bio!</p>
+                        </div>
+                    )
+                }
+
                 <FontAwesomeIcon icon={faGear} className="profile-settings"
                     onClick={() => { changeIsEditing(!isEditing) }} />
 

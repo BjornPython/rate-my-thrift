@@ -27,12 +27,34 @@
     margin: 0;
 }
 
-#profile-name {
+.profile-n-b input {
+    background-color: transparent;
+    color: white;
+    border: none;
     font-size: 20px;
 }
 
-#profile-bio {
+#name-input {
+    height: 25px;
+}
+
+#bio-input {
     font-size: 16px;
+    height: 20px;
+}
+
+#profile-name {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    height: 25px;
+}
+
+#profile-bio {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    height: 20px;
 }
 
 .profile-settings {

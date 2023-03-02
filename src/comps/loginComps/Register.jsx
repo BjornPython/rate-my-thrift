@@ -6,8 +6,8 @@ import facebook from "../../svgs/facebook.svg"
 import { callGoogleSigninPopup } from '../../auth/authWithGoogle'
 
 function Register() {
-    const [registerData, setRegisterData] = useState({ email: "", password: "" })
-    const { email, password } = registerData
+    const [registerData, setRegisterData] = useState({ email: "", password: "", cpassword: "" })
+    const { email, password, cpassword } = registerData
 
     const handleRegisterChange = (e) => {
         setRegisterData(prevState => {
@@ -16,6 +16,7 @@ function Register() {
     }
 
     const handleSignUp = () => {
+        if (password !== cpassword) { console.log("PASSWORDS DO NOT MATCH..."); return }
         registerWithEmailPass(email, password)
     }
 
@@ -24,10 +25,9 @@ function Register() {
             <img src={logo} alt="" className='log-in-logo' />
 
             <div className="log-in-inputs">
-                <input type="text" placeholder='name' name="name" />
                 <input type="text" placeholder='email' name="email" value={email} onChange={handleRegisterChange} />
                 <input type="text" placeholder='password' name="password" value={password} onChange={handleRegisterChange} />
-                <input type="text" placeholder='confirm password' />
+                <input type="text" placeholder='confirm password' name="cpassword" value={cpassword} onChange={handleRegisterChange} />
             </div>
 
             <button className='log-in-btn' onClick={handleSignUp}>Sign up</button>

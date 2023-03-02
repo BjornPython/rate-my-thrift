@@ -1,9 +1,10 @@
-import { postsCollection, userUploadStorage, commentsCollection, usersCollection, postLikesCollection } from "./firebase";
+import { postsCollection, userUploadStorage, commentsCollection, 
+    usersCollection, postLikesCollection, firestoreDb } from "./firebase";
 import 
     { 
         doc,getDoc, getDocs, setDoc, addDoc, 
         updateDoc, serverTimestamp, increment, 
-        deleteField, arrayUnion, arrayRemove
+        deleteField, arrayUnion, arrayRemove, collection
     } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { uuidv4 } from "@firebase/util";
@@ -25,8 +26,10 @@ export const getPosts = async () => {
 
 export const addPost = async (userId, caption, imageUrls, title) => {
     const newDoc = doc(postsCollection)
+    console.log("PARAMS: ", userId, caption, imageUrls, title);
+    console.log("NEW DOC: ", newDoc);
     try {
-        const newPost = await setDoc(newDoc, {
+        const newPost = await addDoc(collection(firestoreDb, "posts"), {
             caption,
             title,
             userId,
@@ -34,8 +37,13 @@ export const addPost = async (userId, caption, imageUrls, title) => {
             dateTime: updated_at_timestamp
         })
         console.log("NEW POST .. : ", newPost);
-        return newPost
-
+        console.log("NEW POST ID: ", newPost.id);
+        // update user posts
+        const userDoc = doc(usersCollection, userId)
+        const newUserPosts = await updateDoc(userDoc, {
+            posts: arrayUnion(newPost.id)
+        })
+        return "added post"
     } catch(err) {console.log(err); throw(err)}
 }
 
