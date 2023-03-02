@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     row-gap: 50px;
 }
@@ -11,11 +11,13 @@
 .profile-page hr {
     border: none;
     background-color: var(--vintage-white);
+    color: var(--vintage-white);
+    width: 790px;
     height: 2px;
-    width: 55%;
 }
 
 .main-profile{
+    margin-top: 200px;
     width: 400px;
     height: 140px;
     display: flex;
@@ -112,4 +114,14 @@
 
 .show-active-settings {
     display: flex;
+}
+
+.profile-posts {
+    width: 60%;
+    display: grid;
+    column-gap: 50px;
+    row-gap: 50px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(370px, 370px));
+    height: auto;
 }

@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 import { addDp } from '../../../apis/firestoreDataQueryFuncs'
 import Profile from './Profile'
 import "../../../css/loggedIn/profilePage.css"
+import UserPosts from './UserPosts'
 import { editUserInfo, getUserInfo } from '../../../apis/firestoreUsersFuncs'
-function ProfilePage({ uid, changeIsLoading }) {
+function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike }) {
 
 
     const [userInfo, setUserInfo] = useState(null)
-
+    const [userPosts, setUserPosts] = useState([])
 
     useEffect(() => {
         changeIsLoading(true)
@@ -35,6 +36,7 @@ function ProfilePage({ uid, changeIsLoading }) {
         <div className='profile-page'>
             <Profile uid={uid} userInfo={userInfo} callEditInfo={callEditInfo} changeIsLoading={changeIsLoading} />
             <hr />
+            <UserPosts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} />
         </div>
     )
 }

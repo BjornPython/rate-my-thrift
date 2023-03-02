@@ -77,7 +77,8 @@ function Homepage({ user }) {
                 {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} changeIsLoading={changeIsLoading} />}
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}
                 />}
-                {currentPage === "profile" && <ProfilePage uid={uid} changeIsLoading={changeIsLoading} />}
+                {currentPage === "profile" && <ProfilePage uid={uid} changeIsLoading={changeIsLoading} handlePostClick={handlePostClick}
+                    updateLike={updateLike} />}
             </div>
 
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
