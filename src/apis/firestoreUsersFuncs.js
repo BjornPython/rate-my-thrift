@@ -6,6 +6,8 @@ export const addUser = async (uid, email) => {
     const userDoc = doc(usersCollection, uid)  
     console.log("SETTING DOC...");
     const newUser = await setDoc(userDoc, {
+        name: email,
+        dpURL: null,
         email,
         bio: "test bio val",
         posts: ["postOne", "postTwo", "postThree"]

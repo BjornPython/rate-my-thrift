@@ -210,3 +210,9 @@
     left: 0;
     color: gray;
 }
+
+.comment-dp {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}

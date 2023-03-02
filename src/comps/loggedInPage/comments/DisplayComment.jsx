@@ -1,11 +1,9 @@
-import { faCircle } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState, useEffect } from "react"
 import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
 function DisplayComment({ comment }) {
     const { content } = comment
-    const [commentUserInfo, setCommentUserInfo] = useState({ email: "" })
-    const { email } = commentUserInfo
+    const [commentUserInfo, setCommentUserInfo] = useState({ name: "", email: "", dpURL: "" })
+    const { name, email, dpURL } = commentUserInfo
     useEffect(() => {
         const callGetUserInfo = async () => {
             const userInfo = await getUserInfo(comment.userId);
@@ -17,9 +15,10 @@ function DisplayComment({ comment }) {
 
     return (
         < div className="comment-div" >
-            <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
+            {/* <FontAwesomeIcon icon={faCircle} className="comment-user-icn" /> */}
+            <img src={dpURL} className="comment-dp" />
             <div className="name-comment">
-                <p>{email}</p>
+                <p>{name}</p>
                 <p>{content}</p>
             </div>
         </div >
