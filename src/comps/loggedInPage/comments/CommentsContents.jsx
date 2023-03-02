@@ -30,7 +30,11 @@ function CommentsContents({ postId, newAddedComment }) {
     return (
         <>
             <div className="comments-sign"><h3>Comments</h3> <p>{totalComments}</p> </div>
-            <DisplayComment key={"newAddedComment"} comment={newAddedComment} />
+            {newAddedComment.length > 0 &&
+                newAddedComment.map((comment) => {
+                    return (<DisplayComment key={"newAddedComment"} comment={comment} />)
+                })
+            }
 
             {Object.entries(comments).map(value => {
                 console.log("VAL");

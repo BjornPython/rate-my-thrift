@@ -14,7 +14,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
     const [totalLikes, setTotalLikes] = useState(0)
     const [date, setDate] = useState("")
     const [liked, setLiked] = useState(false)
-    const [newAddedComment, setNewAddedComment] = useState({})
+    const [newAddedComment, setNewAddedComment] = useState([])
     useEffect(() => {
         const userLikes = async () => {
             if (!id) { return }
@@ -28,6 +28,10 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
         console.log("DATETIME: ", dateTime.toDate().toDateString());
         setDate(dateTime.toDate().toDateString())
     }, [id])
+
+    useEffect(() => {
+        setNewAddedComment([])
+    }, [showCommentPage])
 
     useEffect(() => {
         setLiked(isLiked)

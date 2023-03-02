@@ -12,7 +12,7 @@ function CommentsInput({ uid, postId, changeNewComment }) {
         console.log(uid, postId, content);
         const res = await addComment(uid, postId, content)
         if (res) {
-            changeNewComment({ userId: uid, postId, content })
+            changeNewComment(prevState => { return [...prevState, { userId: uid, postId, content }] })
             setComment({ content: "" });
         }
     }

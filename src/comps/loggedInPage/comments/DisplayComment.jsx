@@ -5,6 +5,7 @@ function DisplayComment({ comment }) {
     const [commentUserInfo, setCommentUserInfo] = useState({ name: "", email: "", dpURL: "" })
     const { name, email, dpURL } = commentUserInfo
     useEffect(() => {
+        if (!comment.userId) { return }
         const callGetUserInfo = async () => {
             const userInfo = await getUserInfo(comment.userId);
             setCommentUserInfo(userInfo)

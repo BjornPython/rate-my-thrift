@@ -50,6 +50,7 @@ function Homepage({ user }) {
         if (e.target == wrapperCommentsRef.current) {
             setShowCommentPage(false)
             setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+
         }
     }
 
