@@ -15,6 +15,7 @@ function Homepage({ user }) {
     const [uid, setUid] = useState(null)
     const [isVerified, setIsVerified] = useState(null)
     const [showCommentPage, setShowCommentPage] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [commentPost, setCommentPost] = useState({
         id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false
@@ -63,7 +64,7 @@ function Homepage({ user }) {
 
     return (
         <>
-            <Navbar currentPage={currentPage} changePage={changePage} />
+            <Navbar currentPage={currentPage} changePage={changePage} isLoading={isLoading} />
 
             <div className={`homepage ${showCommentPage ? "homepage-blur " : ""}`} >
                 {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} />}

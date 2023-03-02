@@ -4,7 +4,7 @@ import { faCirclePlus, faHouse, faUser, faBars } from "@fortawesome/free-solid-s
 import { logout } from "../../apis/firebase"
 
 
-function Navbar({ changePage }) {
+function Navbar({ changePage, isLoading }) {
     return (
         <div className="navbar">
             <div className="navbar-contents">
@@ -14,8 +14,10 @@ function Navbar({ changePage }) {
                     <div className="navbar-icon" onClick={() => { changePage("add") }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={() => { changePage("profile") }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                 </div>
-
                 <FontAwesomeIcon icon={faBars} className="navbar-icns bar-icn" onClick={logout} />
+            </div>
+            <div className="nav-relative">
+                {/* <span className="loading-icn loading-icn-50 loading-icn-100"> <p className="hide"></p></span> */}
             </div>
         </div>
     )
