@@ -10,14 +10,16 @@ function Profile({ uid, callEditInfo }) {
     const [nameBioVal, setNameBioVal] = useState({ name: "", bio: "" })
     const { name, bio } = nameBioVal
 
-    const handleDpUpload = (e) => {
-        setUploadedDp(e.target.files)
-    }
+
 
     useEffect(() => {
         if (uploadedDp.length > 0)
             console.log(uploadedDp[0]);
     }, [uploadedDp])
+
+    const handleDpUpload = (e) => {
+        setUploadedDp(e.target.files)
+    }
 
     const callAddDp = async () => {
         const res = await addDp(uploadedDp[0], uid)

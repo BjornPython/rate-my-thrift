@@ -17,10 +17,10 @@ function Navbar({ changePage, isLoading }) {
                 <FontAwesomeIcon icon={faBars} className="navbar-icns bar-icn" onClick={logout} />
             </div>
             <div className="nav-relative">
-                {/* <span className="loading-icn loading-icn-50 loading-icn-100"> <p className="hide"></p></span> */}
+                <span className={`loading-icn ${isLoading && "loading-icn-50"}`}> <p className="hide"></p></span>
             </div>
         </div>
     )
 }
-
+// loading-icn-50 loading-icn-100
 export default Navbar

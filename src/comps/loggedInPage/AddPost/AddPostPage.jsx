@@ -4,7 +4,7 @@ import AddPostPopup from './AddPostPopup'
 
 
 
-function AddPostPage({ uid, changePage, isVerified }) {
+function AddPostPage({ uid, changePage, isVerified, changeIsLoading }) {
 
     const valueOne = {
         title: (<h1>SUCCESFULLY <br></br> UPLOADED POST.</h1>),
@@ -30,6 +30,9 @@ function AddPostPage({ uid, changePage, isVerified }) {
     const [popupValues, setPopupValues] = useState(isVerified ? valueOne : valueTwo)
 
     useEffect(() => {
+    }, [])
+
+    useEffect(() => {
         setPopupValues(isVerified ? valueOne : valueTwo)
     }, [isVerified])
 
@@ -42,7 +45,7 @@ function AddPostPage({ uid, changePage, isVerified }) {
         <div className='addpost-page'>
             {showUpload && isVerified
                 ?
-                <UploadPost uid={uid} popupValues={popupValues} changeShowUpload={changeShowUpload} />
+                <UploadPost uid={uid} popupValues={popupValues} changeShowUpload={changeShowUpload} changeIsLoading={changeIsLoading} />
                 :
                 <AddPostPopup changeShowUpload={changeShowUpload} changePage={changePage} popupValues={popupValues} />}
 

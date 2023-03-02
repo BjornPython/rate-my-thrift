@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AddPostTexts from './AddPostTexts'
 
 
-function UploadPost({ uid, changeShowUpload }) {
+function UploadPost({ uid, changeShowUpload, changeIsLoading }) {
 
 
     const [uploadedImage, setUploadedImage] = useState([])

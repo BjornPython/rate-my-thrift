@@ -4,14 +4,21 @@ import { getPosts } from "../../apis/firestoreDataQueryFuncs"
 import { useEffect, useState } from "react"
 
 
-function Posts({ handlePostClick, uid, updateLike }) {
+function Posts({ handlePostClick, uid, updateLike, changeIsLoading }) {
 
     const [posts, setPosts] = useState([])
 
+
+
     useEffect(() => {
+        changeIsLoading(true)
         const callGetPosts = async () => {
             const newPosts = await getPosts()
             setPosts(newPosts)
+            setTimeout(() => {
+                changeIsLoading(false)
+
+            }, 500)
         }
         callGetPosts()
     }, [])

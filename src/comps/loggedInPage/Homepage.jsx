@@ -35,6 +35,8 @@ function Homepage({ user }) {
         }
     }, [user])
 
+
+
     const changePage = (page) => {
         setCurrentPage(page)
     }
@@ -61,16 +63,20 @@ function Homepage({ user }) {
         setCommentPost(prev => { return { ...prev, isLiked } })
     }
 
+    const changeIsLoading = (val) => {
+        setIsLoading(val)
+    }
+
 
     return (
         <>
             <Navbar currentPage={currentPage} changePage={changePage} isLoading={isLoading} />
 
             <div className={`homepage ${showCommentPage ? "homepage-blur " : ""}`} >
-                {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} />}
+                {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} changeIsLoading={changeIsLoading} />}
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}
                 />}
-                {currentPage === "profile" && <ProfilePage uid={uid} />}
+                {currentPage === "profile" && <ProfilePage uid={uid} changeIsLoading={changeIsLoading} />}
             </div>
 
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}

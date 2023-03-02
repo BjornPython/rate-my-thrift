@@ -3,18 +3,21 @@ import { addDp } from '../../../apis/firestoreDataQueryFuncs'
 import Profile from './Profile'
 import "../../../css/loggedIn/profilePage.css"
 import { editUserInfo, getUserInfo } from '../../../apis/firestoreUsersFuncs'
-function ProfilePage({ uid }) {
+function ProfilePage({ uid, changeIsLoading }) {
 
 
     const [userInfo, setUserInfo] = useState(null)
 
 
     useEffect(() => {
+        changeIsLoading(true)
         const queryUserInfo = async () => {
             const res = await getUserInfo(uid);
             setUserInfo(res)
+            setTimeout(() => {
+                changeIsLoading(false)
+            }, 500)
         }
-
         queryUserInfo()
 
     }, [uid])
@@ -30,7 +33,7 @@ function ProfilePage({ uid }) {
 
     return (
         <div className='profile-page'>
-            <Profile uid={uid} userInfo={userInfo} callEditInfo={callEditInfo} />
+            <Profile uid={uid} userInfo={userInfo} callEditInfo={callEditInfo} changeIsLoading={changeIsLoading} />
 
         </div>
     )
