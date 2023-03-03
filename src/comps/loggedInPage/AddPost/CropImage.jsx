@@ -1,23 +1,59 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import Cropper from 'react-easy-crop'
+import getCroppedImg from '../../../cropping/cropImage'
 
-const img = "https://firebasestorage.googleapis.com/v0/b/rate-my-thrift.appspot.com/o/userUploads%2FmQGNafAooIVhPlFSc2t4yUzK8X03%2FuserPosts%2Fdemo2.jpg?alt=media&token=92d40acd-4a3d-420b-8a46-080e8f07aae8"
+const img = "https://i.pinimg.com/564x/ad/bd/86/adbd86d3b3cc6fd37c9fc99c32cb7b27.jpg"
 function CropImage() {
 
     const [zoom, setZoom] = useState(1)
     const [crop, setCrop] = useState({ x: 0, y: 0 })
     const [aspect, setAspect] = useState(1 / 1)
 
+    const [croppedImage, setCroppedImage] = useState(null)
+    const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+
+
+    const showCroppedImage = useCallback(async () => {
+        try {
+            const croppedImage = await getCroppedImg(
+                img,
+                croppedAreaPixels
+            )
+            console.log('donee', { croppedImage })
+            setCroppedImage(croppedImage)
+        } catch (e) {
+            console.error(e)
+        }
+    }, [croppedAreaPixels])
+
+    const onCropComplete = useCallback((croppedArea, newCroppedAreaPixels) => {
+        console.log("AREA: ", croppedArea);
+        console.log("DONE: ", newCroppedAreaPixels);
+        setCroppedAreaPixels(newCroppedAreaPixels)
+    }, [])
 
     const onCropChange = (crop) => {
         setCrop(crop)
     }
+
+    const onZoomChange = (zoom) => {
+        setZoom(zoom)
+    }
     return (
-        <div className='cropimage-page'>
-            {/* <img src={img} alt="img preview" /> */}
-            <div className="crop-container"></div>
-            <Cropper image={img} zoom={zoom} crop={crop} aspect={aspect.value} onCropChange={onCropChange} />
-        </div>
+        <>
+            <div className='cropimage-page'>
+                {/* <img src={img} alt="img preview" /> */}
+                <div className="crop-container"></div>
+                <Cropper image={img} zoom={zoom} crop={crop} aspect={aspect}
+                    onCropChange={onCropChange} onZoomChange={onZoomChange}
+                    onCropComplete={onCropComplete} />
+
+                <input type="range" className='zoom-range' value={zoom} min={1} max={3} step={0.1} onInput={(e) => { setZoom(e.target.value) }} />
+            </div>
+            <button onClick={showCroppedImage}>SHOW CROPPED IMAGE</button>
+            {croppedImage && <img src='' alt='PREVIEW' />}
+        </>
+
     )
 }
 

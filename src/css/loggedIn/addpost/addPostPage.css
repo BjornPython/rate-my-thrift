@@ -186,9 +186,26 @@
     width: 500px;
     height: 500px;
     background-color: var(--vintage-white);
+    position: relative;
 }
 
 .cropimage-page img {
     width: 350px;
     /* height: 350px; */
+}
+
+.zoom-range {
+    position: absolute;
+    left: -10px;
+    width: 10px;
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* Chromium */
+}
+
+.reactEasyCrop_Container {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 500px;
+    height: 500px;
 }
