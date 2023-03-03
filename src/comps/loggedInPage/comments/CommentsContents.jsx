@@ -22,7 +22,9 @@ function CommentsContents({ postId, newAddedComment }) {
         queryPostComments()
     }, [postId])
 
-
+    useEffect(() => {
+        setTotalComments(prevState => { return prevState += newAddedComment.length })
+    }, [newAddedComment])
 
     return (
         <>

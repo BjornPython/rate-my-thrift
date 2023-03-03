@@ -134,13 +134,23 @@ export const addComment = async (userId, postId, content) => {
     console.log("IDl ", userId);
     try {
             const commentDoc = doc(commentsCollection, postId)
-        const documentExists = await getDoc(commentDoc);
+        const document = await getDoc(commentDoc);
         const dateTime = new Date()
         const commentId = uuidv4()
-        const newComment = await setDoc(commentDoc, {
+        if (document.exists()) {
+            const updatedComment = await updateDoc(commentDoc, {
+                totalComments: incrementVal,
+                [`comments.${commentId}`]: {content, dateTime, userId}
+            })
+            return document.id
+        } else {
+            const newComment = await setDoc(commentDoc, {
+                totalComments: 1,
             "comments": {[commentId]: {content, dateTime, userId}}
-        }, {merge: true})
-        return commentId
+            }, {merge: true})
+            return commentId
+        }
+        
     } catch (err) {console.log(err);}
 
 

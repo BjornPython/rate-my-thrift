@@ -20,6 +20,26 @@
     position: relative; 
 }
 
+.uploading-icn {
+    position: absolute;
+    width: 0;
+    height: 3px;
+    border: none;
+    background: linear-gradient(-45deg, #f32170, #ff6b08,
+    #cf23cf, #eedd44);
+	background-size: 400% 400%;
+	animation: gradient 2s ease infinite;
+    top: -4px;
+    left: 0;
+    font-size: 12px;
+    color: gray;
+}
+
+.uploading-icn-active {
+    width: 80%;
+    transition: width 0.5s ease-in-out;
+}
+
 .input-file {
     background-color: red;
     opacity: 0;
@@ -69,6 +89,11 @@
     margin-top: 20px;
     justify-content: space-between;
     align-items: center;
+}
+
+.upload-btns p {
+    margin: 0;
+    color: var(--vintage-white);
 }
 
 .upload-btn {
