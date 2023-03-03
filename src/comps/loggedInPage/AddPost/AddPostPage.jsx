@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import UploadPost from './UploadPost'
 import AddPostPopup from './AddPostPopup'
-
+import CropImage from './CropImage'
 
 
 function AddPostPage({ uid, changePage, isVerified, changeIsLoading }) {
@@ -43,12 +43,12 @@ function AddPostPage({ uid, changePage, isVerified, changeIsLoading }) {
 
     return (
         <div className='addpost-page'>
-            {showUpload && isVerified
+            {/* {showUpload && isVerified
                 ?
                 <UploadPost uid={uid} popupValues={popupValues} changeShowUpload={changeShowUpload} changeIsLoading={changeIsLoading} />
                 :
-                <AddPostPopup changeShowUpload={changeShowUpload} changePage={changePage} popupValues={popupValues} />}
-
+                <AddPostPopup changeShowUpload={changeShowUpload} changePage={changePage} popupValues={popupValues} />} */}
+            <CropImage />
         </div>
     )
 }

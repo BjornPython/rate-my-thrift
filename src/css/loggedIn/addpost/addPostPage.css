@@ -182,8 +182,13 @@
 
 
 
-/* background: linear-gradient(
-    to right, #f32170, #ff6b08,
-     #cf23cf, #eedd44);
--webkit-text-fill-color: transparent;
--webkit-background-clip: text; */
+.cropimage-page {
+    width: 500px;
+    height: 500px;
+    background-color: var(--vintage-white);
+}
+
+.cropimage-page img {
+    width: 350px;
+    /* height: 350px; */
+}
