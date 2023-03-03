@@ -22,6 +22,7 @@ function Profile({ uid, callEditInfo }) {
     }
 
     const callAddDp = async () => {
+        if (uploadedDp.length !== 1) { return }
         const res = await addDp(uploadedDp[0], uid)
     }
 

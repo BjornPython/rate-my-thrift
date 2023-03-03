@@ -24,7 +24,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
 
         }
         userLikes()
-        if (dateTime === "") { return }
+        if (dateTime === "" || !dateTime) { return }
         console.log("DATETIME: ", dateTime.toDate().toDateString());
         setDate(dateTime.toDate().toDateString())
     }, [id])

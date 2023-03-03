@@ -30,7 +30,6 @@ export const getUserInfo = async (uid) => {
     const userDoc = doc(usersCollection, uid)  
     try{
             const document = await getDoc(userDoc);
-            console.log("USER DATA: ", document);
             return document.data()
     } catch(err) {console.log(err);}
 

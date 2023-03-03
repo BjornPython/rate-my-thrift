@@ -19,6 +19,7 @@
 }   
 
 .post-title {
+    color: var(--dark-brown);
     font-family: 'Mynerve', cursive;
     width: 100%;
     text-align: center;

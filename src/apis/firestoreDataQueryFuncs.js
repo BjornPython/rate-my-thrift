@@ -21,8 +21,17 @@ export const getPosts = async () => {
         docs.forEach(doc => { posts.push({...doc.data(), id: doc.id}); })
         return posts
     } catch(err) {console.log(err);}
-
 }
+
+
+export const getPost = async (postId) => {
+    const document = doc(postsCollection, postId)
+    try {
+        const post = await getDoc(document)
+        return {...post.data(), id: post.id}
+    } catch(err) {console.log(err);}
+}
+
 
 export const addPost = async (userId, caption, imageUrls, title) => {
     try {

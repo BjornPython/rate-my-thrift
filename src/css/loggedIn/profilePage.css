@@ -125,3 +125,9 @@
     grid-template-columns: repeat(auto-fill, minmax(370px, 370px));
     height: auto;
 }
+
+@media (max-width: 1300px) {
+    .profile-page hr {
+        width: 370px;
+    }
+}

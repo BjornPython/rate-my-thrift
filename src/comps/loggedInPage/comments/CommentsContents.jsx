@@ -23,9 +23,6 @@ function CommentsContents({ postId, newAddedComment }) {
     }, [postId])
 
 
-    useEffect(() => {
-        console.log("NEW: ", newAddedComment);
-    }, [newAddedComment])
 
     return (
         <>
