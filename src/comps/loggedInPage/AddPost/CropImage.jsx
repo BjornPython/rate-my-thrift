@@ -13,7 +13,7 @@ function CropImage({ imageURL }) {
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
     const [imgURL, setImgURL] = useState(null)
     const [previewImg, setPreviewImg] = useState(null)
-
+    const [cropSize, setCropSize] = useState({ width: "350px", height: "350px" })
 
     // useEffect(() => {
     //     if (!imageURL) { return }
@@ -42,7 +42,8 @@ function CropImage({ imageURL }) {
     }, [])
 
     const onCropChange = (crop) => {
-        console.log("CHANIGNG");
+        console.log("CROP: ", crop);
+
         setCrop(crop)
     }
 
@@ -51,6 +52,7 @@ function CropImage({ imageURL }) {
     }
     return (
         <>
+            { }
             <div className='cropimage-page'>
                 {imageURL &&
                     <>

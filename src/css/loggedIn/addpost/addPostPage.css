@@ -190,7 +190,7 @@
     top: 100px;
     width: 350px;
     height: 350px;
-    object-fit: contain;
+    object-fit: cover;
     /* background-color: var(--vintage-white); */
     background-color: black;
     opacity: 1;
@@ -198,10 +198,9 @@
 }
 
 .cropimage-page img {
-    min-width: 350px;
-    min-height: 350px;
-    max-width: auto;
-    max-height: auto;
+    object-fit: cover;
+        min-width: 350px;
+        min-height: 350px;
 }
 
 .zoom-range {
@@ -215,7 +214,8 @@
 .reactEasyCrop_Container {
     top: 0;
     left: -50%;
+    width: 400px;
+    height: 400px;
     position: absolute;
-    width: 500px;
-    height: 500px;
+
 }
