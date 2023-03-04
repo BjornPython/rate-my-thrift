@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { uploadPost } from '../../../apis/firestoreDataQueryFuncs'
 import "../../../css/loggedIn/addpost/addPostPage.css"
 import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons'
@@ -12,11 +12,14 @@ function UploadPost({ uid, changeShowUpload }) {
 
     const [uploadedImage, setUploadedImage] = useState(null)
     const [imageURL, setImageURL] = useState(null)
+    const [croppedURL, setCroppedURL] = useState(null)
+
     const [isUploading, setIsUploading] = useState(false)
     const [postVals, setPostVals] = useState({ title: "", caption: "" })
     const { title, caption } = postVals
     const [isCropping, setIsCropping] = useState(false)
-    const imageRef = useState(null)
+
+
     const handleInputChange = (e) => {
         setPostVals(prevState => {
             return { ...prevState, [e.target.name]: e.target.value }
@@ -26,12 +29,12 @@ function UploadPost({ uid, changeShowUpload }) {
     useEffect(() => {
         if (!uploadedImage) { return }
         const url = URL.createObjectURL(uploadedImage)
+        console.log("URL: ", url);
         setImageURL(url)
+        setCroppedURL(url)
     }, [uploadedImage])
 
-    useEffect(() => {
-        console.log("IMAGE REF: ", imageRef.current);
-    }, [imageRef])
+
 
     const handleImageUpload = async (e) => {
         e.preventDefault()
@@ -51,17 +54,16 @@ function UploadPost({ uid, changeShowUpload }) {
     }
 
     const changeImageUrl = (url) => {
-        // setIsCropping(false)
-        // setImageURL(url)
+        setIsCropping(false)
+        setCroppedURL(url)
     }
 
     return (
         <>
-            {imageURL && <img ref={imageRef} src={imageURL} style={{ display: "none" }} />}
             <div className="card">
                 {imageURL
                     ?
-                    <img src={imageURL} alt="" className='image-prev' onDoubleClick={() => { setIsCropping(!isCropping) }} />
+                    <img src={croppedURL} alt="" className='image-prev' onDoubleClick={() => { setIsCropping(!isCropping) }} />
                     :
                     <span className='upload-here'>
                         <FontAwesomeIcon className='upload-icn' icon={faArrowUpFromBracket} />
