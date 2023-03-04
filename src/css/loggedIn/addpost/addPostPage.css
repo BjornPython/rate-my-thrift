@@ -194,7 +194,10 @@
     position: absolute;
 }
 .cropimage-page img {
-        object-fit: contain;
+    object-fit: cover;
+    min-width: 350px;
+    min-height: 350px;
+
 
 }
 

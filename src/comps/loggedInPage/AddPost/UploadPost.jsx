@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { uploadPost } from '../../../apis/firestoreDataQueryFuncs'
 import "../../../css/loggedIn/addpost/addPostPage.css"
 import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +16,7 @@ function UploadPost({ uid, changeShowUpload }) {
     const [postVals, setPostVals] = useState({ title: "", caption: "" })
     const { title, caption } = postVals
     const [isCropping, setIsCropping] = useState(false)
-
+    const imageRef = useState(null)
     const handleInputChange = (e) => {
         setPostVals(prevState => {
             return { ...prevState, [e.target.name]: e.target.value }
@@ -29,6 +29,9 @@ function UploadPost({ uid, changeShowUpload }) {
         setImageURL(url)
     }, [uploadedImage])
 
+    useEffect(() => {
+        console.log("IMAGE REF: ", imageRef.current);
+    }, [imageRef])
 
     const handleImageUpload = async (e) => {
         e.preventDefault()
@@ -54,6 +57,7 @@ function UploadPost({ uid, changeShowUpload }) {
 
     return (
         <>
+            {imageURL && <img ref={imageRef} src={imageURL} style={{ display: "none" }} />}
             <div className="card">
                 {imageURL
                     ?
@@ -63,6 +67,7 @@ function UploadPost({ uid, changeShowUpload }) {
                         <FontAwesomeIcon className='upload-icn' icon={faArrowUpFromBracket} />
                         <h3>drag and drop image here.</h3>
                     </span>}
+
                 <AddPostTexts uid={uid} title={title} caption={caption} handleInputChange={handleInputChange}
                     changeUploadedImage={changeUploadedImage} uploadedImage={uploadedImage} />
                 <span className={`uploading-icn ${isUploading && "uploading-icn-active"}`}></span>
