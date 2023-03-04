@@ -44,9 +44,10 @@ function UploadPost({ uid, changeShowUpload }) {
     const handleImageUpload = async (e) => {
         e.preventDefault()
         setIsUploading(true)
-        const blob = await requestCroppedImage()
-        const imageVal = { ...blob, name: uploadPost.name };
-        const res = await uploadPost(uid, title, caption, imageVal)
+        const croppedBlob = await requestCroppedImage()
+        const croppedImageFile = new File([croppedBlob], uploadedImage.name, { type: 'image/jpeg' });
+        console.log("IMAGE FILE: ", croppedImageFile);
+        const res = await uploadPost(uid, title, caption, croppedImageFile)
         if (res === "post added.") {
             changeShowUpload(false)
             setTimeout(() => {
@@ -68,7 +69,7 @@ function UploadPost({ uid, changeShowUpload }) {
     const requestCroppedImage = async () => {
         const croppedIMG = await fetch(croppedURL)
         const croppedBlob = croppedIMG.blob()
-        console.log("BLOB: ", croppedBlob);
+        return croppedBlob
     }
 
     return (

@@ -66,14 +66,14 @@ export const getImages = async (userId, imageName) => {
 
 export const uploadImage = async (image, userId="userId", post=true) => {
     console.log("RECEIVED IMAGE JSON: ", image);
-    // const path = post ? `${userId}/userPosts/${image.name}` : `${userId}/userDp.${image.name.split(".")[1]}`
-    // try{
-    //     const folderRef = ref(userUploadStorage, path)
-    //     const result = await uploadBytes(folderRef, image)
-    //     const imageURL = await getDownloadURL(result.ref)
-    //     return imageURL
-    // }
-    // catch(err) {console.log(err); throw(err)}
+    const path = post ? `${userId}/userPosts/${image.name}` : `${userId}/userDp.${image.name.split(".")[1]}`
+    try{
+        const folderRef = ref(userUploadStorage, path)
+        const result = await uploadBytes(folderRef, image)
+        const imageURL = await getDownloadURL(result.ref)
+        return imageURL
+    }
+    catch(err) {console.log(err); throw(err)}
 }
 
 export const uploadPost = async (userId, title, caption, image) => {
