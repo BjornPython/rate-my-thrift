@@ -11,13 +11,6 @@ function CropImage({ imageURL, changeImageUrl }) {
 
     const [croppedImage, setCroppedImage] = useState(null)
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
-    const [previewImg, setPreviewImg] = useState(null)
-    const [cropSize, setCropSize] = useState({ width: "350px", height: "350px" })
-
-    // useEffect(() => {
-    //     if (!imageURL) { return }
-    //     setImgURL(URL.createObjectURL(imageURL))
-    // }, [imageURL])
 
 
     const showCroppedImage = useCallback(async () => {
@@ -26,9 +19,7 @@ function CropImage({ imageURL, changeImageUrl }) {
                 imageURL,
                 croppedAreaPixels
             )
-            console.log('donee', { croppedImage })
             setCroppedImage(croppedImage)
-            // setPreviewImg(croppedImage)
             changeImageUrl(croppedImage)
         } catch (e) {
             console.error(e)
@@ -60,10 +51,8 @@ function CropImage({ imageURL, changeImageUrl }) {
                         <input type="range" className='zoom-range' value={zoom} min={1} max={3} step={0.1} onInput={(e) => { setZoom(e.target.value) }} />
                     </>
                 }
-                {previewImg && <img src='previewImg' />}
             </div>
             <button onClick={showCroppedImage}>SHOW CROPPED IMAGE</button>
-            {croppedImage && <img src={croppedImage} alt='PREVIEW' style={{ width: "350px", height: "350px" }} />}
         </>
 
     )

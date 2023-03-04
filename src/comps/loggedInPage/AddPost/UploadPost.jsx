@@ -20,26 +20,33 @@ function UploadPost({ uid, changeShowUpload }) {
     const [isCropping, setIsCropping] = useState(false)
 
 
-    const handleInputChange = (e) => {
-        setPostVals(prevState => {
-            return { ...prevState, [e.target.name]: e.target.value }
-        })
-    }
+
+
+    useEffect(() => {
+        console.log("IS CROPPING VAL: ", isCropping);
+    }, [isCropping])
 
     useEffect(() => {
         if (!uploadedImage) { return }
+        console.log("UPLOADED IMAGE: ", uploadedImage);
         const url = URL.createObjectURL(uploadedImage)
         console.log("URL: ", url);
         setImageURL(url)
         setCroppedURL(url)
     }, [uploadedImage])
 
-
+    const handleInputChange = (e) => {
+        setPostVals(prevState => {
+            return { ...prevState, [e.target.name]: e.target.value }
+        })
+    }
 
     const handleImageUpload = async (e) => {
         e.preventDefault()
         setIsUploading(true)
-        const res = await uploadPost(uid, title, caption, uploadedImage)
+        const blob = await requestCroppedImage()
+        const imageVal = { ...blob, name: uploadPost.name };
+        const res = await uploadPost(uid, title, caption, imageVal)
         if (res === "post added.") {
             changeShowUpload(false)
             setTimeout(() => {
@@ -58,12 +65,19 @@ function UploadPost({ uid, changeShowUpload }) {
         setCroppedURL(url)
     }
 
+    const requestCroppedImage = async () => {
+        const croppedIMG = await fetch(croppedURL)
+        const croppedBlob = croppedIMG.blob()
+        console.log("BLOB: ", croppedBlob);
+    }
+
     return (
         <>
             <div className="card">
                 {imageURL
                     ?
-                    <img src={croppedURL} alt="" className='image-prev' onDoubleClick={() => { setIsCropping(!isCropping) }} />
+                    <img src={croppedURL} alt="" className='image-prev' onDoubleClick={() => { setIsCropping(true) }}
+                        style={isCropping ? { opacity: 0 } : {}} />
                     :
                     <span className='upload-here'>
                         <FontAwesomeIcon className='upload-icn' icon={faArrowUpFromBracket} />
