@@ -24,7 +24,7 @@ function CropImage({ imageURL }) {
     const showCroppedImage = useCallback(async () => {
         try {
             const croppedImage = await getCroppedImg(
-                imgURL,
+                imageURL,
                 croppedAreaPixels
             )
             console.log('donee', { croppedImage })
