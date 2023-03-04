@@ -184,6 +184,27 @@
     border: 1px solid var(--dark-brown);
 }
 
+.remove-img-btn {
+    border: none;
+    background-color: transparent;
+    color: var(--dark-brown);
+    position: absolute;
+    top: 3px;
+    left: 10px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.crop-btn {
+    border: none;
+    background-color: transparent;
+    color: var(--dark-brown);
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    cursor: pointer;
+    padding: 0;
+}
 
 
 .cropimage-page {
@@ -192,6 +213,17 @@
     /* background-color: var(--vintage-white); */
     background-color: black;
     position: absolute;
+}
+
+.save-crop {
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    border: none;
+    top: 5px;
+    right: -14px;
+    cursor: pointer;
+
 }
 .cropimage-page img {
     /* min-width: 350px;

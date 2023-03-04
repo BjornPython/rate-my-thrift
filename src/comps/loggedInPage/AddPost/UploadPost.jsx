@@ -75,7 +75,7 @@ function UploadPost({ uid, changeShowUpload }) {
     return (
         <>
             <div className="card">
-                {imageURL
+                {croppedURL
                     ?
                     <img src={croppedURL} alt="" className='image-prev' onDoubleClick={() => { setIsCropping(true) }}
                         style={isCropping ? { opacity: 0 } : {}} />
@@ -90,7 +90,9 @@ function UploadPost({ uid, changeShowUpload }) {
                 <span className={`uploading-icn ${isUploading && "uploading-icn-active"}`}></span>
 
                 {isCropping && <CropImage imageURL={imageURL} changeImageUrl={changeImageUrl} />}
-
+                {!isCropping && uploadedImage && <button className='remove-img-btn'
+                    onClick={() => { setUploadedImage(null); setCroppedURL(null) }}>remove </button>}
+                {!isCropping && uploadedImage && <button className='crop-btn' onClick={() => { setIsCropping(true) }}>resize</button>}
             </div>
 
 

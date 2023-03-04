@@ -52,7 +52,7 @@ function CropImage({ imageURL, changeImageUrl }) {
                     </>
                 }
             </div>
-            <button onClick={showCroppedImage}>SHOW CROPPED IMAGE</button>
+            <button className='save-crop' onClick={showCroppedImage}>Save Crop </button>
         </>
 
     )
