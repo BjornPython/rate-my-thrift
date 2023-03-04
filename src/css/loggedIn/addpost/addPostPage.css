@@ -44,7 +44,7 @@
     background-color: red;
     opacity: 0;
     margin-top: 20px;
-    width: 345px;
+    width: 350px;
     height: 350px;
     position: absolute;
     cursor: pointer;
@@ -73,7 +73,7 @@
 
 .image-prev {
     margin-top: 20px;
-    width: 345px;
+    width: 350px;
     height: 350px;
     object-fit:cover;
 }
@@ -187,16 +187,14 @@
 
 
 .cropimage-page {
-    top: 100px;
-    width: 350px;
-    height: 350px;
+    top: 0;
+    left: -15px;
     object-fit: cover;
     /* background-color: var(--vintage-white); */
     background-color: black;
     opacity: 1;
     position: absolute;
 }
-
 .cropimage-page img {
     object-fit: cover;
         min-width: 350px;
@@ -212,10 +210,13 @@
 }
 
 .reactEasyCrop_Container {
-    top: 0;
-    left: -50%;
+    /* top: 0; */
     width: 400px;
-    height: 400px;
-    position: absolute;
+    height: 390px;
+    /* display: flex;
+    justify-content: center;
+    align-items: flex-start; */
+    /* object-fit: cover;
+    position: absolute; */
 
 }
