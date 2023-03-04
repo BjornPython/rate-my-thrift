@@ -47,8 +47,9 @@ function UploadPost({ uid, changeShowUpload }) {
         setUploadedImage(image)
     }
 
-    const toggleCropping = (val) => {
-        setIsCropping(val)
+    const changeImageUrl = (url) => {
+        // setIsCropping(false)
+        // setImageURL(url)
     }
 
     return (
@@ -66,7 +67,7 @@ function UploadPost({ uid, changeShowUpload }) {
                     changeUploadedImage={changeUploadedImage} uploadedImage={uploadedImage} />
                 <span className={`uploading-icn ${isUploading && "uploading-icn-active"}`}></span>
 
-                {isCropping && <CropImage imageURL={imageURL} />}
+                {isCropping && <CropImage imageURL={imageURL} changeImageUrl={changeImageUrl} />}
 
             </div>
 

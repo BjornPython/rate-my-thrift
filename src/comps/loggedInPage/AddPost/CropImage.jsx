@@ -3,7 +3,7 @@ import Cropper from 'react-easy-crop'
 import { uploadImage } from '../../../apis/firestoreDataQueryFuncs'
 import getCroppedImg from '../../../cropping/cropImage'
 
-function CropImage({ imageURL }) {
+function CropImage({ imageURL, changeImageUrl }) {
 
     const [zoom, setZoom] = useState(1)
     const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -30,6 +30,7 @@ function CropImage({ imageURL }) {
             console.log('donee', { croppedImage })
             setCroppedImage(croppedImage)
             setPreviewImg(croppedImage)
+            changeImageUrl(croppedImage)
         } catch (e) {
             console.error(e)
         }
@@ -42,7 +43,6 @@ function CropImage({ imageURL }) {
     }, [])
 
     const onCropChange = (crop) => {
-        console.log("CROP: ", crop);
 
         setCrop(crop)
     }
@@ -65,7 +65,7 @@ function CropImage({ imageURL }) {
                 {previewImg && <img src='previewImg' />}
             </div>
             <button onClick={showCroppedImage}>SHOW CROPPED IMAGE</button>
-            {croppedImage && <img src={croppedImage} alt='PREVIEW' />}
+            {croppedImage && <img src={croppedImage} alt='PREVIEW' style={{ width: "350px", height: "350px" }} />}
         </>
 
     )
