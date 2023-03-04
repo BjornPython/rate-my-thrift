@@ -11,7 +11,7 @@ import { getDp } from "../../apis/firestoreDataQueryFuncs"
 function Homepage({ user }) {
 
     const navigate = useNavigate()
-    const [currentPage, setCurrentPage] = useState("home")
+    const [currentPage, setCurrentPage] = useState("add")
     const [uid, setUid] = useState(null)
     const [isVerified, setIsVerified] = useState(null)
     const [showCommentPage, setShowCommentPage] = useState(false)

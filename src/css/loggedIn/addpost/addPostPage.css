@@ -50,6 +50,10 @@
     cursor: pointer;
 }
 
+.off-input-file {
+    display: none;
+}
+
 .upload-here {
     border: 3px dashed var(--light-gray);
     color: var(--light-gray);
@@ -183,10 +187,13 @@
 
 
 .cropimage-page {
-    width: 500px;
-    height: 500px;
-    background-color: var(--vintage-white);
-    position: relative;
+    top: 20px;
+    width: 350px;
+    height: 350px;
+    /* background-color: var(--vintage-white); */
+    background-color: black;
+    opacity: 1;
+    position: absolute;
 }
 
 .cropimage-page img {
@@ -206,6 +213,6 @@
     top: 0;
     left: 0;
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 350px;
+    height: 350px;
 }
