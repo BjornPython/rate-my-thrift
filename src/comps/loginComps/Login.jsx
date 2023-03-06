@@ -37,7 +37,6 @@ function Login() {
             console.log("IN CLIENT", error.slice(0, error.length - 2));
             setShowError(`login Failed, ${error.slice(0, error.length - 2)}`)
         }
-
     }
 
     return (

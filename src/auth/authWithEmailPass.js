@@ -18,7 +18,8 @@ export const registerWithEmailPass = async (email, password) => {
         const addUserRes = await addUser(res.user.uid, res.user.email)
         console.log("ADD USER RES: ", addUserRes);
     } catch (err) {
-        console.log(err.message);
+        console.log(err.message, "RETURNING ERR");
+        throw err
     }
 }
 

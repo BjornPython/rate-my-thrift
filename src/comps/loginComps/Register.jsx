@@ -1,13 +1,25 @@
 import logo from "../../svgs/logo.svg"
 import { registerWithEmailPass } from "../../auth/authWithEmailPass"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import google from "../../svgs/google.svg"
 import facebook from "../../svgs/facebook.svg"
 import { callGoogleSigninPopup } from '../../auth/authWithGoogle'
 
 function Register() {
+    const [showError, setShowError] = useState("error")
+
     const [registerData, setRegisterData] = useState({ email: "", password: "", cpassword: "" })
     const { email, password, cpassword } = registerData
+
+    useEffect(() => {
+        let timer;
+        if (showError) {
+            timer = setTimeout(() => {
+                setShowError(false);
+            }, 3000);
+        }
+        return () => clearTimeout(timer);
+    }, [showError]);
 
     const handleRegisterChange = (e) => {
         setRegisterData(prevState => {
@@ -15,9 +27,17 @@ function Register() {
         })
     }
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
         if (password !== cpassword) { console.log("PASSWORDS DO NOT MATCH..."); return }
-        registerWithEmailPass(email, password)
+        try {
+            await registerWithEmailPass(email, password)
+
+        } catch (err) {
+            console.log(err.message);
+            const error = err.message.split("/")[1]
+            setShowError(`login Failed, ${error.slice(0, error.length - 2)}`)
+
+        }
     }
 
     return (
@@ -38,6 +58,8 @@ function Register() {
                 </div>
 
             </div>
+            {showError && <h4 className="auth-error-msg-reg">{showError}</h4>}
+
         </div>
     )
 }

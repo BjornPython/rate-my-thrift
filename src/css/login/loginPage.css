@@ -191,6 +191,14 @@
     font-weight: 500;
 }
 
+.auth-error-msg-reg {
+    position: absolute;
+    margin: 0;
+    top: 280px;
+    color: red;
+    font-weight: 500;
+}
+
 @media (max-width: 970px) {
     .login-page {
         align-items: flex-start;
