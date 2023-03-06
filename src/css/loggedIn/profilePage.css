@@ -130,16 +130,23 @@
     padding-bottom: 160px;
 }
 
-.dp-cropper {
+.dp-edit-container{
     position: absolute;
     top: 0;
-    left: 0px;
+    left: 30px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    height: 400px;
+    justify-content: flex-end;
+    align-items: flex-end;
     background-color: var(--vintage-white);
+    width: 320px;
+    height: 350px;
+}
+
+.dp-cropper {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    z-index: 20;
 }
 
 @media (max-width: 1300px) {

@@ -27,12 +27,19 @@ function DpCropper({ uploadedDp }) {
     }
 
     return (
-        <div className="dp-cropper">
-            <Cropper image={uploadedDpURL} zoom={zoom} crop={crop} aspect={aspect}
-                onCropChange={onCropChange} onZoomChange={onZoomChange}
-                onCropComplete={onCropComplete} objectFit="contain" cropShape="round" />
+        <>
+            <div className="dp-cropper" style={{ width: "300px", height: "300px" }} >
+                <Cropper image={uploadedDpURL} zoom={zoom} crop={crop} aspect={aspect}
+                    onCropChange={onCropChange} onZoomChange={onZoomChange}
+                    onCropComplete={onCropComplete} objectFit="contain" cropShape="round" />
 
-        </div>
+            </div>
+            <div className="dp-edit-container">
+                <button>save crop</button>
+            </div>
+        </>
+
+
     )
 }
 
