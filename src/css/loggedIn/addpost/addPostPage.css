@@ -254,6 +254,19 @@
 
 @media (max-width: 500px) {
     .addpost-page {
-        margin-top: -150px;
+        margin-top: -120px;
+    }
+
+    .card {
+        transform: scale(0.9);
+    }
+
+    .upload-btns {
+        width: 333px;
+    }
+
+    .upload-btn {
+        height: 25px;
+        width: 60px;
     }
 }

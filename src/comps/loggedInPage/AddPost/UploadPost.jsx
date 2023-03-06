@@ -97,7 +97,7 @@ function UploadPost({ uid, changeShowUpload }) {
 
 
             <div className="upload-btns">
-                <label htmlFor="image" className='img-label'>Choose File</label>
+                <label htmlFor="image" className='img-label'>choose file</label>
                 {isUploading && <p>Uploading...</p>}
                 <button onClick={handleImageUpload} className="upload-btn">POST</button>
             </div>

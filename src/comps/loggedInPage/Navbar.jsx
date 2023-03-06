@@ -9,14 +9,16 @@ function Navbar({ changePage, isLoading }) {
 
     const [iscollapsed, setIsCollapsed] = useState(false)
 
-    const [windowSize, setWindowSize] = useState("wide")
 
+    const checkScreenWidth = () => {
+        if (window.innerWidth >= 720) { setIsCollapsed(false) }
+        if (window.innerWidth <= 720) { setIsCollapsed(true) }
+        if (window.innerWidth <= 400) { setIsCollapsed(true) }
+    }
 
     useEffect(() => {
         const handleWindowResize = () => {
-            if (window.innerWidth >= 720) { setWindowSize("wide"); setIsCollapsed(false) }
-            if (window.innerWidth <= 720) { setWindowSize("medium"); setIsCollapsed(true) }
-            if (window.innerWidth <= 400) { setWindowSize("small"); setIsCollapsed(true) }
+            checkScreenWidth()
         };
 
         window.addEventListener('resize', handleWindowResize);
@@ -26,10 +28,14 @@ function Navbar({ changePage, isLoading }) {
         };
     });
 
+    useEffect(() => {
+        checkScreenWidth()
+    }, [])
+
     return (
         <div className="navbar">
             <div className="navbar-contents">
-                {windowSize === "wide" && <h1 className="logo">Rate my Thrifts</h1>}
+                {!iscollapsed && <h1 className="logo">Rate my Thrifts</h1>}
 
 
                 <div className="navbar-pages">

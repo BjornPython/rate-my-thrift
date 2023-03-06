@@ -11,3 +11,8 @@
 }
 
 
+@media (max-width: 400px) {
+    .posts {
+        margin-top: 30px;
+    }
+}

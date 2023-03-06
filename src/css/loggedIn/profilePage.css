@@ -10,8 +10,9 @@
 
 .profile-page hr {
     border: none;
-    background-color: var(--vintage-white);
-    color: var(--vintage-white);
+
+    background-color: var(--light-gray);
+    color: var(--light-gray);
     width: 790px;
     height: 2px;
 }
@@ -137,5 +138,8 @@
     .main-profile {
         width: 350px;
         height: 120px;
+    }
+    .profile-page hr {
+        width: 330px;
     }
 }
