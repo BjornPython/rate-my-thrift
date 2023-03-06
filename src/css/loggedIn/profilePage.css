@@ -28,7 +28,9 @@
 }
 
 .profile-icn {
-    font-size: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
 .profile-n-b {

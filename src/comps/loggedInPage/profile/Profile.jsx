@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { addDp } from "../../../apis/firestoreUsersFuncs"
 
 
-function Profile({ uid, callEditInfo }) {
+function Profile({ uid, dpURL, callEditInfo }) {
     const [uploadedDp, setUploadedDp] = useState([])
     const [isEditing, setIsEditing] = useState(false)
     const [nameBioVal, setNameBioVal] = useState({ name: "", bio: "" })
@@ -43,8 +43,12 @@ function Profile({ uid, callEditInfo }) {
     return (
         <>
             <div className="main-profile">
-                <FontAwesomeIcon icon={faCircle} className="profile-icn" />
-
+                {dpURL
+                    ?
+                    <img src={dpURL} className="profile-icn" />
+                    :
+                    <FontAwesomeIcon icon={faCircle} className="profile-icn" />
+                }
                 {isEditing ?
                     (
                         <div className="profile-n-b">

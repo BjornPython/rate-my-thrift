@@ -5,7 +5,7 @@ import { logout } from "../../apis/firebase"
 import { useState } from "react"
 import { useEffect } from "react"
 
-function Navbar({ changePage, isLoading }) {
+function Navbar({ changePage, isLoading, removeCommentsPage }) {
 
     const [iscollapsed, setIsCollapsed] = useState(false)
 
@@ -39,9 +39,9 @@ function Navbar({ changePage, isLoading }) {
 
 
                 <div className="navbar-pages">
-                    <div className="navbar-icon" onClick={() => { changePage("home") }}><FontAwesomeIcon icon={faHouse} className="navbar-icns" /></div>
-                    <div className="navbar-icon" onClick={() => { changePage("add") }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
-                    <div className="navbar-icon" onClick={() => { changePage("profile") }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
+                    <div className="navbar-icon" onClick={(e) => { changePage("home"); removeCommentsPage(null, null, true) }}><FontAwesomeIcon icon={faHouse} className="navbar-icns" /></div>
+                    <div className="navbar-icon" onClick={(e) => { changePage("add"); removeCommentsPage(null, null, true) }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
+                    <div className="navbar-icon" onClick={(e) => { changePage("profile"); removeCommentsPage(null, null, true) }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                 </div>
                 {!iscollapsed
                     ?

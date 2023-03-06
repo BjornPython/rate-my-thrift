@@ -26,12 +26,8 @@ function Homepage({ user }) {
         if (!user) {
             navigate("/")
         } else {
-            if (user.uid) {
-                setUid(user.uid)
-            }
-            if (user.emailVerified) {
-                setIsVerified(user.emailVerified)
-            }
+            if (user.uid) { setUid(user.uid) }
+            if (user.emailVerified) { setIsVerified(user.emailVerified) }
         }
     }, [user])
 
@@ -46,8 +42,13 @@ function Homepage({ user }) {
         setCommentPost({ ...post, isLiked })
     }
 
-    const removeCommentsPage = (wrapperCommentsRef, e) => {
-        if (e.target == wrapperCommentsRef.current) {
+    const removeCommentsPage = (wrapperCommentsRef, e, force = false) => {
+        console.log("REMOVING ");
+        if (force) {
+            setShowCommentPage(false)
+            setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+        }
+        else if (e.target == wrapperCommentsRef.current) {
             setShowCommentPage(false)
             setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
 
@@ -71,7 +72,7 @@ function Homepage({ user }) {
 
     return (
         <>
-            <Navbar currentPage={currentPage} changePage={changePage} isLoading={isLoading} />
+            <Navbar currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage} />
 
             <div className={`homepage ${showCommentPage ? "homepage-blur " : ""}`} >
                 {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} changeIsLoading={changeIsLoading} />}

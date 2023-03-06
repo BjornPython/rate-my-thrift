@@ -8,6 +8,7 @@ function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike }) {
 
 
     const [userInfo, setUserInfo] = useState(null)
+    const [dpURL, setDpURL] = useState(null)
     const [userPosts, setUserPosts] = useState([])
 
     useEffect(() => {
@@ -15,6 +16,7 @@ function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike }) {
         const queryUserInfo = async () => {
             const res = await getUserInfo(uid);
             setUserInfo(res)
+            setDpURL(res.dpURL)
             setTimeout(() => {
                 changeIsLoading(false)
             }, 500)
@@ -34,7 +36,7 @@ function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike }) {
 
     return (
         <div className='profile-page'>
-            <Profile uid={uid} userInfo={userInfo} callEditInfo={callEditInfo} changeIsLoading={changeIsLoading} />
+            <Profile uid={uid} dpURL={dpURL} userInfo={userInfo} callEditInfo={callEditInfo} changeIsLoading={changeIsLoading} />
             <hr />
             <UserPosts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} />
         </div>
