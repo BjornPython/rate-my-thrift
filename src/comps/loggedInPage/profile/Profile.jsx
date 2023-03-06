@@ -8,7 +8,7 @@ function Profile({ uid, dpURL, callEditInfo }) {
     const [uploadedDp, setUploadedDp] = useState(null)
     const [croppedDp, setCroppedDp] = useState(null)
     const [isEditing, setIsEditing] = useState(false)
-
+    const [isCropping, setIsCropping] = useState(false)
     const [nameBioVal, setNameBioVal] = useState({ name: "", bio: "" })
     const { name, bio } = nameBioVal
 
@@ -26,7 +26,7 @@ function Profile({ uid, dpURL, callEditInfo }) {
 
     const handleDpUpload = (e) => {
         setUploadedDp(e.target.files[0])
-        setCroppedDp(e.target.files[0])
+        setCroppedDp(URL.createObjectURL(e.target.files[0]))
     }
 
     const callAddDp = async () => {
@@ -38,6 +38,10 @@ function Profile({ uid, dpURL, callEditInfo }) {
 
     const changeIsEditing = (val) => {
         setIsEditing(val)
+    }
+
+    const changeIsCropping = (val) => {
+        setIsCropping(val)
     }
 
     const handleNameBioChange = (e) => {
@@ -81,11 +85,12 @@ function Profile({ uid, dpURL, callEditInfo }) {
                     onClick={() => { changeIsEditing(!isEditing) }} />
                 <div className={`active-settings ${isEditing && "show-active-settings"}`}>
                     <input type="file" id="profile-input" name="profile-input" className='profile-input' onChange={(e) => { handleDpUpload(e) }} />
-                    <label htmlFor="profile-input" className="pic-label">upload profile</label>
+                    <label htmlFor="profile-input" className="pic-label">file </label>
+                    <button onClick={() => { setIsCropping(true) }}>crop</button>
                     <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>  save</button>
                 </div>
 
-                {isEditing && uploadedDp && <DpCropper uploadedDp={uploadedDp} changeIsEditing={changeIsEditing} changeCroppedImage={changeCroppedImage} />}
+                {uploadedDp && isCropping && <DpCropper uploadedDp={uploadedDp} changeIsCropping={changeIsCropping} changeCroppedImage={changeCroppedImage} />}
             </div>
 
         </>

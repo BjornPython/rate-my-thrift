@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import Cropper from "react-easy-crop"
 import getCroppedImg from "../../../cropping/cropImage"
-function DpCropper({ uploadedDp, changeIsEditing, changeCroppedImage }) {
+function DpCropper({ uploadedDp, changeIsCropping, changeCroppedImage }) {
 
     const [uploadedDpURL] = useState(URL.createObjectURL(uploadedDp))
     const [zoom, setZoom] = useState(1)
@@ -31,7 +31,7 @@ function DpCropper({ uploadedDp, changeIsEditing, changeCroppedImage }) {
                 croppedAreaPixels
             )
             changeCroppedImage(croppedImage)
-            changeIsEditing(false)
+            changeIsCropping(false)
         } catch (e) {
             console.error(e)
         }
