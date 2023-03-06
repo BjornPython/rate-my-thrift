@@ -41,7 +41,6 @@ function CropImage({ imageURL, changeImageUrl }) {
     }
     return (
         <>
-            { }
             <div className='cropimage-page'>
                 {imageURL &&
                     <>

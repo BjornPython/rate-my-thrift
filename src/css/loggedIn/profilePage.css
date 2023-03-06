@@ -130,6 +130,18 @@
     padding-bottom: 160px;
 }
 
+.dp-cropper {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    background-color: var(--vintage-white);
+}
+
 @media (max-width: 1300px) {
     .profile-page hr {
         width: 370px;
