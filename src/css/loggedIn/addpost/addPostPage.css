@@ -1,6 +1,5 @@
 
 .addpost-page {
-    margin-top: 200px;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -187,7 +186,7 @@
 .remove-img-btn {
     border: none;
     background-color: transparent;
-    color: var(--dark-brown);
+    color: gray;
     position: absolute;
     top: 3px;
     left: 10px;
@@ -198,7 +197,7 @@
 .crop-btn {
     border: none;
     background-color: transparent;
-    color: var(--dark-brown);
+    color: gray;
     position: absolute;
     top: 3px;
     right: 10px;
@@ -209,7 +208,7 @@
 
 .cropimage-page {
     top: 0;
-    left: -15px;
+    left: 0;
     /* background-color: var(--vintage-white); */
     background-color: black;
     position: absolute;
@@ -220,8 +219,8 @@
     background-color: transparent;
     color: white;
     border: none;
-    top: 5px;
-    right: -14px;
+     top: 5px;
+    right: 2px;
     cursor: pointer;
 
 }
@@ -242,8 +241,8 @@
 
 .reactEasyCrop_Container {
     /* top: 0; */
-    width: 400px;
-    height: 390px;
+    width: 370px;
+    height: 350px;
     /* display: flex;
     justify-content: center;
     align-items: flex-start; */
