@@ -30,8 +30,11 @@ function Profile({ uid, dpURL, callEditInfo }) {
     }
 
     const callAddDp = async () => {
-        if (uploadedDp.length !== 1) { return }
-        const res = await addDp(uploadedDp, uid)
+        if (!croppedDp) { return }
+        const croppedBlob = await requestCroppedDp()
+        const croppedImageFile = new File([croppedBlob], uploadedDp.name, { type: uploadedDp.type });
+        console.log("CROPPED DP: ", croppedImageFile);
+        const res = await addDp(croppedImageFile, uid)
     }
 
 
@@ -52,6 +55,12 @@ function Profile({ uid, dpURL, callEditInfo }) {
 
     const changeCroppedImage = (dp) => {
         setCroppedDp(dp)
+    }
+
+    const requestCroppedDp = async () => {
+        const croppedIMG = await fetch(croppedDp)
+        const croppedBlob = croppedIMG.blob()
+        return croppedBlob
     }
 
     return (
@@ -87,7 +96,7 @@ function Profile({ uid, dpURL, callEditInfo }) {
                     <input type="file" id="profile-input" name="profile-input" className='profile-input' onChange={(e) => { handleDpUpload(e) }} />
                     <label htmlFor="profile-input" className="pic-label">file </label>
                     <button onClick={() => { setIsCropping(true) }}>crop</button>
-                    <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>  save</button>
+                    <button onClick={() => { {/*callEditInfo(nameBioVal);*/ } callAddDp() }}>  save</button>
                 </div>
 
                 {uploadedDp && isCropping && <DpCropper uploadedDp={uploadedDp} changeIsCropping={changeIsCropping} changeCroppedImage={changeCroppedImage} />}

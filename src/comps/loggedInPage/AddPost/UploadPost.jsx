@@ -45,7 +45,7 @@ function UploadPost({ uid, changeShowUpload }) {
         e.preventDefault()
         setIsUploading(true)
         const croppedBlob = await requestCroppedImage()
-        const croppedImageFile = new File([croppedBlob], uploadedImage.name, { type: 'image/jpeg' });
+        const croppedImageFile = new File([croppedBlob], uploadedImage.name, { type: uploadedImage.type });
         console.log("IMAGE FILE: ", croppedImageFile);
         const res = await uploadPost(uid, title, caption, croppedImageFile)
         if (res === "post added.") {
