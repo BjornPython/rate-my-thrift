@@ -46,11 +46,12 @@ function CropImage({ imageURL, changeImageUrl }) {
                     <>
                         <Cropper image={imageURL} zoom={zoom} crop={crop} aspect={aspect}
                             onCropChange={onCropChange} onZoomChange={onZoomChange}
-                            onCropComplete={onCropComplete} objectFit="contain" />
+                            onCropComplete={onCropComplete} />
                         <input type="range" className='zoom-range' value={zoom} min={1} max={3} step={0.1} onInput={(e) => { setZoom(e.target.value) }} />
                     </>
                 }
             </div>
+
             <button className='save-crop' onClick={showCroppedImage}>Save Crop </button>
         </>
 

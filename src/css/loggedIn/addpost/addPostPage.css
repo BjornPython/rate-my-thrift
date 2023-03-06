@@ -210,8 +210,9 @@
 .cropimage-page {
     top: 0;
     left: 0;
+    width: 370px;
+    height: 370px;
     /* background-color: var(--vintage-white); */
-    background-color: black;
     position: absolute;
 }
 
@@ -225,12 +226,7 @@
     cursor: pointer;
 
 }
-.cropimage-page img {
-    /* min-width: 350px;
-    min-height: 350px; */
 
-
-}
 
 .zoom-range {
     position: absolute;
@@ -240,17 +236,7 @@
     -webkit-appearance: slider-vertical; /* Chromium */
 }
 
-.reactEasyCrop_Container {
-    /* top: 0; */
-    /* width: 370px;
-    height: 350px; */
-    /* display: flex;
-    justify-content: center;
-    align-items: flex-start; */
-    /* object-fit: cover;
-    position: absolute; */
 
-}
 
 @media (max-width: 500px) {
     .addpost-page {
