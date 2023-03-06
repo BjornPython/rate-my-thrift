@@ -94,9 +94,11 @@ function Profile({ uid, dpURL, callEditInfo }) {
                     onClick={() => { changeIsEditing(!isEditing) }} />
                 <div className={`active-settings ${isEditing && "show-active-settings"}`}>
                     <input type="file" id="profile-input" name="profile-input" className='profile-input' onChange={(e) => { handleDpUpload(e) }} />
-                    <label htmlFor="profile-input" className="pic-label">file </label>
-                    <button onClick={() => { setIsCropping(true) }}>crop</button>
-                    <button onClick={() => { {/*callEditInfo(nameBioVal);*/ } callAddDp() }}>  save</button>
+                    <div className="edit-dp-btns">
+                        <label htmlFor="profile-input" className="pic-label">file </label>
+                        <button onClick={() => { setIsCropping(true) }} style={!croppedDp ? { color: "gray" } : {}}>crop</button>
+                    </div>
+                    <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>save</button>
                 </div>
 
                 {uploadedDp && isCropping && <DpCropper uploadedDp={uploadedDp} changeIsCropping={changeIsCropping} changeCroppedImage={changeCroppedImage} />}

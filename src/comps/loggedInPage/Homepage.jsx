@@ -44,15 +44,23 @@ function Homepage({ user }) {
 
     const removeCommentsPage = (wrapperCommentsRef, e, force = false) => {
         console.log("REMOVING ");
+
         if (force) {
             setShowCommentPage(false)
-            setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+            setTimeout(() => {
+                setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+            }, 200)
+
         }
         else if (e.target == wrapperCommentsRef.current) {
             setShowCommentPage(false)
-            setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+            setTimeout(() => {
+                setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+            }, 200)
+
 
         }
+
     }
 
     const calLGetDp = async () => {

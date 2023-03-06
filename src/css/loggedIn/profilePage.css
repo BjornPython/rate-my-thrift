@@ -87,12 +87,12 @@
 }
 
 .pic-label {
-    margin-left: 6px;
+    margin: 0;
 }
 
 .active-settings {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     width: 100%;
     display: none;
     align-items: center;
@@ -160,6 +160,17 @@
     z-index: 20;
 }
 
+.edit-dp-btns  {
+    display: flex;
+    column-gap: 20px;
+    margin-left: 12px;
+}
+
+.edit-dp-btns button {
+    background-color: transparent;
+    font-size: 14px;
+    margin: 0;
+}
 @media (max-width: 1300px) {
     .profile-page hr {
         width: 370px;
