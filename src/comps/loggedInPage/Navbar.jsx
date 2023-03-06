@@ -1,20 +1,49 @@
 import "../../css/loggedIn/navbar.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlus, faHouse, faUser, faBars } from "@fortawesome/free-solid-svg-icons"
+import { faCirclePlus, faHouse, faUser, faBars, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 import { logout } from "../../apis/firebase"
-
+import { useState } from "react"
+import { useEffect } from "react"
 
 function Navbar({ changePage, isLoading }) {
+
+    const [iscollapsed, setIsCollapsed] = useState(false)
+
+    const [windowSize, setWindowSize] = useState("wide")
+
+
+    useEffect(() => {
+        const handleWindowResize = () => {
+            if (window.innerWidth >= 720) { setWindowSize("wide"); setIsCollapsed(false) }
+            if (window.innerWidth <= 720) { setWindowSize("medium"); setIsCollapsed(true) }
+            if (window.innerWidth <= 400) { setWindowSize("small"); setIsCollapsed(true) }
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    });
+
     return (
         <div className="navbar">
             <div className="navbar-contents">
-                <h1 className="logo">Rate my Thrifts</h1>
+                {windowSize === "wide" && <h1 className="logo">Rate my Thrifts</h1>}
+
+
                 <div className="navbar-pages">
                     <div className="navbar-icon" onClick={() => { changePage("home") }}><FontAwesomeIcon icon={faHouse} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={() => { changePage("add") }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={() => { changePage("profile") }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                 </div>
-                <FontAwesomeIcon icon={faBars} className="navbar-icns bar-icn" onClick={logout} />
+                {!iscollapsed
+                    ?
+                    <p className="navbar-icns out-icn" onClick={logout} style={{ right: "50px" }} >logout</p>
+                    :
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} className="navbar-icns out-icn" onClick={logout} style={{ right: "20px", width: "16px" }} />
+                }
+
             </div>
             <div className="nav-relative">
                 <span className={`loading-icn ${isLoading && "loading-icn-50"}`}> <p className="hide"></p></span>

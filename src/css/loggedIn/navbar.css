@@ -62,10 +62,13 @@
     transform: scale(1.1);
 }
 
-.bar-icn {
+.out-icn {
     position: absolute;
-    top: 15px;
+    top: 18px;
+    color: var(--light-gray);
     right: 40px;
+    margin: 0;
+    width: 20px;
 }
 
 .nav-relative {
@@ -90,6 +93,8 @@
     width: 95%;
     transition: width 0.5s ease-in-out;
 }
+
+
 
 
 @keyframes gradient {

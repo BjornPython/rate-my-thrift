@@ -46,3 +46,10 @@
         color: var(--dark-brown);
 
 }
+
+@media (max-width: 400px) {
+    .post {
+        transform: scale(0.9);
+    }
+}
+

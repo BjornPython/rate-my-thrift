@@ -16,8 +16,8 @@
     height: 2px;
 }
 
-.main-profile{
-    margin-top:100px;
+.main-profile {
+    margin-top:50px;
     width: 400px;
     height: 140px;
     display: flex;
@@ -130,5 +130,12 @@
 @media (max-width: 1300px) {
     .profile-page hr {
         width: 370px;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-profile {
+        width: 350px;
+        height: 120px;
     }
 }
