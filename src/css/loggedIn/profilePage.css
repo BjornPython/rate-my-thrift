@@ -131,9 +131,11 @@
 }
 
 .dp-edit-container{
+    border-radius: 15px;
+    border: 1px solid black;
     position: absolute;
     top: 0;
-    left: 30px;
+    left: 35px;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -142,10 +144,19 @@
     height: 350px;
 }
 
+.dp-edit-container button {
+    border: none;
+    font-size: 14px;
+    color: var(--dark-brown);
+    background-color: transparent;
+    margin-bottom: 10px;
+    margin-right: 6px;
+}
+
 .dp-cropper {
     position: absolute;
-    top: 10px;
-    left: 40px;
+    top: 15px;
+    left: 50px;
     z-index: 20;
 }
 

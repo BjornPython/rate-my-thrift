@@ -46,7 +46,9 @@ function Profile({ uid, dpURL, callEditInfo }) {
         })
     }
 
-
+    const changeCroppedImage = (dp) => {
+        setCroppedDp(dp)
+    }
 
     return (
         <>
@@ -83,7 +85,7 @@ function Profile({ uid, dpURL, callEditInfo }) {
                     <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>  save</button>
                 </div>
 
-                {isEditing && uploadedDp && <DpCropper uploadedDp={uploadedDp} />}
+                {isEditing && uploadedDp && <DpCropper uploadedDp={uploadedDp} changeIsEditing={changeIsEditing} changeCroppedImage={changeCroppedImage} />}
             </div>
 
         </>
