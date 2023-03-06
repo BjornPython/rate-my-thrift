@@ -67,6 +67,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
 }
 
 .log-in-sign-up {
@@ -182,7 +183,13 @@
     border: 1px solid gray;
 }
 
-
+.auth-error-msg {
+    position: absolute;
+    margin: 0;
+    top: 238px;
+    color: red;
+    font-weight: 500;
+}
 
 @media (max-width: 970px) {
     .login-page {

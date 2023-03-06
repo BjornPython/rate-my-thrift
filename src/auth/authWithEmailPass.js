@@ -24,7 +24,7 @@ export const registerWithEmailPass = async (email, password) => {
 
 export const loginWithEmailPass = async (email, password) => {
     try {
-    const user = signInWithEmailAndPassword(auth, email, password)
-    } catch (err) {console.log(err)}
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    } catch (err) {throw(err)}
 }   
 
