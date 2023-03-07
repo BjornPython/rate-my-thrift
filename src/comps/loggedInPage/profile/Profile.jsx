@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { addDp } from "../../../apis/firestoreUsersFuncs"
 import DpCropper from "./DpCropper"
 import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
-function Profile({ uid, dpURL, callEditInfo }) {
+function Profile({ uid, dpURL, callEditInfo, diffUser }) {
     const [uploadedDp, setUploadedDp] = useState(null)
     const [croppedDp, setCroppedDp] = useState(null)
     const [isEditing, setIsEditing] = useState(false)
@@ -98,19 +98,22 @@ function Profile({ uid, dpURL, callEditInfo }) {
                         </div>
                     )
                 }
+                {!diffUser &&
+                    <>
+                        <FontAwesomeIcon icon={faGear} className="profile-settings"
+                            onClick={() => { changeIsEditing(!isEditing) }} />
+                        <div className={`active-settings ${isEditing && "show-active-settings"}`}>
+                            <input type="file" id="profile-input" name="profile-input" className='profile-input' onChange={(e) => { handleDpUpload(e) }} />
+                            <div className="edit-dp-btns">
+                                <label htmlFor="profile-input" className="pic-label">file </label>
+                                <button onClick={() => { setIsCropping(true) }} style={!croppedDp ? { color: "gray" } : {}}>crop</button>
+                            </div>
+                            <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>save</button>
+                        </div>
 
-                <FontAwesomeIcon icon={faGear} className="profile-settings"
-                    onClick={() => { changeIsEditing(!isEditing) }} />
-                <div className={`active-settings ${isEditing && "show-active-settings"}`}>
-                    <input type="file" id="profile-input" name="profile-input" className='profile-input' onChange={(e) => { handleDpUpload(e) }} />
-                    <div className="edit-dp-btns">
-                        <label htmlFor="profile-input" className="pic-label">file </label>
-                        <button onClick={() => { setIsCropping(true) }} style={!croppedDp ? { color: "gray" } : {}}>crop</button>
-                    </div>
-                    <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>save</button>
-                </div>
-
-                {uploadedDp && isCropping && <DpCropper uploadedDp={uploadedDp} changeIsCropping={changeIsCropping} changeCroppedImage={changeCroppedImage} />}
+                        {uploadedDp && isCropping && <DpCropper uploadedDp={uploadedDp} changeIsCropping={changeIsCropping} changeCroppedImage={changeCroppedImage} />}
+                    </>
+                }
             </div>
 
         </>

@@ -39,9 +39,9 @@ function Navbar({ changePage, isLoading, removeCommentsPage }) {
 
 
                 <div className="navbar-pages">
-                    <div className="navbar-icon" onClick={(e) => { changePage("home"); removeCommentsPage(null, null, true) }}><FontAwesomeIcon icon={faHouse} className="navbar-icns" /></div>
-                    <div className="navbar-icon" onClick={(e) => { changePage("add"); removeCommentsPage(null, null, true) }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
-                    <div className="navbar-icon" onClick={(e) => { changePage("profile"); removeCommentsPage(null, null, true) }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
+                    <div className="navbar-icon" onClick={(e) => { changePage("home"); removeCommentsPage(null, null, true, true) }}><FontAwesomeIcon icon={faHouse} className="navbar-icns" /></div>
+                    <div className="navbar-icon" onClick={(e) => { changePage("add"); removeCommentsPage(null, null, true, true) }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
+                    <div className="navbar-icon" onClick={(e) => { changePage("profile"); removeCommentsPage(null, null, true, true) }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                 </div>
                 {!iscollapsed
                     ?

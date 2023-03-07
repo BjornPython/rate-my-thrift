@@ -4,7 +4,7 @@ import Profile from './Profile'
 import "../../../css/loggedIn/profilePage.css"
 import UserPosts from './UserPosts'
 import { editUserInfo, getUserInfo } from '../../../apis/firestoreUsersFuncs'
-function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike, startKey }) {
+function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike, startKey, diffUser }) {
 
 
     const [userInfo, setUserInfo] = useState(null)
@@ -37,7 +37,8 @@ function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike, startK
 
     return (
         <div className='profile-page'>
-            <Profile uid={uid} dpURL={dpURL} userInfo={userInfo} callEditInfo={callEditInfo} changeIsLoading={changeIsLoading} />
+            <Profile uid={uid} dpURL={dpURL} userInfo={userInfo} callEditInfo={callEditInfo}
+                changeIsLoading={changeIsLoading} diffUser={diffUser} />
             <hr />
             <UserPosts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} startKey={startKey} />
         </div>

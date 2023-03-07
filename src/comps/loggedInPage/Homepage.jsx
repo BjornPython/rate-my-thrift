@@ -18,7 +18,6 @@ function Homepage({ user }) {
     const [isVerified, setIsVerified] = useState(null)
     const [updateLike, setUpdateLike] = useState(null)
 
-    const [showProfilePreview, setShowProfilePreview] = useState(false)
     const [profilePreviewId, setProfilePreviewId] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -55,8 +54,8 @@ function Homepage({ user }) {
         setCommentPost({ ...post, isLiked })
     }
 
-    const removeCommentsPage = (wrapperCommentsRef, e, force = false, removeProfilePreview = false) => {
-        if (removeProfilePreview) { removeProfilePreview() }
+    const removeCommentsPage = (wrapperCommentsRef, e, force = false, alsoRemoveProfilePreview = false) => {
+        if (alsoRemoveProfilePreview) { removeProfilePreview() }
 
         else if (force) {
             setShowCommentPage(false)
@@ -87,9 +86,7 @@ function Homepage({ user }) {
     }
 
     const removeProfilePreview = () => {
-        setTimeout(() => {
-            setProfilePreviewId(null)
-        }, 200)
+        setProfilePreviewId(null)
 
     }
 
@@ -102,7 +99,7 @@ function Homepage({ user }) {
         <>
             <Navbar currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage} />
 
-            <div className={`homepage ${showCommentPage || showProfilePreview ? "homepage-blur " : ""}`} >
+            <div className={`homepage ${showCommentPage ? "homepage-blur " : ""}`} >
                 {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike}
                     changeIsLoading={changeIsLoading} />}
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}
@@ -110,7 +107,7 @@ function Homepage({ user }) {
                 {currentPage === "profile" && <ProfilePage uid={uid} changeIsLoading={changeIsLoading} handlePostClick={handlePostClick}
                     updateLike={updateLike} startKey="user" />}
                 {currentPage === "other-profile" && <ProfilePage uid={profilePreviewId} changeIsLoading={changeIsLoading} handlePostClick={handlePostClick}
-                    updateLike={updateLike} startKey="other" />}
+                    updateLike={updateLike} startKey="other" diffUser={true} />}
             </div>
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
                 changePostLike={changePostLike} uid={uid} updateProfilePreview={updateProfilePreview} />

@@ -65,7 +65,7 @@ function CommentsPage({
         <div
             ref={wrapperCommentsRef}
             className={`comments-wrapper ${showCommentPage && "show-comments-page"}`}
-            onClick={(e) => { removeCommentsPage(wrapperCommentsRef, e) }}
+            onClick={(e) => { removeCommentsPage(wrapperCommentsRef, e,) }}
         >
             <div className="comments-page">
                 <div className="comments-contents">
