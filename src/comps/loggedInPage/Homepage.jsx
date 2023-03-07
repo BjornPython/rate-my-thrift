@@ -7,7 +7,6 @@ import AddPostPage from "./AddPost/AddPostPage"
 import CommentsPage from "./comments/CommentsPage"
 import ProfilePage from "./profile/ProfilePage"
 import { useNavigate, useParams } from "react-router-dom"
-import { getDp } from "../../apis/firestoreDataQueryFuncs"
 import OtherProfile from "./otherProfile/OtherProfile"
 
 const defaultCommentPost = { id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: "" }
@@ -50,6 +49,7 @@ function Homepage({ user }) {
     }
 
     const handlePostClick = (post, isLiked = false) => {
+        console.log("POST CLICKED");
         setShowCommentPage(!showCommentPage)
         setCommentPost({ ...post, isLiked })
     }
@@ -70,10 +70,7 @@ function Homepage({ user }) {
                 console.log("SETTING TO DEFAULT");
                 setCommentPost(defaultCommentPost)
             }, 200)
-
-
         }
-
     }
 
 
@@ -106,7 +103,6 @@ function Homepage({ user }) {
         if (id === uid) { setCurrentPage("profile"); removeCommentsPage(null, null, true) }
         else { setProfilePreviewId(id) }
     }
-
     return (
         <>
             <Navbar currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage} />
@@ -119,12 +115,11 @@ function Homepage({ user }) {
                 {currentPage === "profile" && <ProfilePage uid={uid} changeIsLoading={changeIsLoading} handlePostClick={handlePostClick}
                     updateLike={updateLike} />}
             </div>
-
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
                 changePostLike={changePostLike} uid={uid} updateProfilePreview={updateProfilePreview} />
 
-            <OtherProfile showProfilePreview={showProfilePreview} profilePreviewId={profilePreviewId} removeProfilePreview={removeProfilePreview} />
-
+            <OtherProfile showProfilePreview={showProfilePreview} profilePreviewId={profilePreviewId} removeProfilePreview={removeProfilePreview}
+                handlePostClick={handlePostClick} updateLike={updateLike} uid={uid} />
         </>
     )
 }

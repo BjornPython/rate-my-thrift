@@ -8,7 +8,6 @@ function ShowUser({ userId, updateProfilePreview }) {
     const [userNameBio, setUserNameBio] = useState({ name: "", bio: "" })
     const { name, bio } = userNameBio
     useEffect(() => {
-        console.log("USERID CHANGED");
         setUserDp(null)
         const userInfo = async () => {
             if (!userId) { return }

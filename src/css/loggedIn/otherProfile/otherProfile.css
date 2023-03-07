@@ -27,3 +27,10 @@
     align-items: center;
     position: relative;
 }
+
+.other-profile {
+    display: flex;
+    width: auto;
+    height: 80px;
+}
+
