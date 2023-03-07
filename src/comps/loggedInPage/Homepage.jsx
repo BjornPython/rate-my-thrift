@@ -55,9 +55,10 @@ function Homepage({ user }) {
         setCommentPost({ ...post, isLiked })
     }
 
-    const removeCommentsPage = (wrapperCommentsRef, e, force = false) => {
+    const removeCommentsPage = (wrapperCommentsRef, e, force = false, removeProfilePreview = false) => {
+        if (removeProfilePreview) { removeProfilePreview() }
 
-        if (force) {
+        else if (force) {
             setShowCommentPage(false)
             setTimeout(() => {
                 console.log("SETTING TO DEFAULT");
@@ -66,7 +67,7 @@ function Homepage({ user }) {
 
         }
         else if (e.target == wrapperCommentsRef.current) {
-            removeProfilePreview()
+
             setShowCommentPage(false)
             setTimeout(() => {
                 console.log("SETTING TO DEFAULT");
