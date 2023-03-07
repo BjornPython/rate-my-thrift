@@ -86,7 +86,7 @@ function CommentsPage({
                     </div>
 
 
-                    <CommentsContents postId={id} newAddedComment={newAddedComment} />
+                    <CommentsContents postId={id} newAddedComment={newAddedComment} updateProfilePreview={updateProfilePreview} />
                     <CommentsInput uid={uid} postId={id} changeNewComment={changeNewComment} />
                 </div>
 

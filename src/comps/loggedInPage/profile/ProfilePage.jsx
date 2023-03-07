@@ -4,7 +4,7 @@ import Profile from './Profile'
 import "../../../css/loggedIn/profilePage.css"
 import UserPosts from './UserPosts'
 import { editUserInfo, getUserInfo } from '../../../apis/firestoreUsersFuncs'
-function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike }) {
+function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike, startKey }) {
 
 
     const [userInfo, setUserInfo] = useState(null)
@@ -14,6 +14,7 @@ function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike }) {
     useEffect(() => {
         changeIsLoading(true)
         const queryUserInfo = async () => {
+            console.log("QUERYING INFO: ", uid);
             const res = await getUserInfo(uid);
             setUserInfo(res)
             setDpURL(res.dpURL)
@@ -38,7 +39,7 @@ function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike }) {
         <div className='profile-page'>
             <Profile uid={uid} dpURL={dpURL} userInfo={userInfo} callEditInfo={callEditInfo} changeIsLoading={changeIsLoading} />
             <hr />
-            <UserPosts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} />
+            <UserPosts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike} startKey={startKey} />
         </div>
     )
 }

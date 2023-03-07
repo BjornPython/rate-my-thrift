@@ -13,6 +13,7 @@ function Profile({ uid, dpURL, callEditInfo }) {
     const { name, bio } = nameBioVal
 
     useEffect(() => {
+        if (!uid) { return }
         const userInfo = async () => {
             const info = await getUserInfo(uid)
             if (info) {

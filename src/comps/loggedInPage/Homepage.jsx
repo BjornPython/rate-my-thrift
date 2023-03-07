@@ -39,8 +39,9 @@ function Homepage({ user }) {
 
     useEffect(() => {
         if (!profilePreviewId) { return }
-        else if (showCommentPage) { removeCommentsPage(null, null, true) }
-        setShowProfilePreview(true)
+        console.log("NEW ID: ", profilePreviewId);
+        setCurrentPage("other-profile")
+        setShowCommentPage(false)
     }, [profilePreviewId])
 
 
@@ -65,6 +66,7 @@ function Homepage({ user }) {
 
         }
         else if (e.target == wrapperCommentsRef.current) {
+            removeProfilePreview()
             setShowCommentPage(false)
             setTimeout(() => {
                 console.log("SETTING TO DEFAULT");
@@ -83,25 +85,17 @@ function Homepage({ user }) {
         setIsLoading(val)
     }
 
-    const removeProfilePreview = (outside, e, force = false) => {
+    const removeProfilePreview = () => {
+        setTimeout(() => {
+            setProfilePreviewId(null)
+        }, 200)
 
-        if (force) {
-            setShowProfilePreview(false)
-            setTimeout(() => {
-                setProfilePreviewId(null)
-            }, 200)
-        }
-        else if (e.target == outside.current) {
-            setShowProfilePreview(false)
-            setTimeout(() => {
-                setProfilePreviewId(null)
-            }, 200)
-        }
     }
 
     const updateProfilePreview = (id) => {
         if (id === uid) { setCurrentPage("profile"); removeCommentsPage(null, null, true) }
-        else { setProfilePreviewId(id) }
+        if (id === profilePreviewId) { removeCommentsPage(null, null, true) }
+        else { console.log("setting profil id to : ", id); setProfilePreviewId(id) }
     }
     return (
         <>
@@ -113,13 +107,13 @@ function Homepage({ user }) {
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}
                 />}
                 {currentPage === "profile" && <ProfilePage uid={uid} changeIsLoading={changeIsLoading} handlePostClick={handlePostClick}
-                    updateLike={updateLike} />}
+                    updateLike={updateLike} startKey="user" />}
+                {currentPage === "other-profile" && <ProfilePage uid={profilePreviewId} changeIsLoading={changeIsLoading} handlePostClick={handlePostClick}
+                    updateLike={updateLike} startKey="other" />}
             </div>
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
                 changePostLike={changePostLike} uid={uid} updateProfilePreview={updateProfilePreview} />
 
-            <OtherProfile showProfilePreview={showProfilePreview} profilePreviewId={profilePreviewId} removeProfilePreview={removeProfilePreview}
-                handlePostClick={handlePostClick} updateLike={updateLike} uid={uid} />
         </>
     )
 }

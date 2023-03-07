@@ -7,7 +7,7 @@ import DisplayComment from './DisplayComment'
 
 
 
-function CommentsContents({ postId, newAddedComment }) {
+function CommentsContents({ postId, newAddedComment, updateProfilePreview }) {
     const [totalComments, setTotalComments] = useState(0)
     const [comments, setComments] = useState({})
 
@@ -39,7 +39,7 @@ function CommentsContents({ postId, newAddedComment }) {
                 console.log("VAL");
                 const commentId = value[0]
                 const comment = value[1]
-                return <DisplayComment key={commentId} comment={comment} />
+                return <DisplayComment key={commentId} comment={comment} updateProfilePreview={updateProfilePreview} />
             })}
 
         </>

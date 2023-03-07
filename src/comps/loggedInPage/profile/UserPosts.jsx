@@ -29,7 +29,7 @@ function UserPosts({ handlePostClick, updateLike, uid, startKey }) {
         <div className="profile-posts">
             {posts.length > 0 && posts.map(post => {
                 return (
-                    <Post key={`startKey${post.id}`} handlePostClick={handlePostClick} updateLike={updateLike} uid={uid} post={post} />
+                    <Post key={`${startKey}-${post.id}`} handlePostClick={handlePostClick} updateLike={updateLike} uid={uid} post={post} />
                 )
             })}
             {/* <Post handlePostClick={handlePostClick} updateLike={updateLike} uid={uid} post={post} />
