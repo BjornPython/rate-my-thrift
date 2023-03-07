@@ -72,8 +72,10 @@
 
 .comment-caption {
     height: 160px;
+    width: 250px;
     border-bottom: 1px solid gray;
     margin-bottom: 0;
+    overflow-y: auto;
 }
 
 
@@ -258,5 +260,11 @@
     .comments-input p {
         margin: 0;
         margin-right: 20px;
+    }
+}
+
+@media (max-width: 390px) {
+    .comments-page {
+        transform: scale(0.9);
     }
 }

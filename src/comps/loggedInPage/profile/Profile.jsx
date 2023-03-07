@@ -39,6 +39,7 @@ function Profile({ uid, dpURL, callEditInfo, diffUser }) {
     }
 
     const callAddDp = async () => {
+        setIsEditing(false)
         if (!croppedDp) { return }
         const croppedBlob = await requestCroppedDp()
         const croppedImageFile = new File([croppedBlob], uploadedDp.name, { type: uploadedDp.type });
