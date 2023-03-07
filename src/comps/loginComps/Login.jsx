@@ -45,7 +45,7 @@ function Login() {
 
             <div className="log-in-inputs">
                 <input type="text" placeholder='email' name="email" value={email} onChange={handleLoginChange} />
-                <input type="text" placeholder='password...' name="password" value={password} onChange={handleLoginChange} />
+                <input type="text" placeholder='password' name="password" value={password} onChange={handleLoginChange} />
             </div>
 
             <button className='log-in-btn' onClick={handleLogIn} >Sign In</button>

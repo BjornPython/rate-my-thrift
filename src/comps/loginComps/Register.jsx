@@ -6,7 +6,7 @@ import facebook from "../../svgs/facebook.svg"
 import { callGoogleSigninPopup } from '../../auth/authWithGoogle'
 
 function Register() {
-    const [showError, setShowError] = useState("error")
+    const [showError, setShowError] = useState(false)
 
     const [registerData, setRegisterData] = useState({ email: "", password: "", cpassword: "" })
     const { email, password, cpassword } = registerData
@@ -28,7 +28,8 @@ function Register() {
     }
 
     const handleSignUp = async () => {
-        if (password !== cpassword) { console.log("PASSWORDS DO NOT MATCH..."); return }
+        if (!email) { setShowError("Please fill email field!"); return }
+        if (password !== cpassword) { setShowError("Passwords do not match!"); return }
         try {
             await registerWithEmailPass(email, password)
 
