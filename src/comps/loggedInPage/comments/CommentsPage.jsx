@@ -8,13 +8,17 @@ import { useRef, useEffect, useState } from "react"
 import { getPostLikes } from "../../../apis/firestoreDataQueryFuncs"
 import { likePost } from "../../../apis/firestoreDataQueryFuncs"
 
-function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, changePostLike }) {
+function CommentsPage({
+    uid, showCommentPage, commentPost,
+    removeCommentsPage, changePostLike, updateProfilePreview
+}) {
     const wrapperCommentsRef = useRef()
     const { id, imageUrls, title, caption, dateTime, isLiked, userId } = commentPost
     const [totalLikes, setTotalLikes] = useState(0)
     const [date, setDate] = useState("")
     const [liked, setLiked] = useState(false)
     const [newAddedComment, setNewAddedComment] = useState([])
+
     useEffect(() => {
         const userLikes = async () => {
             if (!id) { return }
@@ -67,7 +71,7 @@ function CommentsPage({ uid, showCommentPage, commentPost, removeCommentsPage, c
                 <div className="comments-contents">
                     <div className="post-contents">
                         <div className="post-info">
-                            <ShowUser userId={userId} />
+                            <ShowUser userId={userId} updateProfilePreview={updateProfilePreview} />
                             <h1 className="comment-title">{title}</h1>
                             <p className="comment-caption">{caption}</p>
                             <p className="comment-date">{date}</p>

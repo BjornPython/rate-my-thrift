@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState(null)
 
   onAuthStateChanged(auth, (currentUser) => {
+    console.log("USER CHANGED");
     setUser(()=> {
       return currentUser
     })

@@ -28,8 +28,8 @@ function Posts({ handlePostClick, uid, updateLike, changeIsLoading }) {
     return (
         <div className='posts'>
             {posts && posts.map((post) => {
-                return <Post key={post.id}
-                    handlePostClick={handlePostClick} post={post} uid={uid} updateLike={updateLike} />
+                return <Post key={post.id} handlePostClick={handlePostClick}
+                    post={post} uid={uid} updateLike={updateLike} />
             })}
         </div>
     )

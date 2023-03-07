@@ -3,7 +3,7 @@ import { faCircle, faGear } from "@fortawesome/free-solid-svg-icons"
 import { useState, useEffect } from 'react'
 import { addDp } from "../../../apis/firestoreUsersFuncs"
 import DpCropper from "./DpCropper"
-
+import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
 function Profile({ uid, dpURL, callEditInfo }) {
     const [uploadedDp, setUploadedDp] = useState(null)
     const [croppedDp, setCroppedDp] = useState(null)
@@ -12,7 +12,15 @@ function Profile({ uid, dpURL, callEditInfo }) {
     const [nameBioVal, setNameBioVal] = useState({ name: "", bio: "" })
     const { name, bio } = nameBioVal
 
-
+    useEffect(() => {
+        const userInfo = async () => {
+            const info = await getUserInfo(uid)
+            if (info) {
+                setNameBioVal({ name: info.name, bio: info.bio })
+            }
+        }
+        userInfo()
+    }, [uid])
 
     useEffect(() => {
         if (uploadedDp)
@@ -84,8 +92,8 @@ function Profile({ uid, dpURL, callEditInfo }) {
                     :
                     (
                         <div className="profile-n-b">
-                            <p id="profile-name">Nathan Flores</p>
-                            <p id="profile-bio">just a bio!</p>
+                            <p id="profile-name">{name}</p>
+                            <p id="profile-bio">{bio}</p>
                         </div>
                     )
                 }

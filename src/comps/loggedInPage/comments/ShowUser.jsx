@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState, useEffect } from "react"
 import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
 
-function ShowUser({ userId }) {
+function ShowUser({ userId, updateProfilePreview }) {
     const [userDp, setUserDp] = useState(null)
     const [userNameBio, setUserNameBio] = useState({ name: "", bio: "" })
     const { name, bio } = userNameBio
     useEffect(() => {
         const userInfo = async () => {
+            if (!userId) { return }
             const info = await getUserInfo(userId)
             if (info) {
                 setUserDp(info.dpURL)
@@ -22,7 +23,7 @@ function ShowUser({ userId }) {
 
 
     return (
-        <div className="comments-user">
+        <div className="comments-user" onClick={() => { updateProfilePreview(userId) }}>
             {userDp
                 ?
                 <img src={userDp} className="post-user-img" />
