@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { getDp } from "../../apis/firestoreDataQueryFuncs"
 import OtherProfile from "./otherProfile/OtherProfile"
 
-
+const defaultCommentPost = { id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: "" }
 
 function Homepage({ user }) {
     const navigate = useNavigate()
@@ -25,7 +25,7 @@ function Homepage({ user }) {
 
     const [showCommentPage, setShowCommentPage] = useState(false)
     const [commentPost, setCommentPost] = useState({
-        id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false
+        id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: ""
     })
 
     useEffect(() => {
@@ -59,14 +59,16 @@ function Homepage({ user }) {
         if (force) {
             setShowCommentPage(false)
             setTimeout(() => {
-                setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+                console.log("SETTING TO DEFAULT");
+                setCommentPost(defaultCommentPost)
             }, 200)
 
         }
         else if (e.target == wrapperCommentsRef.current) {
             setShowCommentPage(false)
             setTimeout(() => {
-                setCommentPost({ id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false })
+                console.log("SETTING TO DEFAULT");
+                setCommentPost(defaultCommentPost)
             }, 200)
 
 
@@ -103,7 +105,6 @@ function Homepage({ user }) {
     const updateProfilePreview = (id) => {
         if (id === uid) { setCurrentPage("profile"); removeCommentsPage(null, null, true) }
         else { setProfilePreviewId(id) }
-
     }
 
     return (
