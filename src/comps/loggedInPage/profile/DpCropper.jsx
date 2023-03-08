@@ -51,6 +51,7 @@ function DpCropper({ uploadedDp, changeIsCropping, changeCroppedImage }) {
                 <Cropper image={uploadedDpURL} zoom={zoom} crop={crop} aspect={aspect}
                     onCropChange={onCropChange} onZoomChange={onZoomChange}
                     onCropComplete={onCropComplete} objectFit="contain" cropShape="round" />
+                <input type="range" className='zoom-range' value={zoom} min={1} max={3} step={0.1} onInput={(e) => { setZoom(e.target.value) }} />
 
             </div>
             <div className="dp-edit-container">
