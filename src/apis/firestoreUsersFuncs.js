@@ -1,4 +1,4 @@
-import { usersCollection } from "./firebase";
+import { usersCollection, notifCollection } from "./firebase";
 import {  doc, setDoc, getDoc } from "firebase/firestore";
 import { uploadImage } from "./firestoreDataQueryFuncs";
 
@@ -12,6 +12,8 @@ export const addUser = async (uid, email) => {
         bio: "test bio val",
         posts: ["postOne", "postTwo", "postThree"]
     })
+    const userNotifRef = doc(notifCollection, uid)
+    const newNotif = await setDoc(userNotifRef, {notifications: []})
     console.log("NEW USER: ", newUser);
 }   
 

@@ -6,5 +6,7 @@ const googleProvider = new GoogleAuthProvider()
 
 export const callGoogleSigninPopup = async () => {
     const res = await signInWithPopup(auth, googleProvider)
-
+    console.log("RES: ", res);
+    const {uid, email } = res.user
+    await addUser(uid, email)
 }

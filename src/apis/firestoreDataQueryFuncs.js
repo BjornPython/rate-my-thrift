@@ -53,8 +53,16 @@ export const addNotif = async (userId, initiatorId,  postId, type, dateTime) => 
     
 } 
 
-export const listenNewNotifs = (uid) => {
-    const unsub = onSnapshot(doc(notifCollection, uid), (doc) => {console.log("NEW DOC: ", doc.data());})
+export const listenNewNotifs = async (uid) => {
+    try {
+        const notifRef = doc(notifCollection, uid);
+        const notifDoc = await getDoc(notifRef)
+        if (notifDoc.exists()) {
+                const unsub = onSnapshot(doc(notifCollection, uid), (doc) => {return doc.data()})
+        } 
+    } catch (err) {throw err}
+
+    
 }
 
 export const addPost = async (userId, caption, imageUrls, title) => {
