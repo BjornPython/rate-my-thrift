@@ -145,7 +145,7 @@ export const likePost = async (initiatorId, postId, isLiked, userId) => {
             [`likes.${userId}`]: isLiked ? {isLiked, dateTime: updated_at_timestamp} : deleteField()
         }, {merge: true}
         ) 
-        await addNotif(userId, initiatorId, postId, "like")
+        {isLiked && await addNotif(userId, initiatorId, postId, "liked")}
     } else {
         const newPostLikes = await setDoc(postLikesDoc, {
             postLikes: 1,
@@ -154,7 +154,8 @@ export const likePost = async (initiatorId, postId, isLiked, userId) => {
         }
         }, {merge: true}
         ) 
-        await addNotif(userId, initiatorId, postId, "like")
+        {isLiked && await addNotif(userId, initiatorId, postId, "liked")}
+
     }
 }
 

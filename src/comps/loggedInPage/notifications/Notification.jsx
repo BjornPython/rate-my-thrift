@@ -5,9 +5,9 @@ import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
 
 function Notification({ type, initiatorId }) {
 
-    const [initiatorInfo, setInitiatorInfo] = useState({ name: "", dpURL: null })
+    const [initiatorInfo, setInitiatorInfo] = useState({ name: "", dpURL: null, dateTime: "" })
 
-    const { name, dpURL } = initiatorInfo
+    const { name, dpURL, dateTime } = initiatorInfo
 
     useEffect(() => {
         const getInfo = async () => {
@@ -21,11 +21,16 @@ function Notification({ type, initiatorId }) {
         <div className='notif'>
             {dpURL
                 ?
-                <img src={dpURL} className="comment-dp" />
+                <img src={dpURL} className="comment-dp notif-img" />
 
                 :
-                <FontAwesomeIcon icon={faCircle} className="comment-dp" />}
-            <h4>{name} {type} your Post</h4>
+                <FontAwesomeIcon icon={faCircle} className="comment-dp notif-img" />}
+
+            <div className="notif-content">
+                <h4>{name} {type} your Post</h4>
+                <p>feb 20, 2022</p>
+            </div>
+
         </div>
     )
 }
