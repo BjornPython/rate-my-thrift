@@ -46,11 +46,14 @@ function CommentsPage({
         if (liked === isLiked) { return }
         changePostLike(id, liked)
         callLikePost(liked)
+        console.log("LIKED, UID: ", uid);
         if (liked) { setTotalLikes(prev => { return prev += 1 }) }
         else { setTotalLikes(prev => { return prev -= 1 }) }
-    }, [liked])
+    }, [liked, uid])
+
     const callLikePost = async (val) => {
-        await likePost(uid, id, val)
+        console.log("CALLING LIKE POST, UID: ", uid);
+        await likePost(uid, id, val, userId)
     }
 
     const handleLike = () => {
@@ -87,7 +90,7 @@ function CommentsPage({
 
 
                     <CommentsContents postId={id} newAddedComment={newAddedComment} updateProfilePreview={updateProfilePreview} />
-                    <CommentsInput uid={uid} postId={id} changeNewComment={changeNewComment} />
+                    <CommentsInput uid={uid} initiatorId={userId} postId={id} changeNewComment={changeNewComment} />
                 </div>
 
             </div>

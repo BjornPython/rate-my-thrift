@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { addComment } from "../../../apis/firestoreDataQueryFuncs"
-function CommentsInput({ uid, postId, changeNewComment }) {
+function CommentsInput({ uid, postId, changeNewComment, initiatorId }) {
 
     const [comment, setComment] = useState({ content: "" })
     const { content } = comment
@@ -10,7 +10,7 @@ function CommentsInput({ uid, postId, changeNewComment }) {
 
     const submitComment = async () => {
         console.log(uid, postId, content);
-        const res = await addComment(uid, postId, content)
+        const res = await addComment(uid, postId, content, initiatorId)
         if (res) {
             changeNewComment(prevState => { return [{ userId: uid, postId, content }, ...prevState] })
             setComment({ content: "" });

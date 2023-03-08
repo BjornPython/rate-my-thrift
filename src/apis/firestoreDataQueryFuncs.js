@@ -166,7 +166,7 @@ export const getPostLikes = async (postId) => {
 }
 
 
-export const addComment = async (userId, postId, content) => {
+export const addComment = async (userId, postId, content, initiatorId) => {
     console.log("IDl ", userId);
     try {
             const commentDoc = doc(commentsCollection, postId)
@@ -178,12 +178,14 @@ export const addComment = async (userId, postId, content) => {
                 totalComments: incrementVal,
                 [`comments.${commentId}`]: {content, dateTime, userId}
             })
+            await addNotif(userId, initiatorId, postId, "commented on")
             return document.id
         } else {
             const newComment = await setDoc(commentDoc, {
                 totalComments: 1,
             "comments": {[commentId]: {content, dateTime, userId}}
             }, {merge: true})
+            await addNotif(userId, initiatorId, postId, "commented on")
             return commentId
         }
         
