@@ -9,8 +9,8 @@ export const addUser = async (uid, email) => {
         name: email,
         dpURL: null,
         email,
-        bio: "test bio val",
-        posts: ["postOne", "postTwo", "postThree"]
+        bio: "",
+        posts: []
     })
     const userNotifRef = doc(notifCollection, uid)
     const newNotif = await setDoc(userNotifRef, {notifications: []})

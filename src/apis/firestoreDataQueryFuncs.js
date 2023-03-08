@@ -33,7 +33,7 @@ export const getPost = async (postId) => {
     } catch(err) {console.log(err);}
 }
 
-export const addNotif = async (userId, initiatorId,  postId, type, dateTime) => {
+export const addNotif = async (userId, initiatorId,  postId, type, dateTime="march") => {
     console.log("PARAMS: ", userId, initiatorId,  postId, type, dateTime);
     const docRef = doc(notifCollection, userId)
     try {
@@ -135,7 +135,7 @@ export const getDp = async (imageName, userId) => {
 }
 
 
-export const likePost = async (userId, postId, isLiked) => {
+export const likePost = async (initiatorId, postId, isLiked, userId) => {
     const postLikesDoc = doc(postLikesCollection, postId)
     const documentExists = await getDoc(postLikesDoc);
     if (documentExists.data()) {
@@ -145,6 +145,7 @@ export const likePost = async (userId, postId, isLiked) => {
             [`likes.${userId}`]: isLiked ? {isLiked, dateTime: updated_at_timestamp} : deleteField()
         }, {merge: true}
         ) 
+        await addNotif(userId, initiatorId, postId, "like")
     } else {
         const newPostLikes = await setDoc(postLikesDoc, {
             postLikes: 1,
@@ -153,6 +154,7 @@ export const likePost = async (userId, postId, isLiked) => {
         }
         }, {merge: true}
         ) 
+        await addNotif(userId, initiatorId, postId, "like")
     }
 }
 

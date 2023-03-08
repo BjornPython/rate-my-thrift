@@ -12,7 +12,7 @@ function Post({ handlePostClick, post, uid, updateLike }) {
     const [isLiked, setIsLiked] = useState(false)
 
     const callLikePost = async () => {
-        await likePost(uid, post.id, !isLiked)
+        await likePost(uid, post.id, !isLiked, post.userId)
     }
 
     const handleLike = () => {

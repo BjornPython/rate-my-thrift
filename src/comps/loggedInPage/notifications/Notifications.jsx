@@ -16,10 +16,10 @@ function Notifications({ uid }) {
     useEffect(() => {
         if (!uid) { return }
         const listenNotifs = async () => {
-            const notifRef = doc(notifCollection, "iuid");
+            const notifRef = doc(notifCollection, uid);
             const notifDoc = await getDoc(notifRef)
             if (notifDoc.exists()) {
-                const unsub = onSnapshot(doc(notifCollection, "iuid"), (doc) => { setNotifs(doc.data()) })
+                const unsub = onSnapshot(doc(notifCollection, uid), (doc) => { setNotifs(doc.data()) })
             }
         }
         listenNotifs()
