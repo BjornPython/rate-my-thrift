@@ -31,6 +31,7 @@ export const postsCollection = collection(firestoreDb, "posts")
 export const commentsCollection = collection(firestoreDb, "postComments")
 export const postLikesCollection = collection(firestoreDb, "postLikes")
 export const userUploadStorage = ref(storage, "userUploads")
+export const notifCollection = collection(firestoreDb, "notifications")
 
 export const logout = async () => {
     await signOut(auth)

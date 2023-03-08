@@ -1,10 +1,11 @@
 import { postsCollection, userUploadStorage, commentsCollection, 
-    usersCollection, postLikesCollection, firestoreDb } from "./firebase";
+    usersCollection, postLikesCollection, firestoreDb, notifCollection } from "./firebase";
 import 
     { 
         doc,getDoc, getDocs, setDoc, addDoc, 
         updateDoc, serverTimestamp, increment, 
-        deleteField, arrayUnion, arrayRemove, collection
+        deleteField, arrayUnion, arrayRemove, 
+        collection, onSnapshot
     } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { uuidv4 } from "@firebase/util";
@@ -32,6 +33,29 @@ export const getPost = async (postId) => {
     } catch(err) {console.log(err);}
 }
 
+export const addNotif = async (userId, initiatorId,  postId, type, dateTime) => {
+    console.log("PARAMS: ", userId, initiatorId,  postId, type, dateTime);
+    const docRef = doc(notifCollection, userId)
+    try {
+      const notifDoc = getDoc(docRef)  
+      if ((await notifDoc).exists()) {
+        console.log("UPDATING DOC...");
+        const updatedDoc = await updateDoc(docRef, {
+            notifications: arrayUnion({initiatorId,  postId, type, dateTime})
+        })
+      } else {
+        console.log("SETTING DOC...");
+        const newDoc = await setDoc(docRef, {
+            notifications: [{initiatorId,  postId, type, dateTime}]
+        })
+      }
+    } catch(err) {throw err}
+    
+} 
+
+export const listenNewNotifs = (uid) => {
+    const unsub = onSnapshot(doc(notifCollection, uid), (doc) => {console.log("NEW DOC: ", doc.data());})
+}
 
 export const addPost = async (userId, caption, imageUrls, title) => {
     try {

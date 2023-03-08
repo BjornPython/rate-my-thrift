@@ -97,7 +97,7 @@ function Homepage({ user }) {
     }
     return (
         <>
-            <Navbar currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage} />
+            <Navbar uid={uid} currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage} />
 
             <div className={`homepage ${showCommentPage ? "homepage-blur " : ""}`} >
                 {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike}

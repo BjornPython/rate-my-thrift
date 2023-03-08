@@ -6,7 +6,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import Notifications from "./notifications/Notifications"
 
-function Navbar({ changePage, isLoading, removeCommentsPage }) {
+function Navbar({ uid, changePage, isLoading, removeCommentsPage }) {
 
     const [iscollapsed, setIsCollapsed] = useState(false)
     const [showNotif, setShowNotif] = useState(false)
@@ -46,7 +46,7 @@ function Navbar({ changePage, isLoading, removeCommentsPage }) {
                     <div className="navbar-icon" onClick={(e) => { changePage("profile"); removeCommentsPage(null, null, true, true) }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                     <div className="navbar-icon" id="notif-icn" >
                         <FontAwesomeIcon icon={faBell} className="navbar-icns" onClick={() => { setShowNotif(!showNotif) }} />
-                        {showNotif && <Notifications />}
+                        {showNotif && <Notifications uid={uid} />}
                     </div>
                 </div>
                 {!iscollapsed
