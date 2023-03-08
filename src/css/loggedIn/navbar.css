@@ -202,12 +202,15 @@
     position: absolute;
     top: 60px;
     right: 20px;
-    width: 150px;
-    height: 40px;
+    width: auto;
+    padding: 0 10px;
+    border-radius: 5px;
+    height: 80px;
     color: var(--dark-brown);
     background-color: var(--vintage-white);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     transform: translateX(220px);
     transition: transform 0.2s ease-in-out;
@@ -219,9 +222,25 @@
     transform: translateX(0);
 }
 
-.logout-div h3 {
+.logout-div p {
     margin: 0;
-    font-weight: 400;
+}
+
+.logout-btns {
+    display: flex;
+    column-gap: 10px;
+}
+
+.logout-btns button {
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btns button:nth-child(1) {
+    background-color: var(--pinkish-red);
+    color: var(--vintage-white);
 }
 
 @keyframes gradient {

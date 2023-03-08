@@ -10,7 +10,7 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage }) {
 
     const [iscollapsed, setIsCollapsed] = useState(false)
     const [showNotif, setShowNotif] = useState(false)
-    const [showLogout, setShowLogout] = useState(true)
+    const [showLogout, setShowLogout] = useState(false)
     const checkScreenWidth = () => {
         if (window.innerWidth >= 720) { setIsCollapsed(false) }
         if (window.innerWidth <= 720) { setIsCollapsed(true) }
@@ -52,13 +52,18 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage }) {
 
                 {!iscollapsed
                     ?
-                    <p className="navbar-icns out-icn" onClick={() => { setShowLogout(!showLogout) }} style={{ right: "50px" }} >logout</p>
+                    <p className="navbar-icns out-icn" onClick={() => { setShowLogout(!showLogout) }} style={{ right: "50px" }} >Logout</p>
                     :
                     <FontAwesomeIcon icon={faArrowRightFromBracket} className="navbar-icns out-icn" onClick={logout} style={{ right: "20px", width: "16px" }} />
                 }
 
                 <div className={`logout-div ${showLogout && "show-logout"}`} >
-                    <h3 onClick={logout}>confirm logout ?</h3>
+                    <p >confirm Logout ?</p>
+                    <div className="logout-btns">
+                        <button onClick={logout}>Logout</button>
+                        <button onClick={() => { setShowLogout(false) }}>cancel</button>
+                    </div>
+
                 </div>
             </div>
             <div className="nav-relative">
