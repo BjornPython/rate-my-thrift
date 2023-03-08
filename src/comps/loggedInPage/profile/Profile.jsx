@@ -76,7 +76,7 @@ function Profile({ uid, dpURL, callEditInfo, diffUser }) {
     return (
         <>
             <div className="main-profile">
-                {dpURL
+                {dpURL || uploadedDp
                     ?
                     <img src={croppedDp ? croppedDp : dpURL} className="profile-icn" />
                     :
