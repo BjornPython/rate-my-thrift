@@ -94,8 +94,90 @@
     transition: width 0.5s ease-in-out;
 }
 
+#notif-icn {
+    position: relative;
+}
 
+.notification-page {
+    color: var(--dark-brown);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    border: 1px solid gray;
+    border-radius: 15px;
+    width: 300px;
+    height: 400px;
+    background-color: var(--vintage-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.notification-contents {
+    width: 280px;
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-end;
+    margin-right: 3px;
+}
+
+.notification-contents h3 {
+    margin: 0;
+}
+
+.notifications {
+    margin-top: 15px;
+    height: 350px;
+    overflow-y: auto;
+}
+
+.notifications hr {
+    width: 260px;
+    margin-left: 0;
+}
+
+.notifications::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.notifications::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+.notifications::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.notifications::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-brown); 
+}
+
+.notif {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius:15px;
+  width: 250px;
+  height: 60px;
+  column-gap: 20px;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.notif:hover {
+    background-color: var(--light-gray);
+}
+
+.notif h4 {
+    margin: 0;
+}
 
 @keyframes gradient {
 	0% {
