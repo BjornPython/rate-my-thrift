@@ -37,8 +37,8 @@ export const addNotif = async (userId, initiatorId,  postId, type, dateTime="mar
     console.log("PARAMS: ", userId, initiatorId,  postId, type, dateTime);
     const docRef = doc(notifCollection, userId)
     try {
-      const notifDoc = getDoc(docRef)  
-      if ((await notifDoc).exists()) {
+      const notifDoc = await getDoc(docRef)  
+      if (notifDoc.exists()) {
         console.log("UPDATING DOC...");
         const updatedDoc = await updateDoc(docRef, {
             notifications: arrayUnion({initiatorId,  postId, type, dateTime})

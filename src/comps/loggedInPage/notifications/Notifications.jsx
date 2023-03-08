@@ -19,7 +19,7 @@ function Notifications({ uid }) {
             const notifRef = doc(notifCollection, uid);
             const notifDoc = await getDoc(notifRef)
             if (notifDoc.exists()) {
-                const unsub = onSnapshot(doc(notifCollection, uid), (doc) => { setNotifs(doc.data().notifications) })
+                const unsub = onSnapshot(doc(notifCollection, uid), (doc) => { setNotifs(doc.data().notifications); console.log("ID: ", doc.id); })
             }
         }
         listenNotifs()
@@ -38,7 +38,7 @@ function Notifications({ uid }) {
                 <div className="notifications">
                     <hr />
                     {notifs.length > 0 && notifs.map((notif) => {
-                        return (<><Notification type={notif.type} initiatorId={notif.initiatorId} /> <hr /></>)
+                        return (<><Notification key={notif.id} type={notif.type} initiatorId={notif.initiatorId} /> <hr /></>)
                     })}
                     {/* <button onClick={() => { addNotif("iuid", "uid3", "postId3", "like3", "march3") }}>ADD NOTIF</button> */}
                 </div>
