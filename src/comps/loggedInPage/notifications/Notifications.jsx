@@ -5,7 +5,7 @@ function Notifications({ uid, notifs, showNotif, changeCommentPost }) {
 
 
     const notificationsMemo = useMemo(() => {
-
+        console.log("NOTIFS: ", notifs);
         const notifications = Object.entries(notifs).map((vals) => {
             const notifId = vals[0]
             const notif = vals[1]

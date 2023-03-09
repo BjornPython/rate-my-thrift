@@ -7,12 +7,13 @@ import { getPost } from "../../../apis/firestoreDataQueryFuncs"
 function Notification({ notif, changeCommentPost }) {
 
     const { type, initiatorId, dateTime, postId } = notif
-
     const [initiatorInfo, setInitiatorInfo] = useState({ name: "", dpURL: null })
-
     const { name, dpURL } = initiatorInfo
     const [postInfo, setPostInfo] = useState(null)
-
+    const date = dateTime ? `${dateTime.toDate().toTimeString().split(" ")[0]} ${dateTime.toDate().toDateString()}` : "now"
+    useEffect(() => {
+        console.log("DATETIME: ", notif);
+    }, [])
 
     useEffect(() => {
         const getInfo = async () => {
@@ -44,7 +45,7 @@ function Notification({ notif, changeCommentPost }) {
 
             <div className="notif-content">
                 <h4>{name} {type} your Post</h4>
-                <p>{dateTime.toDate().toTimeString().split(" ")[0]} {dateTime.toDate().toDateString()}</p>
+                <p>{date}</p>
             </div>
 
         </div>

@@ -29,7 +29,6 @@ function CommentsPage({
         }
         userLikes()
         if (dateTime === "" || !dateTime) { return }
-        console.log("DATETIME: ", dateTime.toDate().toDateString());
         setDate(dateTime.toDate().toDateString())
     }, [id])
 
