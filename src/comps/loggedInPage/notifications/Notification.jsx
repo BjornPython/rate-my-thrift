@@ -30,7 +30,6 @@ function Notification({ notif, changeCommentPost }) {
 
     useEffect(() => {
         if (!postInfo) { return }
-        console.log("POST INFO: ", postInfo);
         changeCommentPost(postInfo)
     }, [postInfo])
 
@@ -45,7 +44,7 @@ function Notification({ notif, changeCommentPost }) {
 
             <div className="notif-content">
                 <h4>{name} {type} your Post</h4>
-                <p>feb 20, 2022</p>
+                <p>{dateTime.toDate().toTimeString().split(" ")[0]} {dateTime.toDate().toDateString()}</p>
             </div>
 
         </div>

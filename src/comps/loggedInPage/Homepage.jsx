@@ -44,6 +44,10 @@ function Homepage({ user }) {
         setShowCommentPage(false)
     }, [profilePreviewId])
 
+    useEffect(() => {
+        console.log(commentPost);
+    }, [commentPost])
+
 
     const changePage = (page) => {
         setCurrentPage(page)
@@ -77,8 +81,8 @@ function Homepage({ user }) {
     }
 
     const changeCommentPost = (val) => {
-        setShowCommentPage(true)
-        setCommentPost(val)
+        setCommentPost(prevState => { return { ...prevState, ...val } })
+        if (!showCommentPage) { setShowCommentPage(true) }
     }
 
 
