@@ -12,6 +12,7 @@ function Notification({ type, initiatorId }) {
     useEffect(() => {
         const getInfo = async () => {
             const info = await getUserInfo(initiatorId)
+            console.log("SETTING INFO: ", info);
             setInitiatorInfo(info)
         }
         getInfo()

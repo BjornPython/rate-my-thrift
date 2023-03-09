@@ -95,6 +95,10 @@ function Homepage({ user }) {
         if (id === profilePreviewId) { removeCommentsPage(null, null, true) }
         else { console.log("setting profil id to : ", id); setProfilePreviewId(id) }
     }
+
+    const hideNotifs = () => {
+
+    }
     return (
         <>
             <Navbar uid={uid} currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage} />

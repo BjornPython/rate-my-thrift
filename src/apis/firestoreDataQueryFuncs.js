@@ -36,17 +36,19 @@ export const getPost = async (postId) => {
 export const addNotif = async (userId, initiatorId,  postId, type, dateTime="march") => {
     console.log("PARAMS: ", userId, initiatorId,  postId, type, dateTime);
     const docRef = doc(notifCollection, userId)
+    const notifId = uuidv4()
+
     try {
       const notifDoc = await getDoc(docRef)  
       if (notifDoc.exists()) {
         console.log("UPDATING DOC...");
         const updatedDoc = await updateDoc(docRef, {
-            notifications: arrayUnion({initiatorId,  postId, type, dateTime})
+            [`notifications.${notifId}`]: {initiatorId,  postId, type, dateTime}
         })
       } else {
         console.log("SETTING DOC...");
         const newDoc = await setDoc(docRef, {
-            notifications: [{initiatorId,  postId, type, dateTime}]
+            notifications: {[notifId]: {initiatorId,  postId, type, dateTime}}
         })
       }
     } catch(err) {throw err}

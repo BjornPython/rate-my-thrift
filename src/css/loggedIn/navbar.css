@@ -98,6 +98,7 @@
     position: relative;
 }
 
+
 .notification-page {
     color: var(--dark-brown);
     position: absolute;
@@ -243,6 +244,14 @@
     color: var(--vintage-white);
 }
 
+.new-notif {
+    color: var(--pinkish-red);
+    font-size: 9px;
+    position: absolute;
+    top: 10px;
+    right: 8px;
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -255,10 +264,19 @@
 	}
 }
 
+
+@media (max-width: 850px) {
+       .logo {
+        display: none;
+    } 
+}
+
 @media (max-width: 500px) {
     .navbar-pages {
         width: 250px;
         column-gap: 0;
         justify-content: space-between;
     }
+
+
 }

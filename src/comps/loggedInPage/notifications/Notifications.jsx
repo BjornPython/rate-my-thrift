@@ -6,29 +6,10 @@ import { listenNewNotifs } from "../../../apis/firestoreDataQueryFuncs"
 import { useEffect, useState } from "react"
 import { getDoc, doc } from "firebase/firestore"
 
-function Notifications({ uid }) {
-
-    const r = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-    const [notifs, setNotifs] = useState([])
+function Notifications({ uid, notifs }) {
 
 
-    useEffect(() => {
-        if (!uid) { return }
-        const listenNotifs = async () => {
-            const notifRef = doc(notifCollection, uid);
-            const notifDoc = await getDoc(notifRef)
-            if (notifDoc.exists()) {
-                const unsub = onSnapshot(doc(notifCollection, uid), (doc) => { setNotifs(doc.data().notifications); console.log("ID: ", doc.id); })
-            }
-        }
-        listenNotifs()
-    }, [])
 
-
-    useEffect(() => {
-        console.log("NEW NOTIFS: ", notifs);
-    }, [notifs])
 
 
     return (
@@ -37,8 +18,11 @@ function Notifications({ uid }) {
                 <h3>NOTIFICATIONS</h3>
                 <div className="notifications">
                     <hr />
-                    {notifs.length > 0 && notifs.map((notif) => {
-                        return (<><Notification key={notif.id} type={notif.type} initiatorId={notif.initiatorId} /> <hr /></>)
+                    {Object.entries(notifs).map((vals) => {
+                        const notifId = vals[0]
+                        console.log(notifId);
+                        const notif = vals[1]
+                        return (<div key={notifId}><Notification type={notif.type} initiatorId={notif.initiatorId} /> <hr /></div>)
                     })}
                     {/* <button onClick={() => { addNotif("iuid", "uid3", "postId3", "like3", "march3") }}>ADD NOTIF</button> */}
                 </div>
