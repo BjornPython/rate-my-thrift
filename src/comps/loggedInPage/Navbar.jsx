@@ -53,7 +53,7 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
                     <div className="navbar-icon" id="notif-icn" onClick={
                         () => { changeShowNotif(!showNotif); if (newNotif) { updateNotifSeen(uid, true) } }}  >
                         <FontAwesomeIcon icon={faBell} className="navbar-icns" />
-                        {showNotif && <Notifications uid={uid} notifs={notifs} />}
+                        <Notifications uid={uid} notifs={notifs} showNotif={showNotif} />
                         {newNotif && <FontAwesomeIcon icon={faCircle} className="new-notif" />}
                     </div>
                 </div>
