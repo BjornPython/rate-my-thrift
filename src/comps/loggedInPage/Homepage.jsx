@@ -8,6 +8,8 @@ import CommentsPage from "./comments/CommentsPage"
 import ProfilePage from "./profile/ProfilePage"
 import { useNavigate, useParams } from "react-router-dom"
 import OtherProfile from "./otherProfile/OtherProfile"
+import MessagePage from "./messages/MessagePage"
+
 
 const defaultCommentPost = { id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: "" }
 
@@ -28,7 +30,6 @@ function Homepage({ user }) {
     })
 
     useEffect(() => {
-
         if (!user) {
             navigate("/")
         } else {
@@ -48,33 +49,26 @@ function Homepage({ user }) {
         console.log(commentPost);
     }, [commentPost])
 
-
     const changePage = (page) => {
         setCurrentPage(page)
     }
 
     const handlePostClick = (post, isLiked = false) => {
-        console.log("POST CLICKED");
         setShowCommentPage(!showCommentPage)
         setCommentPost({ ...post, isLiked })
     }
 
     const removeCommentsPage = (wrapperCommentsRef, e, force = false, alsoRemoveProfilePreview = false) => {
         if (alsoRemoveProfilePreview) { removeProfilePreview() }
-
         else if (force) {
             setShowCommentPage(false)
             setTimeout(() => {
-                console.log("SETTING TO DEFAULT");
                 setCommentPost(defaultCommentPost)
             }, 200)
-
         }
         else if (e.target == wrapperCommentsRef.current) {
-
             setShowCommentPage(false)
             setTimeout(() => {
-                console.log("SETTING TO DEFAULT");
                 setCommentPost(defaultCommentPost)
             }, 200)
         }
@@ -127,6 +121,7 @@ function Homepage({ user }) {
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
                 changePostLike={changePostLike} uid={uid} updateProfilePreview={updateProfilePreview} />
 
+            <MessagePage />
         </>
     )
 }
