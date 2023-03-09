@@ -13,6 +13,7 @@ const defaultCommentPost = { id: "", imageUrls: "", title: "", caption: "", date
 
 function Homepage({ user }) {
     const navigate = useNavigate()
+    const [showNotif, setShowNotif] = useState(false)
     const [currentPage, setCurrentPage] = useState("home")
     const [uid, setUid] = useState(null)
     const [isVerified, setIsVerified] = useState(null)
@@ -96,14 +97,15 @@ function Homepage({ user }) {
         else { console.log("setting profil id to : ", id); setProfilePreviewId(id) }
     }
 
-    const hideNotifs = () => {
-
+    const changeShowNotif = (val) => {
+        setShowNotif(val)
     }
     return (
         <>
-            <Navbar uid={uid} currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage} />
+            <Navbar uid={uid} currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage}
+                showNotif={showNotif} changeShowNotif={changeShowNotif} />
 
-            <div className={`homepage ${showCommentPage ? "homepage-blur " : ""}`} >
+            <div className={`homepage ${showCommentPage ? "homepage-blur " : ""}`} onClick={() => { changeShowNotif(false) }} >
                 {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike}
                     changeIsLoading={changeIsLoading} />}
                 {currentPage === "add" && <AddPostPage uid={uid} changePage={changePage} isVerified={isVerified}

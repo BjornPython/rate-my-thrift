@@ -5,6 +5,9 @@ import { addDp } from "../../../apis/firestoreUsersFuncs"
 import DpCropper from "./DpCropper"
 import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
 function Profile({ uid, dpURL, callEditInfo, diffUser }) {
+
+    const [isUploading, setIsUploading] = useState(false)
+
     const [uploadedDp, setUploadedDp] = useState(null)
     const [croppedDp, setCroppedDp] = useState(null)
     const [isEditing, setIsEditing] = useState(false)
@@ -45,6 +48,7 @@ function Profile({ uid, dpURL, callEditInfo, diffUser }) {
         const croppedImageFile = new File([croppedBlob], uploadedDp.name, { type: uploadedDp.type });
         console.log("CROPPED DP: ", croppedImageFile);
         const res = await addDp(croppedImageFile, uid)
+        return res
     }
 
 
@@ -73,6 +77,17 @@ function Profile({ uid, dpURL, callEditInfo, diffUser }) {
         return croppedBlob
     }
 
+    const handleSave = async () => {
+        try {
+            setIsUploading(true)
+            await callEditInfo(nameBioVal);
+            await callAddDp()
+            console.log("SUCCESS");
+            setIsUploading(false)
+        } catch (err) { console.log("FAILED"); }
+    }
+
+
     return (
         <>
             <div className="main-profile">
@@ -90,7 +105,6 @@ function Profile({ uid, dpURL, callEditInfo, diffUser }) {
                             <input id="bio-input" placeholder="just a bio!" name="bio" value={bio} onChange={handleNameBioChange} />
                         </div>
                     )
-
                     :
                     (
                         <div className="profile-n-b">
@@ -109,12 +123,13 @@ function Profile({ uid, dpURL, callEditInfo, diffUser }) {
                                 <label htmlFor="profile-input" className="pic-label">file </label>
                                 <button onClick={() => { setIsCropping(true) }} style={!croppedDp ? { color: "gray" } : {}}>crop</button>
                             </div>
-                            <button onClick={() => { callEditInfo(nameBioVal); callAddDp() }}>save</button>
+                            <button onClick={() => { handleSave() }}>save</button>
                         </div>
 
                         {uploadedDp && isCropping && <DpCropper uploadedDp={uploadedDp} changeIsCropping={changeIsCropping} changeCroppedImage={changeCroppedImage} />}
                     </>
                 }
+                <span className={`profile-loading-icn ${isUploading && "profile-loading-active"}`}></span>
             </div>
 
         </>

@@ -28,6 +28,24 @@
     position: relative;
 }
 
+.profile-loading-icn {
+    width: 0px;
+    height: 5px;
+    background-color: var(--pinkish-red);
+	background: linear-gradient(-45deg, #f32170, #ff6b08,
+    #cf23cf, #eedd44);
+	background-size: 400% 400%;
+	animation: gradient 2s ease infinite;
+    position: absolute;
+    top: -10px;
+    left: 0;
+}
+
+.profile-loading-active {
+    width: 80%;
+    transition: width 0.5s ease-in-out;
+}
+
 .profile-icn {
     width: 100px;
     height: 100px;

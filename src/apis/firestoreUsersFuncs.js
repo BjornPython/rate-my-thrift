@@ -18,13 +18,15 @@ export const addUser = async (uid, email) => {
 }   
 
 export const addDp = async (image, userId) => {
-    const dpURL = await uploadImage(image, userId, false);
+    try {
+            const dpURL = await uploadImage(image, userId, false);
     console.log("DP URL RES: ", dpURL);
     const userDoc = doc(usersCollection, userId)
     console.log("UPDATING USER DOC MERGE IS TRUE...");
     const updatedUserDoc = await setDoc(userDoc, {dpURL}, { merge: true });
     console.log("UPDATED DOC RES: ", updatedUserDoc);
     return updatedUserDoc
+    } catch (err) {throw err}
 }
 
 
@@ -45,6 +47,6 @@ export const editUserInfo = async (userId, newInfo) => {
 console.log("NEW INFO: ", newInfo);
     try {
         await setDoc(userDoc, newInfo, {merge: true})
-
-    } catch(err) {console.log(err);}
+        return true
+    } catch(err) {console.log(err); throw err}
 }

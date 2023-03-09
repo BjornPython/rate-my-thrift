@@ -9,7 +9,6 @@ function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike, startK
 
     const [userInfo, setUserInfo] = useState(null)
     const [dpURL, setDpURL] = useState(null)
-    const [userPosts, setUserPosts] = useState([])
 
     useEffect(() => {
         changeIsLoading(true)
@@ -32,7 +31,11 @@ function ProfilePage({ uid, changeIsLoading, handlePostClick, updateLike, startK
 
 
     const callEditInfo = async (newInfo) => {
-        const res = await editUserInfo(uid, newInfo);
+        try {
+            const res = await editUserInfo(uid, newInfo);
+            return res
+        } catch (err) { throw err }
+
     }
 
     return (

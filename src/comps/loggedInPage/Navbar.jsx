@@ -10,9 +10,9 @@ import { onSnapshot } from "firebase/firestore"
 import { getDoc, doc } from "firebase/firestore"
 
 
-function Navbar({ uid, changePage, isLoading, removeCommentsPage }) {
+function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, changeShowNotif }) {
 
-    const [showNotif, setShowNotif] = useState(false)
+    // const [showNotif, setShowNotif] = useState(false)
     const [newNotif, setNewNotif] = useState(true)
     const [showLogout, setShowLogout] = useState(false)
 
@@ -53,7 +53,7 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage }) {
                     <div className="navbar-icon" onClick={(e) => { changePage("add"); removeCommentsPage(null, null, true, true) }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={(e) => { changePage("profile"); removeCommentsPage(null, null, true, true) }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                     <div className="navbar-icon" id="notif-icn" onClick={() => { setNewNotif(false) }}  >
-                        <FontAwesomeIcon icon={faBell} className="navbar-icns" onClick={() => { setShowNotif(!showNotif) }} />
+                        <FontAwesomeIcon icon={faBell} className="navbar-icns" onClick={() => { changeShowNotif(!showNotif) }} />
                         {showNotif && <Notifications uid={uid} notifs={notifs} />}
                         {newNotif ? <FontAwesomeIcon icon={faCircle} className="new-notif" /> : ""}
                     </div>
