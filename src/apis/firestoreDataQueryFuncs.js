@@ -33,17 +33,16 @@ export const getPost = async (postId) => {
     } catch(err) {console.log(err);}
 }
 
-export const addNotif = async (userId, initiatorId,  postId, type, dateTime="march") => {
-    console.log("PARAMS: ", userId, initiatorId,  postId, type, dateTime);
+export const addNotif = async (userId, initiatorId,  postId, type) => {
     const docRef = doc(notifCollection, userId)
     const notifId = uuidv4()
-
+    const dateTime = updated_at_timestamp
     try {
 
-        console.log("UPDATING DOC...");
         const updatedDoc = await updateDoc(docRef, {
             seen: false, 
             [`notifications.${notifId}`]: {initiatorId,  postId, type, dateTime}
+            
         })
 
         console.log("UPDATED DOC: ", updatedDoc);

@@ -24,7 +24,6 @@ function Notifications({ uid, notifs, showNotif }) {
                 <div className="notifications">
                     <hr />
                     {notificationsMemo}
-                    {/* <button onClick={() => { addNotif("iuid", "uid3", "postId3", "like3", "march3") }}>ADD NOTIF</button> */}
                 </div>
             </div>
 
