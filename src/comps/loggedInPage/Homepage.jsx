@@ -76,6 +76,11 @@ function Homepage({ user }) {
         }
     }
 
+    const changeCommentPost = (val) => {
+        setShowCommentPage(true)
+        setCommentPost(val)
+    }
+
 
     const changePostLike = (postId, isLiked) => {
         setUpdateLike({ key: postId, val: isLiked })
@@ -103,7 +108,7 @@ function Homepage({ user }) {
     return (
         <>
             <Navbar uid={uid} currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage}
-                showNotif={showNotif} changeShowNotif={changeShowNotif} />
+                showNotif={showNotif} changeShowNotif={changeShowNotif} changeCommentPost={changeCommentPost} />
 
             <div className={`homepage ${showCommentPage ? "homepage-blur " : ""}`} onClick={() => { changeShowNotif(false) }} >
                 {currentPage === "home" && <Posts handlePostClick={handlePostClick} uid={uid} updateLike={updateLike}

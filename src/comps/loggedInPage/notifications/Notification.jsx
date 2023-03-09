@@ -2,12 +2,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircle } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
+import { getPost } from "../../../apis/firestoreDataQueryFuncs"
 
-function Notification({ type, initiatorId }) {
+function Notification({ notif, changeCommentPost }) {
 
-    const [initiatorInfo, setInitiatorInfo] = useState({ name: "", dpURL: null, dateTime: "" })
+    const { type, initiatorId, dateTime, postId } = notif
 
-    const { name, dpURL, dateTime } = initiatorInfo
+    const [initiatorInfo, setInitiatorInfo] = useState({ name: "", dpURL: null })
+
+    const { name, dpURL } = initiatorInfo
+    const [postInfo, setPostInfo] = useState(null)
+
 
     useEffect(() => {
         const getInfo = async () => {
@@ -17,8 +22,20 @@ function Notification({ type, initiatorId }) {
         getInfo()
     }, [])
 
+    const handleNotifClick = async () => {
+        const info = await getPost(postId)
+        setPostInfo(info)
+
+    }
+
+    useEffect(() => {
+        if (!postInfo) { return }
+        console.log("POST INFO: ", postInfo);
+        changeCommentPost(postInfo)
+    }, [postInfo])
+
     return (
-        <div className='notif'>
+        <div className='notif' onClick={handleNotifClick}>
             {dpURL
                 ?
                 <img src={dpURL} className="comment-dp notif-img" />

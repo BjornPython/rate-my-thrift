@@ -1,7 +1,7 @@
 import Notification from "./Notification"
 import { useMemo } from "react"
 
-function Notifications({ uid, notifs, showNotif }) {
+function Notifications({ uid, notifs, showNotif, changeCommentPost }) {
 
 
     const notificationsMemo = useMemo(() => {
@@ -9,7 +9,7 @@ function Notifications({ uid, notifs, showNotif }) {
         const notifications = Object.entries(notifs).map((vals) => {
             const notifId = vals[0]
             const notif = vals[1]
-            return (<div key={notifId}><Notification type={notif.type} initiatorId={notif.initiatorId} /> <hr /></div>)
+            return (<div key={notifId}><Notification notif={notif} changeCommentPost={changeCommentPost} /> <hr /></div>)
         })
 
         return notifications

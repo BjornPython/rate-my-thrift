@@ -11,7 +11,7 @@ import { getDoc, doc } from "firebase/firestore"
 import { updateNotifSeen } from "../../apis/firestoreDataQueryFuncs"
 
 
-function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, changeShowNotif }) {
+function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, changeShowNotif, changeCommentPost }) {
 
     // const [showNotif, setShowNotif] = useState(false)
     const [newNotif, setNewNotif] = useState(null)
@@ -53,7 +53,7 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
                     <div className="navbar-icon" id="notif-icn" onClick={
                         () => { changeShowNotif(!showNotif); if (newNotif) { updateNotifSeen(uid, true) } }}  >
                         <FontAwesomeIcon icon={faBell} className="navbar-icns" />
-                        <Notifications uid={uid} notifs={notifs} showNotif={showNotif} />
+                        <Notifications uid={uid} notifs={notifs} showNotif={showNotif} changeCommentPost={changeCommentPost} />
                         {newNotif && <FontAwesomeIcon icon={faCircle} className="new-notif" />}
                     </div>
                 </div>
