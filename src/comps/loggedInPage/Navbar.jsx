@@ -8,12 +8,13 @@ import Notifications from "./notifications/Notifications"
 import { notifCollection } from "../../apis/firebase"
 import { onSnapshot } from "firebase/firestore"
 import { getDoc, doc } from "firebase/firestore"
+import { updateNotifSeen } from "../../apis/firestoreDataQueryFuncs"
 
 
 function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, changeShowNotif }) {
 
     // const [showNotif, setShowNotif] = useState(false)
-    const [newNotif, setNewNotif] = useState(true)
+    const [newNotif, setNewNotif] = useState(null)
     const [showLogout, setShowLogout] = useState(false)
 
     const [notifs, setNotifs] = useState({})
@@ -24,21 +25,18 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
         const listenNotifs = async () => {
             const notifRef = doc(notifCollection, uid);
             const notifDoc = await getDoc(notifRef)
-            if (notifDoc.exists()) {
-                const unsub = onSnapshot(doc(notifCollection, uid), (doc) => {
-                    setNotifs(prevState => {
-                        setNewNotif(true)
-                        return { ...prevState, ...doc.data().notifications }
-                    })
+            const unsub = onSnapshot(doc(notifCollection, uid), (doc) => {
+                setNewNotif(!doc.data().seen)
+                setNotifs(prevState => {
+                    return { ...prevState, ...doc.data().notifications }
                 })
-            }
+            })
         }
         listenNotifs()
     }, [uid])
 
-
     useEffect(() => {
-        console.log("NEW NOTIFS: ", newNotif);
+
     }, [newNotif])
 
     return (
@@ -52,10 +50,11 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
                     <div className="navbar-icon" onClick={(e) => { changePage("home"); removeCommentsPage(null, null, true, true) }}><FontAwesomeIcon icon={faHouse} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={(e) => { changePage("add"); removeCommentsPage(null, null, true, true) }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={(e) => { changePage("profile"); removeCommentsPage(null, null, true, true) }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
-                    <div className="navbar-icon" id="notif-icn" onClick={() => { setNewNotif(false) }}  >
-                        <FontAwesomeIcon icon={faBell} className="navbar-icns" onClick={() => { changeShowNotif(!showNotif) }} />
+                    <div className="navbar-icon" id="notif-icn" onClick={
+                        () => { changeShowNotif(!showNotif); if (newNotif) { updateNotifSeen(uid, true) } }}  >
+                        <FontAwesomeIcon icon={faBell} className="navbar-icns" />
                         {showNotif && <Notifications uid={uid} notifs={notifs} />}
-                        {newNotif ? <FontAwesomeIcon icon={faCircle} className="new-notif" /> : ""}
+                        {newNotif && <FontAwesomeIcon icon={faCircle} className="new-notif" />}
                     </div>
                 </div>
 

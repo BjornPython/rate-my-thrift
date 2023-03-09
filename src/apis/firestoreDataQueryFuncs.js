@@ -39,20 +39,23 @@ export const addNotif = async (userId, initiatorId,  postId, type, dateTime="mar
     const notifId = uuidv4()
 
     try {
-      const notifDoc = await getDoc(docRef)  
-      if (notifDoc.exists()) {
+
         console.log("UPDATING DOC...");
         const updatedDoc = await updateDoc(docRef, {
+            seen: false, 
             [`notifications.${notifId}`]: {initiatorId,  postId, type, dateTime}
         })
-      } else {
-        console.log("SETTING DOC...");
-        const newDoc = await setDoc(docRef, {
-            notifications: {[notifId]: {initiatorId,  postId, type, dateTime}}
-        })
-      }
+
+        console.log("UPDATED DOC: ", updatedDoc);
     } catch(err) {throw err}
-    
+} 
+
+export const updateNotifSeen = async (uid, val) => {
+    const docRef = doc(notifCollection, uid);
+    try {
+        const notifDoc = await updateDoc(docRef, {seen: val})
+        return true
+    } catch (err ) {throw err}
 } 
 
 export const listenNewNotifs = async (uid) => {
@@ -63,8 +66,6 @@ export const listenNewNotifs = async (uid) => {
                 const unsub = onSnapshot(doc(notifCollection, uid), (doc) => {return doc.data()})
         } 
     } catch (err) {throw err}
-
-    
 }
 
 export const addPost = async (userId, caption, imageUrls, title) => {
