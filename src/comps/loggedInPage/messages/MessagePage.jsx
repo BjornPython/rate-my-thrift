@@ -4,7 +4,7 @@ import Chat from './Chat'
 import MessageContents from './MessageContents'
 function MessagePage() {
 
-    const [showMessages, setShowMessages] = useState(false)
+    const [showMessages, setShowMessages] = useState(true)
 
 
     return (

@@ -5,13 +5,13 @@ import
         doc,getDoc, getDocs, setDoc, addDoc, 
         updateDoc, serverTimestamp, increment, 
         deleteField, arrayUnion, arrayRemove, 
-        collection, onSnapshot
+        collection, query, orderBy
     } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { uuidv4 } from "@firebase/util";
 
 
-const updated_at_timestamp = serverTimestamp() // Timestamp for db
+export const updated_at_timestamp = serverTimestamp() // Timestamp for db
 const incrementVal = increment(1); // increments a val
 const decrementVal = increment(-1); // decremenets a val
 
@@ -59,6 +59,13 @@ export const updateNotifSeen = async (uid, val) => {
     } catch (err ) {throw err}
 } 
 
+export const getNotifs = async (uid) => {
+    console.log("UID: ", uid);
+    const colRef = collection(notifCollection, uid, "allNotifications")
+    const q = query(colRef, orderBy("dateTime"))
+    const res = getDocs(q)
+    return res
+}
 
 // adds a post to firebase storage
 export const addPost = async (userId, caption, imageUrls, title) => {

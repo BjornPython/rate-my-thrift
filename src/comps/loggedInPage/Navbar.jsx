@@ -6,9 +6,8 @@ import { useState } from "react"
 import { useEffect } from "react"
 import Notifications from "./notifications/Notifications"
 import { notifCollection } from "../../apis/firebase"
-import { onSnapshot } from "firebase/firestore"
-import { getDoc, doc, collection } from "firebase/firestore"
-import { updateNotifSeen } from "../../apis/firestoreDataQueryFuncs"
+import { doc, collection, query, orderBy, onSnapshot } from "firebase/firestore"
+import { updateNotifSeen, getNotifs } from "../../apis/firestoreDataQueryFuncs"
 
 
 function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, changeShowNotif, changeCommentPost }) {
@@ -22,23 +21,22 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
 
     useEffect(() => {
         if (!uid) { return }
+
         const listenNotifs = async () => {
             const notifRef = collection(notifCollection, uid, "allNotifications");
-            // const notifDoc = await getDoc(notifRef)
-            const unsub = onSnapshot(notifRef, (collection) => {
-                console.log("RECEIVED: ", collection.docs);
-                // setNewNotif(!doc.data().seen)
+            const q = query(notifRef, orderBy("dateTime", "desc"))
+            const unsub = onSnapshot(q, (collection) => {
                 setNotifs(collection.docs)
             })
         }
 
         const listenNotifSeen = async () => {
             const notifRef = doc(notifCollection, uid);
-            // const unsub = onSnapshot(notifRef, (doc) => { console.log("DOC: ", doc.data()); setNewNotif(!doc.data().seen) })
         }
 
         listenNotifs()
         listenNotifSeen()
+
     }, [uid])
 
     useEffect(() => {

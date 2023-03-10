@@ -185,3 +185,23 @@
     color: white;
     margin-right: 10px;
 }
+
+.messages::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.messages::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+.messages::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.messages::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-brown); 
+}

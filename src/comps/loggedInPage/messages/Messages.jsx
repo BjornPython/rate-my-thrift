@@ -20,7 +20,7 @@ function Messages({ }) {
         <div className="messages ">
 
             {messages.map(msg => {
-                return <Message type={msg.type} message={msg.message} />
+                // return <Message type={msg.type} message={msg.message} />
             })}
             {/* <Message /> */}
         </div>
