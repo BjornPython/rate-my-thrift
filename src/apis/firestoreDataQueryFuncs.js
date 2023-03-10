@@ -34,15 +34,18 @@ export const getPost = async (postId) => {
 }
 
 export const addNotif = async (userId, initiatorId,  postId, type) => {
-    const docRef = collection(notifCollection, userId, "allNotifications")
+    const colRef = collection(notifCollection, userId, "allNotifications")
+    const docRef = doc(notifCollection, userId)
     // const notifId = uuidv4()
     const dateTime = updated_at_timestamp
     try {
 
-        const updatedDoc = await addDoc(docRef, {initiatorId,  postId, type, dateTime})
+        const addedNotifDoc = await addDoc(colRef, {initiatorId,  postId, type, dateTime})
 
-        console.log("UPDATED DOC ID: ", updatedDoc.id);
-        return updateDoc.id
+        const updatedNotifDoc = await updateDoc(docRef, {seen: false})
+
+        console.log("UPDATED DOC ID: ", addedNotifDoc.id);
+        return addedNotifDoc.id
     } catch(err) {throw err}
 } 
 

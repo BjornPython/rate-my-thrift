@@ -12,7 +12,6 @@ function Notification({ notif, changeCommentPost }) {
     const [postInfo, setPostInfo] = useState(null)
     const date = dateTime ? `${dateTime.toDate().toTimeString().split(" ")[0]} ${dateTime.toDate().toDateString()}` : "now"
     useEffect(() => {
-        console.log("DATETIME: ", notif);
     }, [])
 
     useEffect(() => {
