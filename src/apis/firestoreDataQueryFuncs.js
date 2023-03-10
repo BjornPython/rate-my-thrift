@@ -18,7 +18,8 @@ const decrementVal = increment(-1); // decremenets a val
 // gets posts
 export const getPosts = async () => {
     try {   
-        const docs = await getDocs(postsCollection)
+        const q = query(postsCollection, orderBy("dateTime", "desc"))
+        const docs = await getDocs(q)
         let posts = []
         docs.forEach(doc => { posts.push({...doc.data(), id: doc.id}); })
         return posts
