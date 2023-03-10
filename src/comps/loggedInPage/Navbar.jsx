@@ -6,9 +6,9 @@ import { useState } from "react"
 import { useEffect } from "react"
 import Notifications from "./notifications/Notifications"
 import { notifCollection } from "../../apis/firebase"
-import { doc, collection, query, orderBy, onSnapshot } from "firebase/firestore"
+import { doc, collection, query, orderBy, onSnapshot, getDoc } from "firebase/firestore"
 import { updateNotifSeen, getNotifs } from "../../apis/firestoreDataQueryFuncs"
-
+import { addUserChat } from "../../apis/firestoreMessageFuncs"
 
 function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, changeShowNotif, changeCommentPost }) {
 
@@ -78,7 +78,10 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
             <div className="nav-relative">
                 <span className={`loading-icn ${isLoading && "loading-icn-50"}`}> <p className="hide"></p></span>
             </div>
-
+            <button onClick={async () => {
+                addUserChat("kiW7VcRf77UIWQ5NKKnWb5XxOoT2", "ryTX8zHk3ZhfuUDkV2SPysz8Zh02")
+                // const res = await getDoc(userChatsCollection)
+            }}>ADD CHAT</button>
         </div>
     )
 }
