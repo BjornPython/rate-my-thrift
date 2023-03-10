@@ -4,6 +4,8 @@ import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 
 function Chat() {
+
+
     return (
         <div className='chat-page'>
             <div className="chat-dp-name">
