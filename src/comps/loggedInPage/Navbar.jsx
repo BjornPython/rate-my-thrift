@@ -69,10 +69,10 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
                     onClick={() => { setShowLogout(!showLogout) }} style={{ right: "20px", width: "16px" }} />
 
                 <div className={`logout-div ${showLogout && "show-logout"}`} >
-                    <p >confirm Logout ?</p>
+                    <p >Confirm Logout ?</p>
                     <div className="logout-btns">
                         <button onClick={logout}>Logout</button>
-                        <button onClick={() => { setShowLogout(false) }}>cancel</button>
+                        <button onClick={() => { setShowLogout(false) }}>Cancel</button>
                     </div>
 
                 </div>
@@ -80,7 +80,6 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
             <div className="nav-relative">
                 <span className={`loading-icn ${isLoading && "loading-icn-50"}`}> <p className="hide"></p></span>
             </div>
-
 
         </div>
     )

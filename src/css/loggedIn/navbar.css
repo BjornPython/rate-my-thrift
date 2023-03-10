@@ -239,8 +239,9 @@
 
 .logout-btns button {
     background-color: transparent;
-    border: 1px solid gray;
+    border: none;
     border-radius: 5px;
+    height: 25px;
     cursor: pointer;
 }
 
@@ -248,6 +249,11 @@
     background-color: var(--pinkish-red);
     color: var(--vintage-white);
 }
+
+.logout-btns button:nth-child(2) {
+    border: 1px solid gray;
+}
+
 
 .new-notif {
     color: var(--pinkish-red);

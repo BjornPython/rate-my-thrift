@@ -87,9 +87,6 @@
 
 
 
-
-
-
 .message-contents::-webkit-scrollbar {
     width: 10px;
 }
@@ -108,4 +105,59 @@
 /* Handle on hover */
 .message-contents::-webkit-scrollbar-thumb:hover {
   background: var(--dark-brown); 
+}
+
+.chat-page {
+        width: 100%;
+        height: 580px;
+        overflow-y: auto;
+        align-self: flex-end;
+        position: relative;
+}
+
+.chat-dp-name {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 20px;
+    color: var(--dark-brown);
+    border-bottom: 1px solid gray;
+}
+
+.chat-dp {
+    margin-left: 10px;
+    font-size: 45px;
+}
+
+.message-input {
+    color: var(--dark-brown);
+    border-top: 1px solid gray;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-input input {
+    width: 280px;
+    height: 20px;
+    margin-left: 10px;
+    background-color: transparent;
+    border: 1px solid gray;
+}
+
+.msg-send-icn {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 475px;
 }
