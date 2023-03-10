@@ -10,26 +10,29 @@ import { useNavigate, useParams } from "react-router-dom"
 import OtherProfile from "./otherProfile/OtherProfile"
 import MessagePage from "./messages/MessagePage"
 
-
+// default val of commentPost
 const defaultCommentPost = { id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: "" }
 
 function Homepage({ user }) {
     const navigate = useNavigate()
-    const [showNotif, setShowNotif] = useState(false)
-    const [currentPage, setCurrentPage] = useState("home")
-    const [uid, setUid] = useState(null)
-    const [isVerified, setIsVerified] = useState(null)
-    const [updateLike, setUpdateLike] = useState(null)
+    const [showNotif, setShowNotif] = useState(false) // If notif window is shown
+    const [currentPage, setCurrentPage] = useState("home") // which page to show
+    const [uid, setUid] = useState(null) // the user's firebase uid
+    const [isVerified, setIsVerified] = useState(null) // if the user is verified
+    const [updateLike, setUpdateLike] = useState(null) // if like should be updated, used for liking post in commentsPage
 
-    const [profilePreviewId, setProfilePreviewId] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
+    const [profilePreviewId, setProfilePreviewId] = useState(null) // The id of another user to display their profile.
+    const [isLoading, setIsLoading] = useState(false) // if the homepage is loading. used to show the loading icn.
 
-    const [showCommentPage, setShowCommentPage] = useState(false)
+    const [showCommentPage, setShowCommentPage] = useState(false) // if comments Page is active
     const [commentPost, setCommentPost] = useState({
         id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: ""
     })
 
+
+
     useEffect(() => {
+        // sets the initial user values when user logs in/ registers
         if (!user) {
             navigate("/")
         } else {
@@ -38,6 +41,7 @@ function Homepage({ user }) {
         }
     }, [user])
 
+    // shows another user's profile
     useEffect(() => {
         if (!profilePreviewId) { return }
         setCurrentPage("other-profile")
@@ -48,15 +52,19 @@ function Homepage({ user }) {
         // console.log(commentPost);
     }, [commentPost])
 
+    // function used to change page.
     const changePage = (page) => {
         setCurrentPage(page)
     }
 
+    // shows the comments page when a post is clicked
     const handlePostClick = (post, isLiked = false) => {
         setShowCommentPage(!showCommentPage)
         setCommentPost({ ...post, isLiked })
     }
 
+
+    // removes comment page depending on conditions
     const removeCommentsPage = (wrapperCommentsRef, e, force = false, alsoRemoveProfilePreview = false) => {
         if (alsoRemoveProfilePreview) { removeProfilePreview() }
         else if (force) {
@@ -73,32 +81,38 @@ function Homepage({ user }) {
         }
     }
 
+    // changes the displayed post on comments page.
     const changeCommentPost = (val) => {
         setCommentPost(prevState => { return { ...prevState, ...val } })
         if (!showCommentPage) { setShowCommentPage(true) }
     }
 
-
+    // used to update whether a post is liked or not from the comments page
     const changePostLike = (postId, isLiked) => {
         setUpdateLike({ key: postId, val: isLiked })
         setCommentPost(prev => { return { ...prev, isLiked } })
     }
 
+
+    // used to update if the page is loading
     const changeIsLoading = (val) => {
         setIsLoading(val)
     }
 
+    // removes the profile preview of another user
     const removeProfilePreview = () => {
         setProfilePreviewId(null)
 
     }
 
+    // updates the profile preview of another user
     const updateProfilePreview = (id) => {
         if (id === uid) { setCurrentPage("profile"); removeCommentsPage(null, null, true) }
         if (id === profilePreviewId) { removeCommentsPage(null, null, true) }
         else { console.log("setting profil id to : ", id); setProfilePreviewId(id) }
     }
 
+    // used to change value of showNotif
     const changeShowNotif = (val) => {
         setShowNotif(val)
     }

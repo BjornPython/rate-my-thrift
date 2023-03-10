@@ -11,10 +11,11 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { uuidv4 } from "@firebase/util";
 
 
-const updated_at_timestamp = serverTimestamp()
-const incrementVal = increment(1);
-const decrementVal = increment(-1);
+const updated_at_timestamp = serverTimestamp() // Timestamp for db
+const incrementVal = increment(1); // increments a val
+const decrementVal = increment(-1); // decremenets a val
 
+// gets posts
 export const getPosts = async () => {
     try {   
         const docs = await getDocs(postsCollection)
@@ -24,7 +25,7 @@ export const getPosts = async () => {
     } catch(err) {console.log(err);}
 }
 
-
+// gets a specific post
 export const getPost = async (postId) => {
     const document = doc(postsCollection, postId)
     try {
@@ -33,10 +34,10 @@ export const getPost = async (postId) => {
     } catch(err) {console.log(err);}
 }
 
+// adds a notif to a user.
 export const addNotif = async (userId, initiatorId,  postId, type) => {
     const colRef = collection(notifCollection, userId, "allNotifications")
     const docRef = doc(notifCollection, userId)
-    // const notifId = uuidv4()
     const dateTime = updated_at_timestamp
     try {
 
@@ -49,6 +50,7 @@ export const addNotif = async (userId, initiatorId,  postId, type) => {
     } catch(err) {throw err}
 } 
 
+// updates if the notification is seen or not.
 export const updateNotifSeen = async (uid, val) => {
     const docRef = doc(notifCollection, uid);
     try {
@@ -57,16 +59,8 @@ export const updateNotifSeen = async (uid, val) => {
     } catch (err ) {throw err}
 } 
 
-export const listenNewNotifs = async (uid) => {
-    try {
-        const notifRef = doc(notifCollection, uid);
-        const notifDoc = await getDoc(notifRef)
-        if (notifDoc.exists()) {
-                const unsub = onSnapshot(doc(notifCollection, uid), (doc) => {return doc.data()})
-        } 
-    } catch (err) {throw err}
-}
 
+// adds a post to firebase storage
 export const addPost = async (userId, caption, imageUrls, title) => {
     try {
         // Add post doc un posts
@@ -87,6 +81,7 @@ export const addPost = async (userId, caption, imageUrls, title) => {
     } catch(err) {console.log(err); throw(err)}
 }
 
+//gets an image from firebase storage
 export const getImages = async (userId, imageName) => {
     try{
             const imageRef = ref(userUploadStorage, `${userId}/userPosts/${imageName}`)
@@ -97,9 +92,8 @@ export const getImages = async (userId, imageName) => {
 }
 
 
-
+// Uploads an image to firebase storage
 export const uploadImage = async (image, userId="userId", post=true) => {
-    console.log("RECEIVED IMAGE JSON: ", image);
     const path = post ? `${userId}/userPosts/${image.name}` : `${userId}/userDp.${image.name.split(".")[1]}`
     try{
         const folderRef = ref(userUploadStorage, path)
@@ -110,6 +104,7 @@ export const uploadImage = async (image, userId="userId", post=true) => {
     catch(err) {console.log(err); throw(err)}
 }
 
+// Uploads a post in firebase. creates new docs in firestore and uploads image to storage
 export const uploadPost = async (userId, title, caption, image) => {
     try {
         console.log("UPLOADING IMAGE...");
@@ -123,6 +118,7 @@ export const uploadPost = async (userId, title, caption, image) => {
     } catch (err) {console.log(err);}
 }
 
+// Gets the imageURL of the Display picture of a user.
 export const getDp = async (imageName, userId) => {
     try{
         let imageRef = ref(userUploadStorage, `${userId}/${imageName}.jpg`)
@@ -136,7 +132,7 @@ export const getDp = async (imageName, userId) => {
 } catch(err) {console.log(err)}
 }
 
-
+// Adds the liker's uid to the post's likes field.
 export const likePost = async (initiatorId, postId, isLiked, userId) => {
     const postLikesDoc = doc(postLikesCollection, postId)
     const documentExists = await getDoc(postLikesDoc);
@@ -161,6 +157,7 @@ export const likePost = async (initiatorId, postId, isLiked, userId) => {
     }
 }
 
+// gets the post's likes
 export const getPostLikes = async (postId) => {
     const postLikesDoc = doc(postLikesCollection, postId)
     const document = await getDoc(postLikesDoc);
@@ -168,6 +165,7 @@ export const getPostLikes = async (postId) => {
 }
 
 
+// Adds a comment to postComments.
 export const addComment = async (userId, postId, content, initiatorId) => {
     console.log("IDl ", userId);
     try {
@@ -196,6 +194,7 @@ export const addComment = async (userId, postId, content, initiatorId) => {
 
 }
 
+// Gets all the comments in a post.
 export const getPostComments = async (postId) => {
     const postCommentDoc = doc(commentsCollection, postId)
     const document = await getDoc(postCommentDoc)
