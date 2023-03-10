@@ -16,7 +16,7 @@ const incrementVal = increment(1);
 const decrementVal = increment(-1);
 
 export const getPosts = async () => {
-    try {
+    try {   
         const docs = await getDocs(postsCollection)
         let posts = []
         docs.forEach(doc => { posts.push({...doc.data(), id: doc.id}); })
@@ -34,18 +34,15 @@ export const getPost = async (postId) => {
 }
 
 export const addNotif = async (userId, initiatorId,  postId, type) => {
-    const docRef = doc(notifCollection, userId)
-    const notifId = uuidv4()
+    const docRef = collection(notifCollection, userId, "allNotifications")
+    // const notifId = uuidv4()
     const dateTime = updated_at_timestamp
     try {
 
-        const updatedDoc = await updateDoc(docRef, {
-            seen: false, 
-            [`notifications.${notifId}`]: {initiatorId,  postId, type, dateTime}
-            
-        })
+        const updatedDoc = await addDoc(docRef, {initiatorId,  postId, type, dateTime})
 
-        console.log("UPDATED DOC: ", updatedDoc);
+        console.log("UPDATED DOC ID: ", updatedDoc.id);
+        return updateDoc.id
     } catch(err) {throw err}
 } 
 

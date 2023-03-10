@@ -7,7 +7,7 @@ import { useEffect } from "react"
 import Notifications from "./notifications/Notifications"
 import { notifCollection } from "../../apis/firebase"
 import { onSnapshot } from "firebase/firestore"
-import { getDoc, doc } from "firebase/firestore"
+import { getDoc, doc, collection } from "firebase/firestore"
 import { updateNotifSeen } from "../../apis/firestoreDataQueryFuncs"
 
 
@@ -17,19 +17,18 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
     const [newNotif, setNewNotif] = useState(null)
     const [showLogout, setShowLogout] = useState(false)
 
-    const [notifs, setNotifs] = useState({})
+    const [notifs, setNotifs] = useState([])
 
 
     useEffect(() => {
         if (!uid) { return }
         const listenNotifs = async () => {
-            const notifRef = doc(notifCollection, uid);
-            const notifDoc = await getDoc(notifRef)
-            const unsub = onSnapshot(doc(notifCollection, uid), (doc) => {
-                setNewNotif(!doc.data().seen)
-                setNotifs(prevState => {
-                    return { ...prevState, ...doc.data().notifications }
-                })
+            const notifRef = collection(notifCollection, uid, "allNotifications");
+            // const notifDoc = await getDoc(notifRef)
+            const unsub = onSnapshot(notifRef, (collection) => {
+                console.log("RECEIVED: ", collection.docs);
+                // setNewNotif(!doc.data().seen)
+                setNotifs(collection.docs)
             })
         }
         listenNotifs()

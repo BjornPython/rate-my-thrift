@@ -6,10 +6,9 @@ function Notifications({ uid, notifs, showNotif, changeCommentPost }) {
 
     const notificationsMemo = useMemo(() => {
         console.log("NOTIFS: ", notifs);
-        const notifications = Object.entries(notifs).map((vals) => {
-            const notifId = vals[0]
-            const notif = vals[1]
-            return (<div key={notifId}><Notification notif={notif} changeCommentPost={changeCommentPost} /> <hr /></div>)
+        const notifications = notifs.map((notif) => {
+            const notifData = notif.data()
+            return (<div key={notif.id}><Notification notif={notifData} changeCommentPost={changeCommentPost} /> <hr /></div>)
         })
 
         return notifications

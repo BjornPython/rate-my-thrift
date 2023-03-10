@@ -40,13 +40,12 @@ function Homepage({ user }) {
 
     useEffect(() => {
         if (!profilePreviewId) { return }
-        console.log("NEW ID: ", profilePreviewId);
         setCurrentPage("other-profile")
         setShowCommentPage(false)
     }, [profilePreviewId])
 
     useEffect(() => {
-        console.log(commentPost);
+        // console.log(commentPost);
     }, [commentPost])
 
     const changePage = (page) => {
