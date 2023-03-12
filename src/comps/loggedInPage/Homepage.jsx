@@ -7,8 +7,9 @@ import AddPostPage from "./AddPost/AddPostPage"
 import CommentsPage from "./comments/CommentsPage"
 import ProfilePage from "./profile/ProfilePage"
 import { useNavigate, useParams } from "react-router-dom"
-import OtherProfile from "./otherProfile/OtherProfile"
 import MessagePage from "./messages/MessagePage"
+import { chatsCollection, userChatsCollection } from "../../apis/firebase"
+import { collection, doc, getDoc, onSnapshot, orderBy, query } from "firebase/firestore"
 
 // default val of commentPost
 const defaultCommentPost = { id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: "" }
@@ -29,19 +30,51 @@ function Homepage({ user }) {
         id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: ""
     })
 
-    const [userChats, setUserChats] = useState([])
-
+    const [listeningChatIds, setListeningChatIds] = useState([])
 
     useEffect(() => {
         // sets the initial user values when user logs in/ registers
         if (!user) {
             navigate("/")
         } else {
-            if (user.uid) { setUid(user.uid) }
+            if (user.uid && user.uid !== uid) { setUid(user.uid) }
             if (user.emailVerified) { setIsVerified(user.emailVerified) }
+
+
 
         }
     }, [user])
+
+
+    useEffect(() => {
+        if (!uid) { return }
+        // Listen to userChatIds changes
+        const getUserChatIds = async () => {
+            console.log("GETTING CHAT IDS...   USER: ", user);
+            const docRef = doc(userChatsCollection, user.uid)
+            // const document = await getDoc(docRef)
+            // setUserChatIds(document.data().chatIds)
+            const unsub = onSnapshot(docRef, (changedDoc) => {
+                const chatIds = changedDoc.data().chatIds
+                // listen to user's chatIds
+                chatIds.forEach((chatId) => {
+                    // if the chat Id is not in the ids that it is already listening, listen to it. 
+                    if (!listeningChatIds.includes(chatId)) {
+                        const chatRef = collection(chatsCollection, chatId, "messages")
+                        const q = query(chatRef)
+                        const chatListener = onSnapshot(q, (res) => {
+                            console.log("NEW CHAT: ", res.docs);
+                            // do someting  
+                        })
+                        setListeningChatIds(prevIds => { return [...prevIds, chatId] })
+                    }
+                })
+            })
+        }
+        getUserChatIds()
+    }, [uid])
+
+
 
     // shows another user's profile
     useEffect(() => {

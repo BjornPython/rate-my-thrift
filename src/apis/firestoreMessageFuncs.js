@@ -4,14 +4,10 @@ import { chatsCollection, userChatsCollection, usersCollection } from "./firebas
 import {updated_at_timestamp} from "./firestoreDataQueryFuncs"
 
 export const addUserChat = async (userId1, userId2) => {
-    console.log(userId1, userId2);
 
     const user1ChatsDocRef = doc(userChatsCollection, userId1);
     const user2ChatsDocRef = doc(userChatsCollection, userId2);
-    const user2 = await getDoc(user2ChatsDocRef);
-    console.log("USER 2 WITH ID: ", userId2, ": ", user2.data());
     const chatId = await createChat(userId1, userId2);
-    console.log("CHATID: ", chatId);
     const updatedUser1Chat = await updateDoc(user1ChatsDocRef, {
         chatIds: arrayUnion(chatId)
     })
