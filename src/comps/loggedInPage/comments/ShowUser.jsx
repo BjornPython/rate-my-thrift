@@ -1,4 +1,4 @@
-import { faCircle } from "@fortawesome/free-solid-svg-icons"
+import { faCircle, faMessage } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState, useEffect } from "react"
 import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
@@ -24,19 +24,20 @@ function ShowUser({ userId, updateProfilePreview }) {
 
 
     return (
-        <div className="comments-user" onClick={() => { updateProfilePreview(userId) }}>
+        <div className="comments-user" >
             {userDp
                 ?
-                <img src={userDp} className="post-user-img" />
-
+                <img src={userDp} className="post-user-img" onClick={() => { updateProfilePreview(userId) }} />
                 :
-                <FontAwesomeIcon icon={faCircle} className="comment-user-icn" />
+                <FontAwesomeIcon icon={faCircle} className="comment-user-icn" onClick={() => { updateProfilePreview(userId) }} />
             }
 
-            <div className="name-bio">
+            <div className="name-bio" onClick={() => { updateProfilePreview(userId) }}>
                 <p>{name}</p>
                 <p>{bio}</p>
             </div>
+
+            <FontAwesomeIcon icon={faMessage} className="cmnt-msg-user" />
         </div>
     )
 }

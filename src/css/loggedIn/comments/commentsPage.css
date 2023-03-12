@@ -98,12 +98,29 @@
 .comments-user {
     display: flex;
     column-gap: 15px;
+    position: relative;
+}
+
+.cmnt-msg-user {
+    font-size: 16px;
+    color: gray;
+    position: absolute;
+    top: 10px;
+    right: 0;
     cursor: pointer;
+}
+
+.cmnt-msg-user:hover {
+    color: var(--dark-brown);
+    transition: all 0.1s ease-in-out;
 }
 
 .comment-user-icn {
     font-size: 45px;
     color: gray;
+}
+.name-bio {
+    cursor: pointer;
 }
 
 .name-bio p{
@@ -223,6 +240,7 @@
 }
 
 .post-user-img {
+    cursor: pointer;
     width: 45px;
     height: 45px;
     border-radius: 50%;
