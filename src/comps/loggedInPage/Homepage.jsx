@@ -31,6 +31,9 @@ function Homepage({ user }) {
     })
 
     const [listeningChatIds, setListeningChatIds] = useState([])
+    const [chatsContents, setChatsContents] = useState({})
+
+
 
     useEffect(() => {
         // sets the initial user values when user logs in/ registers
@@ -39,9 +42,6 @@ function Homepage({ user }) {
         } else {
             if (user.uid && user.uid !== uid) { setUid(user.uid) }
             if (user.emailVerified) { setIsVerified(user.emailVerified) }
-
-
-
         }
     }, [user])
 
@@ -50,30 +50,39 @@ function Homepage({ user }) {
         if (!uid) { return }
         // Listen to userChatIds changes
         const getUserChatIds = async () => {
-            console.log("GETTING CHAT IDS...   USER: ", user);
             const docRef = doc(userChatsCollection, user.uid)
-            // const document = await getDoc(docRef)
-            // setUserChatIds(document.data().chatIds)
+
             const unsub = onSnapshot(docRef, (changedDoc) => {
                 const chatIds = changedDoc.data().chatIds
                 // listen to user's chatIds
                 chatIds.forEach((chatId) => {
                     // if the chat Id is not in the ids that it is already listening, listen to it. 
+                    setChatsContents(prevConts => { return { ...prevConts, [chatId]: { lastMsg: "" } } })
                     if (!listeningChatIds.includes(chatId)) {
                         const chatRef = collection(chatsCollection, chatId, "messages")
                         const q = query(chatRef)
                         const chatListener = onSnapshot(q, (res) => {
                             console.log("NEW CHAT: ", res.docs);
                             // do someting  
+                            setChatsContents(prevConts => {
+                                console.log("DOC DATA: ", res.docs[0].data());
+                                return { ...prevConts, [chatId]: { ...prevConts[chatId], lastMsg: res.docs[0].data().content } }
+                            })
+
                         })
                         setListeningChatIds(prevIds => { return [...prevIds, chatId] })
+
                     }
                 })
             })
+
         }
         getUserChatIds()
     }, [uid])
 
+    useEffect(() => {
+        console.log("CHAT CONTENTS: ", chatsContents);
+    }, [chatsContents])
 
 
     // shows another user's profile
