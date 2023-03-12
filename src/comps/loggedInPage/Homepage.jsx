@@ -29,6 +29,7 @@ function Homepage({ user }) {
         id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: ""
     })
 
+    const [userChats, setUserChats] = useState([])
 
 
     useEffect(() => {
@@ -38,6 +39,7 @@ function Homepage({ user }) {
         } else {
             if (user.uid) { setUid(user.uid) }
             if (user.emailVerified) { setIsVerified(user.emailVerified) }
+
         }
     }, [user])
 
@@ -48,9 +50,9 @@ function Homepage({ user }) {
         setShowCommentPage(false)
     }, [profilePreviewId])
 
-    useEffect(() => {
-        // console.log(commentPost);
-    }, [commentPost])
+
+
+
 
     // function used to change page.
     const changePage = (page) => {
