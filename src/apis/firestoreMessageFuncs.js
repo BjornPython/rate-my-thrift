@@ -21,7 +21,9 @@ export const addUserChat = async (userId1, userId2) => {
 export const createChat = async (userId1, userId2) => {
     const chatDocRef = await addDoc(chatsCollection, {
         participants: [`${userId1}`, `${userId2}`],
-        seen: {[userId1]: false, [userId2]: false}
+        seen: {[userId1]: false, [userId2]: false},
+        lastEdited: updated_at_timestamp,
+        lastMsg: ""
     })
     return chatDocRef.id
 }
@@ -34,6 +36,7 @@ export const addMessage = async (chatId, senderId, content) => {
         senderId,
         dateTime: updated_at_timestamp
     })
+    console.log("RES: ", messageDoc.id);
     return messageDoc.id
 }   
 

@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState, useEffect } from "react"
 import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
 import { addUserChat } from "../../../apis/firestoreMessageFuncs"
+
+
 function ShowUser({ uid, userId, updateProfilePreview }) {
     const [userDp, setUserDp] = useState(null)
     const [userNameBio, setUserNameBio] = useState({ name: "", bio: "" })

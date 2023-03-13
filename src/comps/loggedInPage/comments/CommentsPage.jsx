@@ -51,7 +51,6 @@ function CommentsPage({
     }, [liked, uid])
 
     const callLikePost = async (val) => {
-        console.log("CALLING LIKE POST, UID: ", uid);
         await likePost(uid, id, val, userId)
     }
 
