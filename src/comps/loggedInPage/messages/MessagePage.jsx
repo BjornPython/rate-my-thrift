@@ -3,7 +3,7 @@ import "../../../css/loggedIn/messages/messagePage.css"
 import Chat from './Chat'
 import MessageContents from './MessageContents'
 
-function MessagePage({ sortedChats, chatInfo }) {
+function MessagePage({ uid, sortedChats, chatInfo }) {
 
     const [showMessages, setShowMessages] = useState(true)
 
@@ -13,7 +13,7 @@ function MessagePage({ sortedChats, chatInfo }) {
             <div className="message-header" onClick={() => { setShowMessages(!showMessages) }} >
                 <h3>Messages</h3>
             </div>
-            <MessageContents sortedChats={sortedChats} chatInfo={chatInfo} />
+            <MessageContents uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} />
             {/* <Chat /> */}
         </div>
     )
