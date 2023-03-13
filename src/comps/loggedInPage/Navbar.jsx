@@ -40,7 +40,6 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
     }, [uid])
 
     useEffect(() => {
-        console.log("NEW NOTIF: ", newNotif);
     }, [newNotif])
 
     return (
@@ -55,7 +54,7 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
                     <div className="navbar-icon" onClick={(e) => { changePage("add"); removeCommentsPage(null, null, true, true) }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={(e) => { changePage("profile"); removeCommentsPage(null, null, true, true) }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
                     <div className="navbar-icon" id="notif-icn" onClick={
-                        () => { changeShowNotif(!showNotif); if (newNotif) { console.log("UPDATING NOTIF"); updateNotifSeen(uid, true) } }}  >
+                        () => { changeShowNotif(!showNotif); if (newNotif) { updateNotifSeen(uid, true) } }}  >
                         <FontAwesomeIcon icon={faBell} className="navbar-icns" />
                         <Notifications uid={uid} notifs={notifs} showNotif={showNotif} changeCommentPost={changeCommentPost} />
                         {newNotif && <FontAwesomeIcon icon={faCircle} className="new-notif" />}

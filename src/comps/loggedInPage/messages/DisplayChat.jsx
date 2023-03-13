@@ -12,15 +12,15 @@ function DisplayChat({ uid, chatId, info, changeCurrentChat }) {
     const [lastMsg, setLastMsg] = useState("")
     useEffect(() => {
         const queryChatUserInfo = async () => {
+            console.log("QUERYING");
             const info = await getUserInfo(chatUserId)
             setChatUserInfo(info)
         }
         queryChatUserInfo()
-    }, [chatUserId])
+    }, [uid])
 
     useEffect(() => {
         if (!name) { return }
-        console.log("CHAT U INFO: ", chatUserInfo);
     }, [chatUserInfo])
 
     useEffect(() => {

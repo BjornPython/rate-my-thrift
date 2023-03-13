@@ -13,23 +13,19 @@ function MessagePage({ uid, sortedChats, chatInfo }) {
         setCurrentChat(val)
     }
 
+
     return (
         <div className={`message-page ${showMessages && "message-page-show"}`}>
 
             {!currentChat &&
 
-                <>
-                    <div className="message-header" onClick={() => { setShowMessages(!showMessages) }} >
-                        <h3>Messages</h3>
-                    </div>
+                <div className="message-header" onClick={() => { setShowMessages(!showMessages) }} >
+                    <h3>Messages</h3>
+                </div>
 
-
-
-                    <MessageContents uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} changeCurrentChat={changeCurrentChat} />
-
-
-                </>
             }
+
+            <MessageContents uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} currentChat={currentChat} changeCurrentChat={changeCurrentChat} />
 
             {currentChat && <Chat changeCurrentChat={changeCurrentChat} />}
 

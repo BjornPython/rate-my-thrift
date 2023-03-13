@@ -41,6 +41,9 @@
     margin-right: 3px;
 }
 
+.hide-chats {
+    display: none;
+}
 
 
 .message-preview {
