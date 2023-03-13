@@ -2,8 +2,8 @@ import { faCircle, faMessage } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState, useEffect } from "react"
 import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
-
-function ShowUser({ userId, updateProfilePreview }) {
+import { addUserChat } from "../../../apis/firestoreMessageFuncs"
+function ShowUser({ uid, userId, updateProfilePreview }) {
     const [userDp, setUserDp] = useState(null)
     const [userNameBio, setUserNameBio] = useState({ name: "", bio: "" })
     const { name, bio } = userNameBio
@@ -37,7 +37,7 @@ function ShowUser({ userId, updateProfilePreview }) {
                 <p>{bio}</p>
             </div>
 
-            <FontAwesomeIcon icon={faMessage} className="cmnt-msg-user" />
+            <FontAwesomeIcon icon={faMessage} className="cmnt-msg-user" onClick={() => { addUserChat(uid, userId) }} />
         </div>
     )
 }

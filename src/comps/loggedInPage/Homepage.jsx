@@ -31,8 +31,9 @@ function Homepage({ user }) {
     })
 
     const [listeningChatIds, setListeningChatIds] = useState([])
-    const [chatsContents, setChatsContents] = useState({})
-
+    const [chatInfo, setChatInfo] = useState({}) // Store chat info {participants, seen, lastEdited}
+    const [chatMessagesData, setChatMessagesData] = useState({}) // store chatMessagesData
+    const [sortedChats, setSortedChats] = useState([]) // sorted chats by lastEdited
 
 
     useEffect(() => {
@@ -56,21 +57,28 @@ function Homepage({ user }) {
                 const chatIds = changedDoc.data().chatIds
                 // listen to user's chatIds
                 chatIds.forEach((chatId) => {
-                    // if the chat Id is not in the ids that it is already listening, listen to it. 
-                    setChatsContents(prevConts => { return { ...prevConts, [chatId]: { lastMsg: "" } } })
-                    if (!listeningChatIds.includes(chatId)) {
-                        const chatRef = collection(chatsCollection, chatId, "messages")
-                        const q = query(chatRef)
-                        const chatListener = onSnapshot(q, (res) => {
-                            console.log("NEW CHAT: ", res.docs);
-                            // do someting  
-                            setChatsContents(prevConts => {
-                                console.log("DOC DATA: ", res.docs[0].data());
-                                return { ...prevConts, [chatId]: { ...prevConts[chatId], lastMsg: res.docs[0].data().content } }
-                            })
 
+                    // check if already listening to chatId  
+                    if (!listeningChatIds.includes(chatId)) {
+
+                        // Listen to changes of chat Id document
+                        const chatRef = doc(chatsCollection, chatId)
+                        const chatListener = onSnapshot(chatRef, (chatDoc) => {
+                            setChatInfo(prevState => { return { ...prevState, [chatId]: chatDoc.data() } })
+                        })
+
+                        // Listen to message documents of chat Id
+                        const chatMessagesRef = collection(chatsCollection, chatId, "messages")
+                        const q = query(chatMessagesRef)
+                        const chatMessagesListener = onSnapshot(q, (res) => {
+                            if (res.docs) {
+                                setChatMessagesData(prevConts => {
+                                    return { ...prevConts, [chatId]: { ...prevConts[chatId], messages: res.docs } }
+                                })
+                            }
                         })
                         setListeningChatIds(prevIds => { return [...prevIds, chatId] })
+
 
                     }
                 })
@@ -81,8 +89,21 @@ function Homepage({ user }) {
     }, [uid])
 
     useEffect(() => {
-        console.log("CHAT CONTENTS: ", chatsContents);
-    }, [chatsContents])
+        console.log("CHAT INFO: ", chatInfo);
+        const toSortChats = Object.entries(chatInfo).map(info => {
+            console.log("INFO: ", info);
+            return { chatId: info[0], lastEdited: info[1].lastEdited }
+        })
+
+        toSortChats.sort(function (a, b) {
+            const dateA = new Date(a.lastEdited)
+            const dateB = new Date(b.lastEdited)
+            return dateA - dateB
+        })
+        console.log("SORTED: ", toSortChats);
+
+    }, [chatInfo])
+
 
 
     // shows another user's profile

@@ -73,7 +73,7 @@ function CommentsPage({
                 <div className="comments-contents">
                     <div className="post-contents">
                         <div className="post-info">
-                            <ShowUser userId={userId} updateProfilePreview={updateProfilePreview} />
+                            <ShowUser uid={uid} userId={userId} updateProfilePreview={updateProfilePreview} />
                             <h1 className="comment-title">{title}</h1>
                             <p className="comment-caption">{caption}</p>
                             <p className="comment-date">{date}</p>
