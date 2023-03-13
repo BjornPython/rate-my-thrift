@@ -1,20 +1,7 @@
 import Message from "./Message"
-function Messages({ uid, chatMessages }) {
+function Messages({ uid, chatMessages, sendingMessages }) {
 
-    const messages = [
-        { type: "received", message: "Hey bro whats up?" },
-        { type: "sent", message: "Hey bro whats up?" },
-        { type: "received", message: "Hey bro whats up?" },
-        { type: "sent", message: "Hey bro whats up?" },
-        { type: "received", message: "Hey bro whats up?" },
-        { type: "sent", message: "Hey bro whats up?" },
-        { type: "received", message: "Hey bro whats up?" },
-        { type: "sent", message: "Hey bro whats up?" },
-        { type: "received", message: " Hey bro whats up? Hey bro whats up? Hey bro whats up?" },
-        { type: "sent", message: "Hey bro whats up?" },
-        { type: "received", message: "Hey bro whats up?" },
-        { type: "sent", message: "Hey bro whats up?" },
-    ]
+
 
     return (
         <div className="messages ">
@@ -22,6 +9,11 @@ function Messages({ uid, chatMessages }) {
             {chatMessages.map(msg => {
                 const { senderId, content } = msg.data()
                 return <Message key={msg.id} type={uid === senderId ? "sent" : "received"} message={content} />
+            })}
+
+            {Object.entries(sendingMessages).map(msg => {
+                console.log("MSG: ", msg);
+                return <Message type="sent" message={key[1]} />
             })}
             {/* <Message /> */}
         </div>

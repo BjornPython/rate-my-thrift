@@ -2,18 +2,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { addMessage } from "../../../apis/firestoreMessageFuncs"
-
-function MessageInput({ uid, currentChat }) {
+import uuid from "react-uuid"
+function MessageInput({ uid, currentChat, addSendingMessages, deleteSendingMessages }) {
 
     const [message, setMessage] = useState("")
+
     const handleMsgChange = (e) => {
         setMessage(e.target.value)
     }
 
     const sendMessage = async () => {
-        await addMessage(currentChat, uid, message)
-        if (addMessage) { setMessage("") }
+        // const success = await addMessage(currentChat, uid, message)
+        const msgId = uuid()
+        addSendingMessages(msgId, message)
+        const success = setTimeout(() => {
+            deleteSendingMessages(msgId)
+        }, 1000)
+
+        setMessage("")
+        // if (success) {
+        //     deleteSendingMessages(msgId)
+        // }
     }
+
+
 
 
     return (

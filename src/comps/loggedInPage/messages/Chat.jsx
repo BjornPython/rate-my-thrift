@@ -3,10 +3,12 @@ import { faX, faCircle } from "@fortawesome/free-solid-svg-icons"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { useEffect, useState } from "react"
+import uuid from "react-uuid"
 
 function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
 
     const [chatMessages, setChatMessages] = useState([])
+    const [sendingMessages, setSendingMessages] = useState({})
 
     useEffect(() => {
         if (!currentChat) { return }
@@ -17,6 +19,22 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
         console.log('CHAT MESSAGES: ', chatMessages);
     }, [chatMessages])
 
+    const addSendingMessages = (msgId, message) => {
+        setSendingMessages(prevState => { return { ...prevState, [msgId]: message } })
+    }
+
+    const deleteSendingMessages = (msgId) => {
+        setSendingMessages(prevState => {
+            const newState = { ...prevState }
+            delete newState[msgId]
+            return newState
+        })
+    }
+
+    useEffect(() => {
+        console.log("SENDING MESSAGES: ", sendingMessages);
+    }, [sendingMessages])
+
     return (
         <div className='chat-page'>
             <div className="chat-dp-name">
@@ -24,8 +42,8 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
                 <h4>Nathan Flores</h4>
                 <FontAwesomeIcon icon={faX} className="ex-icn" onClick={() => { changeCurrentChat(null) }} />
             </div>
-            <Messages uid={uid} chatMessages={chatMessages} />
-            <MessageInput uid={uid} currentChat={currentChat} />
+            <Messages uid={uid} chatMessages={chatMessages} sendingMessages={sendingMessages} />
+            <MessageInput uid={uid} currentChat={currentChat} addSendingMessages={addSendingMessages} deleteSendingMessages={deleteSendingMessages} />
         </div>
     )
 }
