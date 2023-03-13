@@ -11,7 +11,7 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
 
     useEffect(() => {
         if (!currentChat) { return }
-        setChatMessages(chatMessagesData[currentChat].messages)
+        setChatMessages(chatMessagesData[currentChat.chatId].messages)
     }, [chatMessagesData])
 
     useEffect(() => {
@@ -34,11 +34,15 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
         console.log("SENDING MESSAGES: ", sendingMessages);
     }, [sendingMessages])
 
+    useEffect(() => {
+        console.log("CURRENT CHAT: ", currentChat);
+    }, [currentChat])
+
     return (
         <div className='chat-page'>
             <div className="chat-dp-name">
-                <FontAwesomeIcon icon={faCircle} className="chat-dp" />
-                <h4>Nathan Flores</h4>
+                {currentChat.dpURL ? <img src={currentChat.dpURL} alt="" className="chat-dp" /> : <FontAwesomeIcon icon={faCircle} className="chat-dp" />}
+                <h4>{currentChat.name ? currentChat.name : "..."}</h4>
                 <FontAwesomeIcon icon={faX} className="ex-icn" onClick={() => { changeCurrentChat(null) }} />
             </div>
             <Messages uid={uid} chatMessages={chatMessages} sendingMessages={sendingMessages} />

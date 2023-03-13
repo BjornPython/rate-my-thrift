@@ -143,6 +143,9 @@
 .chat-dp {
     margin-left: 10px;
     font-size: 45px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }
 
 .message-input {
