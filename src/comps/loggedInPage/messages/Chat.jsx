@@ -3,7 +3,6 @@ import { faX, faCircle } from "@fortawesome/free-solid-svg-icons"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { useEffect, useState } from "react"
-import uuid from "react-uuid"
 
 function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
 

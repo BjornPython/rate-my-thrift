@@ -13,7 +13,7 @@ function Messages({ uid, chatMessages, sendingMessages }) {
 
             {Object.entries(sendingMessages).map(msg => {
                 console.log("MSG: ", msg);
-                return <Message type="sent" message={key[1]} />
+                return <Message key={msg[0]} type="sent" message={msg[1]} isSending={true} />
             })}
             {/* <Message /> */}
         </div>
