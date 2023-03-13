@@ -3,7 +3,7 @@ import "../../../css/loggedIn/messages/messagePage.css"
 import Chat from './Chat'
 import MessageContents from './MessageContents'
 
-function MessagePage({ uid, sortedChats, chatInfo }) {
+function MessagePage({ uid, sortedChats, chatInfo, chatMessagesData }) {
 
     const [showMessages, setShowMessages] = useState(true)
 
@@ -27,7 +27,7 @@ function MessagePage({ uid, sortedChats, chatInfo }) {
 
             <MessageContents uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} currentChat={currentChat} changeCurrentChat={changeCurrentChat} />
 
-            {currentChat && <Chat changeCurrentChat={changeCurrentChat} />}
+            {currentChat && <Chat uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat} chatMessagesData={chatMessagesData} />}
 
         </div>
     )

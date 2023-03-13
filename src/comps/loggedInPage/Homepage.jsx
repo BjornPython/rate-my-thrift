@@ -200,7 +200,7 @@ function Homepage({ user }) {
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
                 changePostLike={changePostLike} uid={uid} updateProfilePreview={updateProfilePreview} />
 
-            <MessagePage uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} />
+            <MessagePage uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} chatMessagesData={chatMessagesData} />
         </>
     )
 }

@@ -1,5 +1,5 @@
 import Message from "./Message"
-function Messages({ }) {
+function Messages({ uid, chatMessages }) {
 
     const messages = [
         { type: "received", message: "Hey bro whats up?" },
@@ -19,8 +19,9 @@ function Messages({ }) {
     return (
         <div className="messages ">
 
-            {messages.map(msg => {
-                // return <Message type={msg.type} message={msg.message} />
+            {chatMessages.map(msg => {
+                const { senderId, content } = msg.data()
+                return <Message key={msg.id} type={uid === senderId ? "sent" : "received"} message={content} />
             })}
             {/* <Message /> */}
         </div>

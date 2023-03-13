@@ -81,7 +81,7 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
                 addUserChat("kiW7VcRf77UIWQ5NKKnWb5XxOoT2", "ryTX8zHk3ZhfuUDkV2SPysz8Zh02")
             }}>ADD CHAT</button>
             <button onClick={async () => {
-                addMessage("2QuvGxXTu9FGG2qGb0YH", uid, "test add msg")
+                addMessage("test", uid, "new message")
             }}>ADD MSG</button> */}
         </div>
     )

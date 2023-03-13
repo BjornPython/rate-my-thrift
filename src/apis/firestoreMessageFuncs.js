@@ -36,6 +36,11 @@ export const addMessage = async (chatId, senderId, content) => {
         senderId,
         dateTime: updated_at_timestamp
     })
+
+    if (messageDoc.id) {
+        const chatsDoc = doc(chatsCollection, chatId)
+        const updatedDoc = await updateDoc(chatsDoc, {lastMsg: content})
+    }
     console.log("RES: ", messageDoc.id);
     return messageDoc.id
 }   

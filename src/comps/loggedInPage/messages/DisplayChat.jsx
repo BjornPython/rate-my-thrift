@@ -29,7 +29,7 @@ function DisplayChat({ uid, chatId, info, changeCurrentChat }) {
     }, [info])
 
     return (
-        <div className="message-preview" onClick={() => { changeCurrentChat(true) }}>
+        <div className="message-preview" onClick={() => { changeCurrentChat(chatId) }}>
             {dpURL ? <img src={dpURL} className="msg-icn" /> : <FontAwesomeIcon icon={faCircle} className="msg-icn" />}
             <div className="message-content">
                 <h4>{name ? name : "Name"}</h4>
