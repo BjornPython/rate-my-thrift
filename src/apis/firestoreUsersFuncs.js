@@ -5,6 +5,8 @@ import { uploadImage } from "./firestoreDataQueryFuncs";
 export const addUser = async (uid, email) => {
     const userDoc = doc(usersCollection, uid)  
     console.log("SETTING DOC...");
+    const user = await getDoc(userDoc)
+    if (user.exists()) {return}
     const newUser = await setDoc(userDoc, {
         name: email,
         dpURL: null,

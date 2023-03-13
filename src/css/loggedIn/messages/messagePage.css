@@ -142,7 +142,6 @@
     color: var(--dark-brown);
     border-bottom: 1px solid gray;
     position: relative;
-    cursor: pointer;
 }
 .chat-name {
     width: 100%;
@@ -152,6 +151,11 @@
 
 .min-chat {
     height: 40px;
+    cursor: pointer;
+}
+
+.min-chat:hover {
+    background-color: var(--light-gray);
 }
 
 .ex-icn {
