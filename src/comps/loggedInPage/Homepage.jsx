@@ -101,6 +101,7 @@ function Homepage({ user }) {
             return dateA - dateB
         })
         console.log("SORTED: ", toSortChats);
+        setSortedChats(toSortChats)
 
     }, [chatInfo])
 
