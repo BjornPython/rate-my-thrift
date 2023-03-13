@@ -53,9 +53,9 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
                     <div className="navbar-icon" onClick={(e) => { changePage("home"); removeCommentsPage(null, null, true, true) }}><FontAwesomeIcon icon={faHouse} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={(e) => { changePage("add"); removeCommentsPage(null, null, true, true) }}><FontAwesomeIcon icon={faCirclePlus} className="navbar-icns" /></div>
                     <div className="navbar-icon" onClick={(e) => { changePage("profile"); removeCommentsPage(null, null, true, true) }} ><FontAwesomeIcon icon={faUser} className="navbar-icns" /></div>
-                    <div className="navbar-icon" id="notif-icn" onClick={
-                        () => { changeShowNotif(!showNotif); if (newNotif) { updateNotifSeen(uid, true) } }}  >
-                        <FontAwesomeIcon icon={faBell} className="navbar-icns" />
+                    <div className="navbar-icon" id="notif-icn"   >
+                        <FontAwesomeIcon icon={faBell} className="navbar-icns" onClick={
+                            () => { changeShowNotif(!showNotif); if (newNotif) { updateNotifSeen(uid, true) } }} />
                         <Notifications uid={uid} notifs={notifs} showNotif={showNotif} changeCommentPost={changeCommentPost} />
                         {newNotif && <FontAwesomeIcon icon={faCircle} className="new-notif" />}
                     </div>

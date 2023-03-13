@@ -23,10 +23,20 @@
 
 .message-header {
     cursor: pointer;
-    width: 90%;
+    width: 100%;
     height: auto;
     text-align: center;
     border-bottom: 1px solid gray;
+
+}
+
+.message-header-active {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.message-header:hover {
+    background-color: var(--light-gray);
 }
 
 .message-header h3 {
@@ -34,8 +44,9 @@
 }
 
 .message-contents {
+    padding-top: 10px;
     width: 330px;
-    height: 540px;
+    height: 530px;
     overflow-y: auto;
     align-self: flex-end;
     margin-right: 3px;
@@ -233,3 +244,4 @@
 .messages::-webkit-scrollbar-thumb:hover {
   background: var(--dark-brown); 
 }
+

@@ -19,7 +19,7 @@ function MessagePage({ uid, sortedChats, chatInfo, chatMessagesData }) {
 
             {!currentChat &&
 
-                <div className="message-header" onClick={() => { setShowMessages(!showMessages) }} >
+                <div className={`message-header ${showMessages && "message-header-active"}`} onClick={() => { setShowMessages(!showMessages) }} >
                     <h3>Messages</h3>
                 </div>
 
