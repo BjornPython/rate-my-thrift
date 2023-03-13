@@ -42,7 +42,7 @@ function Register() {
     }
 
     return (
-        <div className="log-in-container" style={{ height: "480px" }}>
+        <div className="log-in-container" style={{ height: "440px" }}>
             <img src={logo} alt="" className='log-in-logo' />
 
             <div className="log-in-inputs">

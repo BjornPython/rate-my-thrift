@@ -29,14 +29,16 @@ export const createChat = async (userId1, userId2) => {
 }
 
 export const addMessage = async (chatId, senderId, content) => {
+    console.log("RECEIVED: ", chatId, senderId, content);
+
     const messageDocRef = collection(chatsCollection, chatId, "messages")
-    
+    console.log("REF: ", messageDocRef);
     const messageDoc = await addDoc(messageDocRef, {
         content,
         senderId,
         dateTime: updated_at_timestamp
     })
-
+    console.log("MSGDOC RES: ", messageDocRef);
     if (messageDoc.id) {
         const chatsDoc = doc(chatsCollection, chatId)
         const updatedDoc = await updateDoc(chatsDoc, {lastMsg: content})

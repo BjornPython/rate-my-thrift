@@ -71,6 +71,7 @@
 }
 
 .log-in-sign-up {
+    height: 45px;
     border-radius: 15px;
     border: 1px solid gray;
     margin-top: 15px;   

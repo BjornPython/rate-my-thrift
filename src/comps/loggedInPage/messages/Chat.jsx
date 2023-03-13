@@ -30,9 +30,7 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeSho
         })
     }
 
-    useEffect(() => {
-        console.log("SENDING MESSAGES: ", sendingMessages);
-    }, [sendingMessages])
+
 
     useEffect(() => {
         console.log("CURRENT CHAT: ", currentChat);
