@@ -126,6 +126,15 @@
     column-gap: 20px;
     color: var(--dark-brown);
     border-bottom: 1px solid gray;
+    position: relative;
+}
+
+.ex-icn {
+    font-size: 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 25px;
+    right: 20px;
 }
 
 .chat-dp {

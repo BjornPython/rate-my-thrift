@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircle } from "@fortawesome/free-solid-svg-icons"
+import { faX, faCircle } from "@fortawesome/free-solid-svg-icons"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 
-function Chat() {
+function Chat({ changeCurrentChat }) {
 
 
     return (
@@ -11,6 +11,7 @@ function Chat() {
             <div className="chat-dp-name">
                 <FontAwesomeIcon icon={faCircle} className="chat-dp" />
                 <h4>Nathan Flores</h4>
+                <FontAwesomeIcon icon={faX} className="ex-icn" onClick={() => { changeCurrentChat(null) }} />
             </div>
             <Messages />
             <MessageInput />

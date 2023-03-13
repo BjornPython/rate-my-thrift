@@ -78,12 +78,12 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
             <div className="nav-relative">
                 <span className={`loading-icn ${isLoading && "loading-icn-50"}`}> <p className="hide"></p></span>
             </div>
-            <button onClick={async () => {
+            {/* <button onClick={async () => {
                 addUserChat("kiW7VcRf77UIWQ5NKKnWb5XxOoT2", "ryTX8zHk3ZhfuUDkV2SPysz8Zh02")
             }}>ADD CHAT</button>
             <button onClick={async () => {
                 addMessage("2QuvGxXTu9FGG2qGb0YH", uid, "test add msg")
-            }}>ADD MSG</button>
+            }}>ADD MSG</button> */}
         </div>
     )
 }
