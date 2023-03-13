@@ -14,7 +14,7 @@ function DisplayChat({ uid, chatId, info, changeCurrentChat }) {
         const queryChatUserInfo = async () => {
             console.log("QUERYING");
             const info = await getUserInfo(chatUserId)
-            setChatUserInfo(info)
+            if (info) { setChatUserInfo(info) }
         }
         queryChatUserInfo()
     }, [uid])
@@ -32,7 +32,7 @@ function DisplayChat({ uid, chatId, info, changeCurrentChat }) {
         <div className="message-preview" onClick={() => { changeCurrentChat(true) }}>
             {dpURL ? <img src={dpURL} className="msg-icn" /> : <FontAwesomeIcon icon={faCircle} className="msg-icn" />}
             <div className="message-content">
-                <h4>{name}</h4>
+                <h4>{name ? name : "Name"}</h4>
                 <p>{lastMsg !== "" ? lastMsg : `message ${name}`}</p>
             </div>
         </div>
