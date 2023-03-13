@@ -69,7 +69,7 @@ function Homepage({ user }) {
 
                         // Listen to message documents of chat Id
                         const chatMessagesRef = collection(chatsCollection, chatId, "messages")
-                        const q = query(chatMessagesRef)
+                        const q = query(chatMessagesRef, orderBy("dateTime"))
                         const chatMessagesListener = onSnapshot(q, (res) => {
                             if (res.docs) {
                                 setChatMessagesData(prevConts => {

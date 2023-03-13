@@ -25,7 +25,7 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
                 <FontAwesomeIcon icon={faX} className="ex-icn" onClick={() => { changeCurrentChat(null) }} />
             </div>
             <Messages uid={uid} chatMessages={chatMessages} />
-            <MessageInput />
+            <MessageInput uid={uid} currentChat={currentChat} />
         </div>
     )
 }
