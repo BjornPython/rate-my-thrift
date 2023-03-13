@@ -32,6 +32,9 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
 
         const listenNotifSeen = async () => {
             const notifRef = doc(notifCollection, uid);
+            const notifSeenListener = onSnapshot(notifRef, (doc) => {
+                setNewNotif(!doc.data().seen)
+            })
         }
 
         listenNotifs()
@@ -40,7 +43,8 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
     }, [uid])
 
     useEffect(() => {
-    }, [newNotif])
+        console.log("CURRENT SHOW NOTIF: ", showNotif);
+    }, [showNotif])
 
     return (
         <div className="navbar">
@@ -57,7 +61,7 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
                         <FontAwesomeIcon icon={faBell} className="navbar-icns" onClick={
                             () => { changeShowNotif(!showNotif); if (newNotif) { updateNotifSeen(uid, true) } }} />
                         <Notifications uid={uid} notifs={notifs} showNotif={showNotif} changeCommentPost={changeCommentPost} />
-                        {newNotif && <FontAwesomeIcon icon={faCircle} className="new-notif" />}
+                        {newNotif && !showNotif && <FontAwesomeIcon icon={faCircle} className="new-notif" />}
                     </div>
                 </div>
 
