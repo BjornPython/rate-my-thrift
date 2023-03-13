@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faX, faCircle } from "@fortawesome/free-solid-svg-icons"
+import { faX, faChevronDown, faCircle } from "@fortawesome/free-solid-svg-icons"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { useEffect, useState } from "react"
 
-function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
+function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeShowMessages, showMessages }) {
 
     const [chatMessages, setChatMessages] = useState([])
     const [sendingMessages, setSendingMessages] = useState({})
@@ -40,10 +40,27 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData }) {
 
     return (
         <div className='chat-page'>
-            <div className="chat-dp-name">
-                {currentChat.dpURL ? <img src={currentChat.dpURL} alt="" className="chat-dp" /> : <FontAwesomeIcon icon={faCircle} className="chat-dp" />}
-                <h4>{currentChat.name ? currentChat.name : "..."}</h4>
-                <FontAwesomeIcon icon={faX} className="ex-icn" onClick={() => { changeCurrentChat(null) }} />
+            <div className={`chat-dp-name ${!showMessages && "min-chat"}`}
+                onClick={() => { if (!showMessages) { changeShowMessages(true) } }}>
+
+                {currentChat.dpURL
+                    ?
+                    <img src={currentChat.dpURL} alt="" className={`chat-dp ${!showMessages && "hide-chat-icns"}`} />
+                    :
+                    <FontAwesomeIcon icon={faCircle} className={`chat-dp ${!showMessages && "hide-chat-icns"}`} />
+                }
+                <h4 className={`${!showMessages && "chat-name"}`}>
+                    {currentChat.name ? currentChat.name : "..."}
+                </h4>
+
+                <FontAwesomeIcon icon={faChevronDown}
+                    className={`hide-icn ${!showMessages && "hide-chat-icns"}`}
+                    onClick={() => { changeShowMessages(null) }} />
+
+                <FontAwesomeIcon icon={faX}
+                    className={`ex-icn ${!showMessages && "hide-chat-icns"}`}
+                    onClick={() => { changeCurrentChat(false); }} />
+
             </div>
             <Messages uid={uid} chatMessages={chatMessages} sendingMessages={sendingMessages} />
             <MessageInput uid={uid} currentChat={currentChat} addSendingMessages={addSendingMessages} deleteSendingMessages={deleteSendingMessages} />

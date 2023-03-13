@@ -13,6 +13,9 @@ function MessagePage({ uid, sortedChats, chatInfo, chatMessagesData }) {
         setCurrentChat(val)
     }
 
+    const changeShowMessages = (val) => {
+        setShowMessages(val)
+    }
 
     return (
         <div className={`message-page ${showMessages && "message-page-show"}`}>
@@ -27,7 +30,8 @@ function MessagePage({ uid, sortedChats, chatInfo, chatMessagesData }) {
 
             <MessageContents uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} currentChat={currentChat} changeCurrentChat={changeCurrentChat} />
 
-            {currentChat && <Chat uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat} chatMessagesData={chatMessagesData} />}
+            {currentChat && <Chat uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat}
+                chatMessagesData={chatMessagesData} showMessages={showMessages} changeShowMessages={changeShowMessages} />}
 
         </div>
     )
