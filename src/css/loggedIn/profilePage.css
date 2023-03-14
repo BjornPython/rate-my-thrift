@@ -200,7 +200,7 @@
 
 @media (max-width: 500px) {
     .main-profile {
-        width: 350px;
+        width: 300px;
         height: 120px;
     }
     .profile-page hr {

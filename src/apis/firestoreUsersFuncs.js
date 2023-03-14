@@ -15,7 +15,7 @@ export const addUser = async (uid, email) => {
         posts: []
     })
     const userNotifRef = doc(notifCollection, uid)
-    const newNotif = await setDoc(userNotifRef, {seen: false, notifications: []})
+    const newNotif = await setDoc(userNotifRef, {seen: true})
     console.log("NEW USER: ", newUser);
 }   
 

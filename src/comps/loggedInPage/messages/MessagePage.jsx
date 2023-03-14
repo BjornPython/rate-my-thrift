@@ -5,7 +5,7 @@ import MessageContents from './MessageContents'
 
 function MessagePage({ uid, sortedChats, chatInfo, chatMessagesData }) {
 
-    const [showMessages, setShowMessages] = useState(true)
+    const [showMessages, setShowMessages] = useState(false)
 
     const [currentChat, setCurrentChat] = useState(null)
 

@@ -50,7 +50,7 @@ function Navbar({ uid, changePage, isLoading, removeCommentsPage, showNotif, cha
         <div className="navbar">
 
             <div className="navbar-contents">
-                <h1 className="logo">Rate my Thrifts</h1>
+                <h1 className="logo">rate my Thrifts</h1>
 
 
                 <div className="navbar-pages">
