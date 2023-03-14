@@ -171,6 +171,7 @@
     background-color: transparent;
     margin-bottom: 10px;
     margin-right: 6px;
+    cursor: pointer;
 }
 
 .dp-cropper {

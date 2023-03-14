@@ -29,10 +29,11 @@ function Login() {
     }
 
     const handleLogIn = async () => {
+        if (email === "" || password === "") { setShowError("Please fill all fields.") }
+
         try {
             await loginWithEmailPass(email, password)
         } catch (err) {
-            // console.log("IN CLIENT", err.split(":")[2].split("/")[1]); 
             const error = err.message.split("/")[1]
             console.log("IN CLIENT", error.slice(0, error.length - 2));
             setShowError(`login Failed, ${error.slice(0, error.length - 2)}`)
@@ -41,11 +42,14 @@ function Login() {
 
     return (
         <div className="log-in-container" style={{ height: "395px" }}>
-            <img src={logo} alt="" className='log-in-logo' />
+            <div className="logo-div">
+                <h1 id='less-logo' >rate my</h1>
+                <h1 id='log-in-logo' >THRIFTS</h1>
+            </div>
 
             <div className="log-in-inputs">
                 <input type="text" placeholder='email' name="email" value={email} onChange={handleLoginChange} />
-                <input type="text" placeholder='password' name="password" value={password} onChange={handleLoginChange} />
+                <input type="password" placeholder='password' name="password" value={password} onChange={handleLoginChange} />
             </div>
 
             <button className='log-in-btn' onClick={handleLogIn} >Sign In</button>

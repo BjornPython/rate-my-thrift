@@ -36,19 +36,23 @@ function Register() {
         } catch (err) {
             console.log(err.message);
             const error = err.message.split("/")[1]
-            setShowError(`login Failed, ${error.slice(0, error.length - 2)}`)
+            setShowError(`Register Failed, ${error.slice(0, error.length - 2)}`)
 
         }
     }
 
     return (
         <div className="log-in-container" style={{ height: "440px" }}>
-            <img src={logo} alt="" className='log-in-logo' />
+            <div className="logo-div">
+                <h1 id='less-logo' >rate my</h1>
+                <h1 id='log-in-logo' >THRIFTS</h1>
+            </div>
+
 
             <div className="log-in-inputs">
                 <input type="text" placeholder='email' name="email" value={email} onChange={handleRegisterChange} />
-                <input type="text" placeholder='password' name="password" value={password} onChange={handleRegisterChange} />
-                <input type="text" placeholder='confirm password' name="cpassword" value={cpassword} onChange={handleRegisterChange} />
+                <input type="password" placeholder='password' name="password" value={password} onChange={handleRegisterChange} />
+                <input type="password" placeholder='confirm password' name="cpassword" value={cpassword} onChange={handleRegisterChange} />
             </div>
 
             <button className='log-in-btn' onClick={handleSignUp}>Sign up</button>

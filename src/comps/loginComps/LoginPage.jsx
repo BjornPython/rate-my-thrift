@@ -26,9 +26,9 @@ function LoginPage({ user }) {
             <div className="login-contents">
 
                 <div className="demo">
-                    <h1>FIND </h1>
+                    <h1>find </h1>
                     <h1 id='demo-focus'>INSPIRATION</h1>
-                    <h1>FOR YOUR FASHION</h1>
+                    <h1>for your next <br /> fashion</h1>
                     <hr />
                 </div>
 
