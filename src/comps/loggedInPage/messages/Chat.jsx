@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faX, faChevronDown, faCircle } from "@fortawesome/free-solid-svg-icons"
+import { faX, faMinus, faCircle } from "@fortawesome/free-solid-svg-icons"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { useEffect, useState } from "react"
@@ -51,7 +51,7 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeSho
                     {currentChat.name ? currentChat.name : "..."}
                 </h4>
 
-                <FontAwesomeIcon icon={faChevronDown}
+                <FontAwesomeIcon icon={faMinus}
                     className={`hide-icn ${!showMessages && "hide-chat-icns"}`}
                     onClick={() => { changeShowMessages(null) }} />
 

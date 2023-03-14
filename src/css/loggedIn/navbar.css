@@ -280,6 +280,17 @@
        .logo {
         display: none;
     } 
+
+    .notification-page {
+        left: -100px;
+    }
+}
+
+@media (max-width: 650px) {
+
+ .notification-page {
+     left: -180px;
+ }
 }
 
 @media (max-width: 500px) {
@@ -287,6 +298,15 @@
         width: 250px;
         column-gap: 0;
         justify-content: space-between;
+    }
+
+
+}
+
+
+@media (max-width: 450px) {
+    .notification-page {
+        left: -220px;
     }
 
 
