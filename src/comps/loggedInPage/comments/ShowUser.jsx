@@ -24,6 +24,16 @@ function ShowUser({ uid, userId, updateProfilePreview }) {
         userInfo()
     }, [userId])
 
+    const handleMessageUser = async () => {
+        try {
+            await addUserChat(uid, userId)
+        } catch (err) {
+            if (err === "already has chat") {
+                console.log("WILL OPEN CHAT..");
+            }
+        }
+
+    }
 
     return (
         <div className="comments-user" >
@@ -39,7 +49,7 @@ function ShowUser({ uid, userId, updateProfilePreview }) {
                 <p>{bio}</p>
             </div>
 
-            <FontAwesomeIcon icon={faMessage} className="cmnt-msg-user" onClick={() => { addUserChat(uid, userId) }} />
+            <FontAwesomeIcon icon={faMessage} className="cmnt-msg-user" onClick={() => { handleMessageUser() }} />
         </div>
     )
 }

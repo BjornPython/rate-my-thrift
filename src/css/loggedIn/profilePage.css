@@ -58,6 +58,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    overflow: hidden;
 }
 
 .profile-n-b p {
@@ -84,7 +85,6 @@
     display: flex;
     align-items: center;
     font-size: 20px;
-    height: 25px;
 }
 
 #profile-bio {
@@ -205,5 +205,9 @@
     }
     .profile-page hr {
         width: 330px;
+    }
+
+    .active-settings {
+        bottom: 0px;
     }
 }

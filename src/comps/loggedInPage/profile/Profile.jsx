@@ -101,8 +101,8 @@ function Profile({ uid, dpURL, callEditInfo, diffUser }) {
                 {isEditing ?
                     (
                         <div className="profile-n-b">
-                            <input id="name-input" placeholder="Nathan Flores" name="name" value={name} onChange={handleNameBioChange} />
-                            <input id="bio-input" placeholder="just a bio!" name="bio" value={bio} onChange={handleNameBioChange} />
+                            <input id="name-input" placeholder={name} name="name" value={name} onChange={handleNameBioChange} />
+                            <input id="bio-input" placeholder={bio !== "" ? bio : "Add a bio"} name="bio" value={bio} onChange={handleNameBioChange} />
                         </div>
                     )
                     :

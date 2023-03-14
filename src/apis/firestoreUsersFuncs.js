@@ -1,11 +1,13 @@
-import { usersCollection, notifCollection } from "./firebase";
-import {  doc, setDoc, getDoc } from "firebase/firestore";
+import { usersCollection, notifCollection, userChatsCollection } from "./firebase";
+import {  doc, setDoc, getDoc,addDoc } from "firebase/firestore";
 import { uploadImage } from "./firestoreDataQueryFuncs";
 
 export const addUser = async (uid, email) => {
+    console.log("RECEIVED UID: ", uid);
+    console.log("RECEIVED EMAIL: ", email);
     const userDoc = doc(usersCollection, uid)  
-    console.log("SETTING DOC...");
     const user = await getDoc(userDoc)
+    console.log("USER EXISTS? ", user.exists());
     if (user.exists()) {return}
     const newUser = await setDoc(userDoc, {
         name: email,
@@ -16,6 +18,9 @@ export const addUser = async (uid, email) => {
     })
     const userNotifRef = doc(notifCollection, uid)
     const newNotif = await setDoc(userNotifRef, {seen: true})
+    const userChatsRef =  doc(userChatsCollection, uid)
+    const userChats = await setDoc(userChatsRef, {chatIds: []})
+
     console.log("NEW USER: ", newUser);
 }   
 

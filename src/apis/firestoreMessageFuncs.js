@@ -4,6 +4,12 @@ import { chatsCollection, userChatsCollection, usersCollection } from "./firebas
 import {updated_at_timestamp} from "./firestoreDataQueryFuncs"
 
 export const addUserChat = async (userId1, userId2) => {
+    console.log("ADDING USER...");
+    try {
+    const userChatsRef = doc(userChatsCollection, userId1)
+    const user1Chats = await getDoc(userChatsRef)
+        console.log("RES: ", user1Chats.data().chatIds[userId2]);
+    if (user1Chats.data().chatIds[userId2]) {throw "already has chat"}
 
     const user1ChatsDocRef = doc(userChatsCollection, userId1);
     const user2ChatsDocRef = doc(userChatsCollection, userId2);
@@ -15,6 +21,10 @@ export const addUserChat = async (userId1, userId2) => {
     const updatedUser2Chat = await updateDoc(user2ChatsDocRef, {
         chatIds: arrayUnion(chatId)
     })
+
+
+    } catch (err) {throw err}
+
 }
 
 
