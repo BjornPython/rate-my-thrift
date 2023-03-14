@@ -31,6 +31,7 @@ function ShowUser({ uid, userId, updateProfilePreview }) {
             if (err === "already has chat") {
                 console.log("WILL OPEN CHAT..");
             }
+            throw err
         }
 
     }
