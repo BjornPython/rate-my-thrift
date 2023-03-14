@@ -51,15 +51,16 @@ function Homepage({ user }) {
         if (!uid) { return }
         // Listen to userChatIds changes
         const getUserChatIds = async () => {
-            const docRef = doc(userChatsCollection, user.uid)
+            const colRef = collection(userChatsCollection, user.uid, "userIds")
 
-            const unsub = onSnapshot(docRef, (changedDoc) => {
-                const chatIds = changedDoc.data().chatIds
+            const unsub = onSnapshot(colRef, (col) => {
+                const userIds = col.docs
                 // listen to user's chatIds
-                chatIds.forEach((chatId) => {
+                userIds.forEach((userId) => {
+                    const chatId = userId.data().chatId
 
-                    // check if already listening to chatId  
-                    if (!listeningChatIds.includes(chatId)) {
+                    // check if chatId exists and if not already listening to chatId  
+                    if (chatId && !listeningChatIds.includes(chatId)) {
 
                         // Listen to changes of chat Id document
                         const chatRef = doc(chatsCollection, chatId)
