@@ -3,6 +3,7 @@ import { faX, faMinus, faCircle } from "@fortawesome/free-solid-svg-icons"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { useEffect, useState } from "react"
+import { updateChatSeen } from '../../../apis/firestoreMessageFuncs'
 
 function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeShowMessages, showMessages }) {
 
@@ -37,7 +38,7 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeSho
     }, [currentChat])
 
     return (
-        <div className='chat-page'>
+        <div className='chat-page' onClick={() => { updateChatSeen(currentChat.chatId, uid) }} >
             <div className={`chat-dp-name ${!showMessages && "min-chat"}`}
                 onClick={() => { if (!showMessages) { changeShowMessages(true) } }}>
 

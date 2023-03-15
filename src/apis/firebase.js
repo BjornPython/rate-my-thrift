@@ -26,16 +26,17 @@ export const auth = getAuth(firebaseApp)
 export const firestoreDb = getFirestore(firebaseApp);
 export const storage = getStorage(firebaseApp);
 
-export const usersCollection = collection(firestoreDb, "users")
-export const postsCollection = collection(firestoreDb, "posts")
-export const commentsCollection = collection(firestoreDb, "postComments")
-export const postLikesCollection = collection(firestoreDb, "postLikes")
-export const userUploadStorage = ref(storage, "userUploads")
-export const notifCollection = collection(firestoreDb, "notifications")
-export const userChatsCollection = collection(firestoreDb, "userChats")
-export const chatsCollection = collection(firestoreDb, "chats")
+export const usersCollection = collection(firestoreDb, "users") // Used for storing user info. (name, bio, dpURL, posts)
+export const postsCollection = collection(firestoreDb, "posts") // Used for storing posts
+export const commentsCollection = collection(firestoreDb, "postComments") // Used for storing post comments
+export const postLikesCollection = collection(firestoreDb, "postLikes")// Used for storing post likes
+export const userUploadStorage = ref(storage, "userUploads") // storage for storing userDps and userUploaded pictures
+export const notifCollection = collection(firestoreDb, "notifications") // Used for storing user notifications
+export const userChatsCollection = collection(firestoreDb, "userChats") // Used for storing user's chatIds
+export const chatsCollection = collection(firestoreDb, "chats") // Used for storing chat info (participants, seen) and messages in it's subcollection "messages"
 
 
+// Logouts the user.
 export const logout = async () => {
     await signOut(auth)
 }

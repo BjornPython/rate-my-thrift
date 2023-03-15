@@ -15,8 +15,6 @@ function MessageContents({ uid, sortedChats, chatInfo, currentChat, changeCurren
                 return (
                     <DisplayChat key={chatId} uid={uid} chatId={chatId} info={chatInfo[chatId]} changeCurrentChat={changeCurrentChat} />
                 )
-
-
             })
         )
     }, [sortedChats, chatInfo])

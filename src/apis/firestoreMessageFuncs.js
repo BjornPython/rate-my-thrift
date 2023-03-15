@@ -45,7 +45,7 @@ export const addMessage = async (chatId, senderId, content) => {
     })
     if (messageDoc.id) {
         const chatsDoc = doc(chatsCollection, chatId)
-        const updatedDoc = await updateDoc(chatsDoc, {lastMsg: content})
+        const updatedDoc = await updateDoc(chatsDoc, {lastMsg: content, seen_by: [senderId]})
     }
     return messageDoc.id
 }   
@@ -56,5 +56,11 @@ export const getMessages = async (chatId) => {
     const messageDocRef = collection(chatsCollection, chatId, "messages")
     const messageDocs = await getDocs(messageDocRef);
     return messageDocs
+}
 
+export const updateChatSeen = async (chatId, seenerId) => {
+    try {
+    const chatDocRef = doc(chatsCollection, chatId)
+    const updatedDoc = await updateDoc(chatDocRef, {seen_by: arrayUnion(seenerId)})
+    } catch(err) {throw err}
 }

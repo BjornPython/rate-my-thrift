@@ -61,10 +61,9 @@ function Homepage({ user }) {
                 // listen to user's chatIds
                 userIds.forEach((userId) => {
                     const chatId = userId.data().chatId
-
                     // check if chatId exists and if not already listening to chatId  
                     if (chatId && !listeningChatIds.includes(chatId)) {
-                        console.log("LISTENING TO CHATID: ", chatId);
+
                         // Listen to changes of chat Id document
                         const chatRef = doc(chatsCollection, chatId)
                         const chatListener = onSnapshot(chatRef, (chatDoc) => {
