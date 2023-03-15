@@ -30,6 +30,9 @@ function Homepage({ user }) {
         id: "", imageUrls: "", title: "", caption: "", dateTime: "", isLiked: false, userId: ""
     })
 
+
+    const [showMessages, setShowMessages] = useState(false) // Show messages or not
+    const [currentChat, setCurrentChat] = useState(null) // The current chat
     const [listeningChatIds, setListeningChatIds] = useState([])
     const [chatInfo, setChatInfo] = useState({}) // Store chat info {participants, seen, lastEdited}
     const [chatMessagesData, setChatMessagesData] = useState({}) // store chatMessagesData
@@ -183,6 +186,15 @@ function Homepage({ user }) {
     const changeShowNotif = (val) => {
         setShowNotif(val)
     }
+
+    const changeCurrentChat = (val) => {
+        setCurrentChat(val)
+    }
+
+    const changeShowMessages = (val) => {
+        setShowMessages(val)
+    }
+
     return (
         <>
             <Navbar uid={uid} currentPage={currentPage} changePage={changePage} isLoading={isLoading} removeCommentsPage={removeCommentsPage}
@@ -199,9 +211,10 @@ function Homepage({ user }) {
                     updateLike={updateLike} startKey="other" diffUser={true} />}
             </div>
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
-                changePostLike={changePostLike} uid={uid} updateProfilePreview={updateProfilePreview} />
+                changePostLike={changePostLike} uid={uid} updateProfilePreview={updateProfilePreview} changeCurrentChat={changeCurrentChat} />
 
-            <MessagePage uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} chatMessagesData={chatMessagesData} />
+            <MessagePage uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat} showMessages={showMessages}
+                changeShowMessages={changeShowMessages} sortedChats={sortedChats} chatInfo={chatInfo} chatMessagesData={chatMessagesData} />
         </>
     )
 }

@@ -10,7 +10,7 @@ import { likePost } from "../../../apis/firestoreDataQueryFuncs"
 
 function CommentsPage({
     uid, showCommentPage, commentPost,
-    removeCommentsPage, changePostLike, updateProfilePreview
+    removeCommentsPage, changePostLike, updateProfilePreview, changeCurrentChat
 }) {
     const wrapperCommentsRef = useRef()
     const { id, imageUrls, title, caption, dateTime, isLiked, userId } = commentPost
@@ -72,7 +72,7 @@ function CommentsPage({
                 <div className="comments-contents">
                     <div className="post-contents">
                         <div className="post-info">
-                            <ShowUser uid={uid} userId={userId} updateProfilePreview={updateProfilePreview} />
+                            <ShowUser uid={uid} userId={userId} updateProfilePreview={updateProfilePreview} changeCurrentChat={changeCurrentChat} />
                             <h1 className="comment-title">{title}</h1>
                             <p className="comment-caption">{caption}</p>
                             <p className="comment-date">{date}</p>

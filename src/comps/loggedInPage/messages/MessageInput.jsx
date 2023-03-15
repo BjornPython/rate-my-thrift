@@ -15,10 +15,8 @@ function MessageInput({ uid, currentChat, addSendingMessages, deleteSendingMessa
         const msgId = uuid()
         addSendingMessages(msgId, message)
         const success = await addMessage(currentChat.chatId, uid, message)
+        deleteSendingMessages(msgId)
         setMessage("")
-        if (success) {
-            deleteSendingMessages(msgId)
-        }
     }
 
 

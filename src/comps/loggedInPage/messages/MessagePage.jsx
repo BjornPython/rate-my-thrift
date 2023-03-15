@@ -3,26 +3,26 @@ import "../../../css/loggedIn/messages/messagePage.css"
 import Chat from './Chat'
 import MessageContents from './MessageContents'
 
-function MessagePage({ uid, sortedChats, chatInfo, chatMessagesData }) {
+function MessagePage({ uid, currentChat, changeCurrentChat, showMessages, changeShowMessages, sortedChats, chatInfo, chatMessagesData }) {
 
-    const [showMessages, setShowMessages] = useState(false)
+    // const [showMessages, setShowMessages] = useState(false)
 
-    const [currentChat, setCurrentChat] = useState(null)
+    // const [currentChat, setCurrentChat] = useState(null)
 
-    const changeCurrentChat = (val) => {
-        setCurrentChat(val)
-    }
+    // const changeCurrentChat = (val) => {
+    //     setCurrentChat(val)
+    // }
 
-    const changeShowMessages = (val) => {
-        setShowMessages(val)
-    }
+    // const changeShowMessages = (val) => {
+    //     setShowMessages(val)
+    // }
 
     return (
         <div className={`message-page ${showMessages && "message-page-show"}`}>
 
             {!currentChat &&
 
-                <div className={`message-header ${showMessages && "message-header-active"}`} onClick={() => { setShowMessages(!showMessages) }} >
+                <div className={`message-header ${showMessages && "message-header-active"}`} onClick={() => { changeShowMessages(!showMessages) }} >
                     <h3>Messages</h3>
                 </div>
 

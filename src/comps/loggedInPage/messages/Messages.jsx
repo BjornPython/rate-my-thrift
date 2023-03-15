@@ -1,6 +1,10 @@
 import Message from "./Message"
+import { useEffect } from "react";
 function Messages({ uid, chatMessages, sendingMessages }) {
 
+    useEffect(() => {
+        console.log("SENDING MSGS CHANGED: ", sendingMessages);
+    }, [sendingMessages])
 
 
     return (

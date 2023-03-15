@@ -8,7 +8,7 @@ export const addUserChat = async (userId1, userId2) => {
     try {
         const user1ChatsDocRef = doc(userChatsCollection, userId1, "userIds", userId2)
         const user1ChatsDoc = await getDoc(user1ChatsDocRef)
-        if (user1ChatsDoc.exists()) {throw "Already has a chat"}
+        if (user1ChatsDoc.exists()) {throw {message: "chat exists", chatId: user1ChatsDoc.data().chatId}}
         const chatId = await createChat(userId1, userId2);
         console.log("CHAT ID: ", chatId);
 

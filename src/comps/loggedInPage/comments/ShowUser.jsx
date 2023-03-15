@@ -5,7 +5,7 @@ import { getUserInfo } from "../../../apis/firestoreUsersFuncs"
 import { addUserChat } from "../../../apis/firestoreMessageFuncs"
 
 
-function ShowUser({ uid, userId, updateProfilePreview }) {
+function ShowUser({ uid, userId, updateProfilePreview, changeCurrentChat }) {
     const [userDp, setUserDp] = useState(null)
     const [userNameBio, setUserNameBio] = useState({ name: "", bio: "" })
     const { name, bio } = userNameBio
@@ -28,8 +28,10 @@ function ShowUser({ uid, userId, updateProfilePreview }) {
         try {
             await addUserChat(uid, userId)
         } catch (err) {
-            if (err === "already has chat") {
+            if (err.message === "chat exists") {
                 console.log("WILL OPEN CHAT..");
+                console.log(err.chatId, name, userDp);
+                changeCurrentChat(err.chatId, name, userDp)
             }
             throw err
         }
