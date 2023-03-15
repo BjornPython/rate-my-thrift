@@ -5,10 +5,14 @@ import Messages from "./Messages"
 import { useEffect, useState } from "react"
 import { updateChatSeen } from '../../../apis/firestoreMessageFuncs'
 
-function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeShowMessages, showMessages }) {
+
+function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeShowMessages, showMessages, chatInfo }) {
 
     const [chatMessages, setChatMessages] = useState([])
     const [sendingMessages, setSendingMessages] = useState({})
+    const [isSeen, setIsSeen] = useState(false)
+
+    const [info, setInfo] = useState(null)
 
     useEffect(() => {
         if (!currentChat) { return }
@@ -18,6 +22,15 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeSho
     useEffect(() => {
         console.log('CHAT MESSAGES: ', chatMessages);
     }, [chatMessages])
+
+    useEffect(() => {
+        if (chatInfo[currentChat.chatId]) { setInfo(chatInfo[currentChat.chatId]) }
+    }, [chatInfo])
+
+    useEffect(() => {
+        if (!info) { return }
+        if (info.seen_by.includes(uid)) { console.log("CHAT SEEN"); setIsSeen(true) } else { console.log("CHAT FALSE"); setIsSeen(false) }
+    }, [info])
 
     const addSendingMessages = (msgId, message) => {
         setSendingMessages(prevState => { return { ...prevState, [msgId]: message } })
@@ -33,12 +46,9 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeSho
 
 
 
-    useEffect(() => {
-        console.log("CURRENT CHAT: ", currentChat);
-    }, [currentChat])
 
     return (
-        <div className='chat-page' onClick={() => { updateChatSeen(currentChat.chatId, uid) }} >
+        <div className='chat-page' onClick={() => { if (!isSeen) { updateChatSeen(currentChat.chatId, uid) } }} >
             <div className={`chat-dp-name ${!showMessages && "min-chat"}`}
                 onClick={() => { if (!showMessages) { changeShowMessages(true) } }}>
 
@@ -63,6 +73,7 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeSho
             </div>
             <Messages uid={uid} chatMessages={chatMessages} sendingMessages={sendingMessages} />
             <MessageInput uid={uid} currentChat={currentChat} addSendingMessages={addSendingMessages} deleteSendingMessages={deleteSendingMessages} />
+            {!isSeen && <FontAwesomeIcon icon={faCircle} className="new-notif" />}
         </div>
     )
 }

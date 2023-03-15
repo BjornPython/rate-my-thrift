@@ -5,17 +5,6 @@ import MessageContents from './MessageContents'
 
 function MessagePage({ uid, currentChat, changeCurrentChat, showMessages, changeShowMessages, sortedChats, chatInfo, chatMessagesData }) {
 
-    // const [showMessages, setShowMessages] = useState(false)
-
-    // const [currentChat, setCurrentChat] = useState(null)
-
-    // const changeCurrentChat = (val) => {
-    //     setCurrentChat(val)
-    // }
-
-    // const changeShowMessages = (val) => {
-    //     setShowMessages(val)
-    // }
 
     return (
         <div className={`message-page ${showMessages && "message-page-show"}`}>
@@ -30,7 +19,7 @@ function MessagePage({ uid, currentChat, changeCurrentChat, showMessages, change
 
             <MessageContents uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} currentChat={currentChat} changeCurrentChat={changeCurrentChat} />
 
-            {currentChat && <Chat uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat}
+            {currentChat && <Chat uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat} chatInfo={chatInfo}
                 chatMessagesData={chatMessagesData} showMessages={showMessages} changeShowMessages={changeShowMessages} />}
 
         </div>

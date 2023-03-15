@@ -20,9 +20,6 @@ function DisplayChat({ uid, chatId, info, changeCurrentChat }) {
         queryChatUserInfo()
     }, [uid])
 
-    useEffect(() => {
-        if (!name) { return }
-    }, [chatUserInfo])
 
     useEffect(() => {
         if (!info) { return }

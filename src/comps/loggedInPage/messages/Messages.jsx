@@ -1,14 +1,17 @@
 import Message from "./Message"
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 function Messages({ uid, chatMessages, sendingMessages }) {
 
+    const messagesRef = useRef(null)
+
     useEffect(() => {
-        console.log("SENDING MSGS CHANGED: ", sendingMessages);
-    }, [sendingMessages])
+        if (!messagesRef) { return }
+        messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+    }, [chatMessages])
 
 
     return (
-        <div className="messages ">
+        <div className="messages" ref={messagesRef}>
 
             {chatMessages.map(msg => {
                 const { senderId, content } = msg.data()

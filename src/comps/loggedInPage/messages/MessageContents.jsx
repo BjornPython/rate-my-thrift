@@ -8,7 +8,6 @@ function MessageContents({ uid, sortedChats, chatInfo, currentChat, changeCurren
 
 
     const chatsMemo = useMemo(() => {
-        console.log("RE MAPPING...");
         return (
             sortedChats.map((chat) => {
                 const { chatId } = chat
