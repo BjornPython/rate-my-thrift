@@ -31,7 +31,7 @@ function ShowUser({ uid, userId, updateProfilePreview, changeCurrentChat }) {
             if (err.message === "chat exists") {
                 console.log("WILL OPEN CHAT..");
                 console.log(err.chatId, name, userDp);
-                changeCurrentChat(err.chatId, name, userDp)
+                changeCurrentChat({ chatId: err.chatId, name, dpURL: userDp })
             }
             throw err
         }
