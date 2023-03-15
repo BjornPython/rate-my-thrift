@@ -212,7 +212,7 @@ function Homepage({ user }) {
             <CommentsPage showCommentPage={showCommentPage} commentPost={commentPost} removeCommentsPage={removeCommentsPage}
                 changePostLike={changePostLike} uid={uid} updateProfilePreview={updateProfilePreview} changeCurrentChat={changeCurrentChat} />
 
-            <MessagePage uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat} showMessages={showMessages}
+            <MessagePage uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat} showMessages={showMessages} updateProfilePreview={updateProfilePreview}
                 changeShowMessages={changeShowMessages} sortedChats={sortedChats} chatInfo={chatInfo} chatMessagesData={chatMessagesData} />
         </>
     )

@@ -6,13 +6,14 @@ import { useEffect, useState } from "react"
 import { updateChatSeen } from '../../../apis/firestoreMessageFuncs'
 
 
-function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeShowMessages, showMessages, chatInfo }) {
+function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData,
+    changeShowMessages, showMessages, info, updateProfilePreview }) {
 
+    const chatUserId = info.participants[0] == uid ? info.participants[1] : info.participants[0]
     const [chatMessages, setChatMessages] = useState([])
     const [sendingMessages, setSendingMessages] = useState({})
-    const [isSeen, setIsSeen] = useState(false)
+    const [isSeen, setIsSeen] = useState(true)
 
-    const [info, setInfo] = useState(null)
 
     useEffect(() => {
         if (!currentChat) { return }
@@ -23,9 +24,6 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeSho
         console.log('CHAT MESSAGES: ', chatMessages);
     }, [chatMessages])
 
-    useEffect(() => {
-        if (chatInfo[currentChat.chatId]) { setInfo(chatInfo[currentChat.chatId]) }
-    }, [chatInfo])
 
     useEffect(() => {
         if (!info) { return }
@@ -54,7 +52,8 @@ function Chat({ uid, currentChat, changeCurrentChat, chatMessagesData, changeSho
 
                 {currentChat.dpURL
                     ?
-                    <img src={currentChat.dpURL} alt="" className={`chat-dp ${!showMessages && "hide-chat-icns"}`} />
+                    <img src={currentChat.dpURL} alt="" className={`chat-dp ${!showMessages && "hide-chat-icns"}`}
+                        onClick={() => { updateProfilePreview(chatUserId) }} />
                     :
                     <FontAwesomeIcon icon={faCircle} className={`chat-dp ${!showMessages && "hide-chat-icns"}`} />
                 }

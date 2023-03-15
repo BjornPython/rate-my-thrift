@@ -185,6 +185,7 @@
 }
 
 .chat-dp {
+    cursor: pointer;
     margin-left: 10px;
     font-size: 45px;
     width: 45px;

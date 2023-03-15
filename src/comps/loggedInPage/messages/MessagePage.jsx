@@ -3,7 +3,10 @@ import "../../../css/loggedIn/messages/messagePage.css"
 import Chat from './Chat'
 import MessageContents from './MessageContents'
 
-function MessagePage({ uid, currentChat, changeCurrentChat, showMessages, changeShowMessages, sortedChats, chatInfo, chatMessagesData }) {
+function MessagePage({
+    uid, currentChat, changeCurrentChat, showMessages,
+    changeShowMessages, sortedChats, chatInfo, chatMessagesData,
+    updateProfilePreview }) {
 
 
     return (
@@ -19,8 +22,8 @@ function MessagePage({ uid, currentChat, changeCurrentChat, showMessages, change
 
             <MessageContents uid={uid} sortedChats={sortedChats} chatInfo={chatInfo} currentChat={currentChat} changeCurrentChat={changeCurrentChat} />
 
-            {currentChat && <Chat uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat} chatInfo={chatInfo}
-                chatMessagesData={chatMessagesData} showMessages={showMessages} changeShowMessages={changeShowMessages} />}
+            {currentChat && <Chat uid={uid} currentChat={currentChat} changeCurrentChat={changeCurrentChat} info={chatInfo[currentChat.chatId]}
+                chatMessagesData={chatMessagesData} showMessages={showMessages} changeShowMessages={changeShowMessages} updateProfilePreview={updateProfilePreview} />}
 
         </div>
     )
