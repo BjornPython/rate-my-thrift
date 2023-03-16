@@ -1,13 +1,10 @@
-import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import './App.css';
 import LoginPage from './comps/loginComps/LoginPage';
 import Homepage from './comps/loggedInPage/Homepage';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth, logout } from './apis/firebase';
+import { auth } from './apis/firebase';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { getPosts, addPost, getImages, uploadImage, addDp } from './apis/firestoreDataQueryFuncs';
-import background from "./images/background.jpg"
 
 function App() {
 
