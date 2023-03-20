@@ -142,7 +142,7 @@
 .comments-heart-icn {
     font-size: 20px;
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     right: 0;
     color: var(--dark-brown);
     cursor: pointer;
@@ -226,7 +226,7 @@
 .post-likes {
     position: absolute;
     margin: 0 10px 0 0;
-    bottom: 0;
+    bottom: 20px;
     left: 0;
     color: gray;
 }
