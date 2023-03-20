@@ -29,6 +29,7 @@ export const createChat = async (userId1, userId2) => {
     const chatDocRef = await addDoc(chatsCollection, {
         participants: [`${userId1}`, `${userId2}`],
         seen: {[userId1]: false, [userId2]: false},
+        seen_by: [],
         lastEdited: updated_at_timestamp,
         lastMsg: ""
     })
@@ -61,6 +62,6 @@ export const getMessages = async (chatId) => {
 export const updateChatSeen = async (chatId, seenerId) => {
     try {
     const chatDocRef = doc(chatsCollection, chatId)
-    const updatedDoc = await updateDoc(chatDocRef, {seen_by: arrayUnion(seenerId)})
+    const updatedDoc = await updateDoc(chatDocRef, {seen: arrayUnion(seenerId)})
     } catch(err) {throw err}
 }

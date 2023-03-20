@@ -74,6 +74,7 @@ function Homepage({ user }) {
                         const chatMessagesRef = collection(chatsCollection, chatId, "messages")
                         const q = query(chatMessagesRef, orderBy("dateTime"))
                         const chatMessagesListener = onSnapshot(q, (res) => {
+                            console.log("RES DOCS: ", res.docs);
                             if (res.docs) {
                                 setChatMessagesData(prevConts => {
                                     return { ...prevConts, [chatId]: { ...prevConts[chatId], messages: res.docs } }
@@ -118,7 +119,9 @@ function Homepage({ user }) {
     }, [profilePreviewId])
 
 
-
+    useEffect(() => {
+        console.log("CHAT IDS: ", listeningChatIds);
+    }, [listeningChatIds])
 
 
     // function used to change page.

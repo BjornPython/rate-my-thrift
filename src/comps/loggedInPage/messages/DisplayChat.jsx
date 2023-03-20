@@ -23,6 +23,7 @@ function DisplayChat({ uid, chatId, info, changeCurrentChat }) {
 
     useEffect(() => {
         if (!info) { return }
+        console.log("INFO: ", info);
         setLastMsg(info.lastMsg)
         if (info.seen_by.includes(uid)) { console.log("SEEN IS TRUE"); setIsSeen(true) } else { console.log("SEEN IS FALSE"); setIsSeen(false) }
     }, [info])
