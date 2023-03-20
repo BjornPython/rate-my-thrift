@@ -28,7 +28,6 @@ export const createUserChats = async (userId1, userId2, chatId) => {
 export const createChat = async (userId1, userId2) => {
     const chatDocRef = await addDoc(chatsCollection, {
         participants: [`${userId1}`, `${userId2}`],
-        seen: {[userId1]: false, [userId2]: false},
         seen_by: [],
         lastEdited: updated_at_timestamp,
         lastMsg: ""
