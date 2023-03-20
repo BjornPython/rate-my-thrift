@@ -1,40 +1,12 @@
 import { useState, useEffect } from 'react'
 import UploadPost from './UploadPost'
 import AddPostPopup from './AddPostPopup'
-
+import { auth } from '../../../apis/firebase'
+import { sendEmailVerification } from 'firebase/auth'
 
 function AddPostPage({ uid, changePage, isVerified, changeIsLoading }) {
 
-    const valueOne = {
-        title: (<h1>SUCCESFULLY <br></br> UPLOADED POST.</h1>),
-        buttons: (
-            <div className="popup-btns">
-                <button onClick={() => { changeShowUpload(true) }}>Upload again</button>
-                <button onClick={() => { changePage("home") }} >Back to homepage</button>
-            </div>
-        )
-    }
-
-    const valueTwo = {
-        title: (<h1>PLEASE VERIFY ACCOUNT <br></br> TO UPLOAD POST.</h1>),
-        buttons: (
-            <div className="popup-btns">
-                <button >Send Email Verification</button>
-                <button onClick={() => { changePage("home") }} >Back to homepage</button>
-            </div>
-        )
-    }
-
     const [showUpload, setShowUpload] = useState(true)
-    const [popupValues, setPopupValues] = useState(isVerified ? valueOne : valueTwo)
-
-    useEffect(() => {
-    }, [])
-
-    useEffect(() => {
-        setPopupValues(isVerified ? valueOne : valueTwo)
-    }, [isVerified])
-
 
     const changeShowUpload = (val) => {
         setShowUpload(val)
@@ -44,9 +16,9 @@ function AddPostPage({ uid, changePage, isVerified, changeIsLoading }) {
         <div className='addpost-page'>
             {showUpload && isVerified
                 ?
-                <UploadPost uid={uid} popupValues={popupValues} changeShowUpload={changeShowUpload} changeIsLoading={changeIsLoading} />
+                <UploadPost uid={uid} changeShowUpload={changeShowUpload} changeIsLoading={changeIsLoading} />
                 :
-                <AddPostPopup changeShowUpload={changeShowUpload} changePage={changePage} popupValues={popupValues} />}
+                <AddPostPopup changeShowUpload={changeShowUpload} changePage={changePage} />}
 
         </div>
     )
